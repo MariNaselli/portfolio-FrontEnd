@@ -1,0 +1,450 @@
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="../assets/images/APLogo-20-20.png"
+            alt="Logo"
+            height="30"
+            class="d-inline-block align-text-top"
+          />
+          #YoProgramo
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section_experiencias">Experiencia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section_educación">Educación</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section_skills">Habilidades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section_idiomas">Idiomas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section_proyectos">Proyectos</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav flex-wrap ms-md-auto">
+            <li class="nav-item">
+              <a
+                href="https://github.com/MariNaselli"
+                target="_blank"
+                class="nav-link"
+              >
+                <i class="fa-brands fa-github"></i>
+                <label class="d-block d-sm-none">GitHub</label>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="https://www.instagram.com/mari.naselli/"
+                target="_blank"
+                class="nav-link"
+              >
+                <i class="fa-brands fa-instagram"></i>
+                <label class="d-block d-sm-none">Instagram</label>
+              </a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-outline-light">
+                Ingresar
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+      <section id="section_banner">
+        <div class="row">
+          <div class="col-xxl-8 px-4 py-5">
+            <div class="row align-items-center g-5 py-5">
+              <div class="col-10 col-sm-8 col-lg-5">
+                <img
+                  src="../assets/images/profile.jpg"
+                  class="bd-placeholder-img rounded-circle"
+                  alt="Bootstrap Themes"
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                />
+              </div>
+              <div class="col-lg-7">
+                <h1 class="display-5 fw-bold lh-1 mb-3">
+                  Full Stack Developer Jr
+                  <h2>Mariana Naselli</h2>
+                </h1>
+                <p class="lead">
+                  Agregar información Profesional resumida sobre mi
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="staticBackdrop"  class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Agregar</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+            <div class="modal-body">
+
+              <div class="mb-3">
+                <label class="form-label">Cabecera</label>
+                <input type="text" class="form-control" id="txtCabecera" required placeholder="Ej. Administración Pietro">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Titulo Principal</label>
+                <input type="text" class="form-control" id="txtTitulo" required placeholder="Ej: Administrativa">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Período</label>
+                <input type="text" class="form-control" id="txtPeriodo" required placeholder="Ej: Diciembre 2022">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Descripción</label>
+                <textarea rows="3" class="form-control" id="txtDescripcion" placeholder=""></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">URL</label>
+                <input type="text" class="form-control" id="txtPeriodo" placeholder="">
+              </div>
+
+
+              <div class="mb-3">
+                <label for="customRange3" class="form-label">Barra de Progreso</label>
+                <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="modalConfirmarEliminar" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Confirmar</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>¿Está seguro que desea eliminar?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-danger btn-primary">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <section id="section_experiencias">
+        <div class="px-4 pt-5">
+          <h2 class="pb-2 border-bottom mt-4">Experiencia Profesional
+            <a href="#" class="btn btn-secondary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <i class="fa-solid fa-plus"></i></a>
+          </h2>
+              <div class="row g-0 border rounded overflow-hidden shadow-sm h-md-250 position-relative">
+                <div class="col p-4 flex-column position-static">
+                  <a href="#" class="btn btn-danger btn-sm float-end" data-bs-toggle="modal" data-bs-target="#modalConfirmarEliminar"><i class="fa-solid fa-trash-can"></i></a>
+                  <a href="#" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></a>
+                  <strong class="d-inline-block mb-2 text-primary">Administración Pietro</strong>
+                  <h3 class="mb-0">Administrativa</h3>
+                  <div class="mb-1 text-muted">Oct-2014/Julio 2021</div>
+                  <p class="card-text mb-auto">Descripción Actividades...</p>
+                </div>
+              </div>
+        </div>
+      </section>
+      <section id="section_educación">
+        <div class="px-4 pt-5">
+          <h2 class="pb-2 border-bottom mt-4">Educación Académica
+            <a href="#" class="btn btn-secondary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i></a>
+          </h2>
+
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 flex-column position-static">
+              <a href="#" class="btn btn-danger btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash-can"></i></a>
+              <a href="#" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></a>
+              <strong class="d-inline-block mb-2 text-primary">Argentina Programa</strong>
+              <h3 class="mb-0">Segunda Etapa Plan Argentina Programa:#YoProgramo</h3>
+              <div class="mb-1 text-muted">Enero 2023</div>
+              <a href="#" class="stretched-link">Certificación</a>
+
+            </div>
+          </div>
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 flex-column position-static">
+              <a href="#" class="btn btn-danger btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash-can"></i></a>
+                  <a href="#" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></a>
+              <strong class="d-inline-block mb-2 text-primary">Argentina Programa</strong>
+              <h3 class="mb-0">Primera Etapa Plan Argentina Programa:#SéProgramar</h3>
+              <div class="mb-1 text-muted">Abril 2022</div>
+              <a href="#" class="stretched-link">Certificación</a>
+
+            </div>
+          </div>
+
+
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 flex-column position-static">
+              <a href="#" class="btn btn-danger btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash-can"></i></a>
+              <a href="#" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></a>
+              <strong class="d-inline-block mb-2 text-primary">Platzi</strong>
+              <h3 class="mb-0">Curso Programación Básica</h3>
+              <div class="mb-1 text-muted">Marzo 2021</div>
+              <a href="#" class="stretched-link">Certificación</a>
+
+            </div>
+          </div>
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 flex-column position-static">
+              <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+              <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+              <strong class="d-inline-block mb-2 text-primary">Platzi</strong>
+              <h3 class="mb-0">Curso Básico de JavaScript</h3>
+              <div class="mb-1 text-muted">Junio 2022</div>
+              <a href="#" class="stretched-link">Certificación</a>
+
+            </div>
+          </div>
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 flex-column position-static">
+              <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+              <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+              <strong class="d-inline-block mb-2 text-primary">Platzi</strong>
+              <h3 class="mb-0">Curso HTML y CSS</h3>
+              <div class="mb-1 text-muted">Junio 2021</div>
+              <a href="#" class="stretched-link">Certificación</a>
+
+            </div>
+          </div>
+
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 flex-column position-static">
+                <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                <strong class="d-inline-block mb-2 text-primary">Platzi</strong>
+                <h3 class="mb-0">Curso FrontEnd Developer</h3>
+                <div class="mb-1 text-muted">Febrero 2022</div>
+                <a href="#" class="stretched-link">Certificación</a>
+
+              </div>
+            </div>
+
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 flex-column position-static">
+                <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                <strong class="d-inline-block mb-2 text-primary">Platzi</strong>
+                <h3 class="mb-0">Curso de Introducción a la Terminal y Línea de Comandos</h3>
+                <div class="mb-1 text-muted">Noviembre 2021</div>
+                <a href="#" class="stretched-link">Certificación</a>
+
+              </div>
+            </div>
+
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 flex-column position-static">
+                <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                <strong class="d-inline-block mb-2 text-primary">Platzi</strong>
+                <h3 class="mb-0">Curso Práctico de HTML y CSS</h3>
+                <div class="mb-1 text-muted">Junio 2021</div>
+                <a href="#" class="stretched-link">Certificación</a>
+
+              </div>
+            </div>
+
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 flex-column position-static">
+                <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                <strong class="d-inline-block mb-2 text-primary">Platzi</strong>
+                <h3 class="mb-0">Curso Profesional de Git y GitHub</h3>
+                <div class="mb-1 text-muted">Diciembre 2021</div>
+                <a href="#" class="stretched-link">Certificación</a>
+
+              </div>
+            </div>
+
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 flex-column position-static">
+                <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                <strong class="d-inline-block mb-2 text-primary">Platzi</strong>
+                <h3 class="mb-0">Curso Profesional de Scrum</h3>
+                <div class="mb-1 text-muted">Julio 2022</div>
+                <a href="#" class="stretched-link">Certificación</a>
+
+              </div>
+            </div>
+
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 flex-column position-static">
+                <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+                <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+                <strong class="d-inline-block mb-2 text-primary">Platzi</strong>
+                <h3 class="mb-0">Fundamentos de Ingeniería de Software</h3>
+                <div class="mb-1 text-muted">Noviembre 2021</div>
+                <a href="#" class="stretched-link">Certificación</a>
+
+              </div>
+            </div>
+
+          </div>
+      </section>
+      <section id="section_skills">
+        <div class="px-4 py-5">
+          <h2 class="pb-2 border-bottom mt-4">Habilidades Duras y Blandas
+            <a href="#" class="btn btn-secondary btn-sm float-end"><i class="fa-solid fa-plus"></i></a>
+          </h2>
+
+          <div class="row g-4 py-5 row-cols-1 row-cols-lg">
+
+            <h5>Resolución de Problemas
+              <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+            </h5>
+
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 75%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h5>Curiosidad
+              <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+            </h5>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h5>Autogestión
+              <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+            </h5>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h5>Trabajo en Equipo
+              <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+            </h5>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h5>Comunicación
+              <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+            </h5>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <section id="section_idiomas">
+          <div class="px-4 py-5">
+            <h2 class="pb-2 border-bottom mt-4">Idiomas
+              <a href="#" class="btn btn-secondary btn-sm float-end"><i class="fa-solid fa-plus"></i></a>
+            </h2>
+
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg">
+              <h5>Inglés
+                <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+              </h5>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <h5>Francés
+                <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+              </h5>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+    </section>
+    <section id="section_proyectos">
+      <div class="px-4 py-5">
+        <h2 class="pb-2 border-bottom">Proyectos
+          <a href="#" class="btn btn-secondary btn-sm float-end"><i class="fa-solid fa-plus"></i></a>
+        </h2>
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+          <div class="col p-4 flex-column position-static">
+            <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+
+            <strong class="d-inline-block mb-2 text-primary">Argentina Programa</strong>
+            <h3 class="mb-0">Aplicación Web</h3>
+            <div class="mb-1 text-muted">Enero 2023</div>
+            <p class="card-text mb-auto">Portfolio Web Full Stack: aplicación de arquitectura
+              distribuida, diseño de interfaz de usuario y base de datos que
+              cuenta con las APIs necesarias. Este proyecto es parte de la
+              segunda etapa del Plan Argentina Programa: #YoProgramo</p>
+            <a href="#" class="stretched-link">Proyecto</a>
+
+          </div>
+        </div>
+
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 flex-column position-static">
+            <a href="#" class="btn btn-danger btn-sm float-end"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-pen-to-square"></i></a>
+            <strong class="d-inline-block mb-2 text-primary">Sen Contrucciones</strong>
+            <h3 class="mb-0">Landing Page</h3>
+            <div class="mb-1 text-muted">Agosto 2021</div>
+            <p class="card-text mb-auto">Descripción...</p>
+            <a href="#" class="stretched-link">Proyecto</a>
+
+          </div>
+        </div>
+
+
+        </div>
+
+    </section>
+  </main>
+  <script src="bootstrap-5.2.0-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="popper/popper.js"></script>
+  <script
+    src="https://kit.fontawesome.com/e3041535bf.js"
+    crossorigin="anonymous"
+  ></script>
+</body>

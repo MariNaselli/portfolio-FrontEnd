@@ -1,0 +1,174 @@
+<main class="container">
+<div
+    id="staticBackdrop"
+    class="modal fade"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Agregar</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Cabecera</label>
+              <input
+                type="text"
+                class="form-control"
+                id="txtCabecera"
+                required
+                placeholder="Ej. Administración Pietro"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Titulo Principal</label>
+              <input
+                type="text"
+                class="form-control"
+                id="txtTitulo"
+                required
+                placeholder="Ej: Administrativa"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Período</label>
+              <input
+                type="text"
+                class="form-control"
+                id="txtPeriodo"
+                required
+                placeholder="Ej: Diciembre 2022"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Descripción</label>
+              <textarea
+                rows="3"
+                class="form-control"
+                id="txtDescripcion"
+                placeholder=""
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">URL</label>
+              <input
+                type="text"
+                class="form-control"
+                id="txtPeriodo"
+                placeholder=""
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="customRange3" class="form-label"
+                >Barra de Progreso</label
+              >
+              <input
+                type="range"
+                class="form-range"
+                min="0"
+                max="5"
+                step="0.5"
+                id="customRange3"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalConfirmarEliminar" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Está seguro que desea eliminar?</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-danger btn-primary">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="section_experiencias">
+    <div class="px-4 pt-5">
+      <h2 class="pb-2 border-bottom mt-4">
+        Experiencia Profesional
+        <a
+          href="#"
+          class="btn btn-secondary btn-sm float-end"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
+          <i class="fa-solid fa-plus"></i
+        ></a>
+      </h2>
+      <div
+        class="row g-0 border rounded overflow-hidden shadow-sm h-md-250 position-relative"
+      >
+        <div class="col p-4 flex-column position-static">
+          <a
+            href="#"
+            class="btn btn-danger btn-sm float-end"
+            data-bs-toggle="modal"
+            data-bs-target="#modalConfirmarEliminar"
+            ><i class="fa-solid fa-trash-can"></i
+          ></a>
+          <a
+            href="#"
+            class="btn btn-primary btn-sm float-end"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            ><i class="fa-solid fa-pen-to-square"></i
+          ></a>
+          <strong class="d-inline-block mb-2 text-primary"
+            >Administración Pietro</strong
+          >
+          <h3 class="mb-0">Administrativa</h3>
+          <div class="mb-1 text-muted">Oct-2014/Julio 2021</div>
+          <p class="card-text mb-auto">Descripción Actividades...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

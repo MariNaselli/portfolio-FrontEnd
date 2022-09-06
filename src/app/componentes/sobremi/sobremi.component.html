@@ -1,14 +1,12 @@
-<main class="container">
-
 <section id="section_banner">
   <div class="row">
     <div class="col-xxl-8 px-4 py-5">
       <div class="row align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-5">
           <img
-            src="../assets/images/profile.jpg"
+            [src]="portfolio.url_foto"
             class="bd-placeholder-img rounded-circle"
-            alt="Bootstrap Themes"
+            alt="Foto de Perfil"
             width="300"
             height="300"
             loading="lazy"
@@ -16,15 +14,14 @@
         </div>
         <div class="col-lg-7">
           <h1 class="display-5 fw-bold lh-1 mb-3">
-            Full Stack Developer Jr
-            <h2>Mariana Naselli</h2>
+            {{ portfolio.titulo_principal }}
+            <h2>{{ portfolio.nombre }}</h2>
           </h1>
           <p class="lead">
-            Agregar información Profesional resumida sobre mi
+            {{ portfolio.descripcion }}
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-</main>

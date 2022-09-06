@@ -1,0 +1,107 @@
+{
+  "nombre": "Mariana Naselli",
+  "titulo_principal": "Full Stack Developer Jr",
+  "descripcion": "Agregar información Profesional resumida sobre mi...",
+  "url_foto": "https://avatars.githubusercontent.com/u/68907895?v=4",
+  "experiencias": [
+    {
+      "empresa": "Administracion Pietro",
+      "cargo": "Administrativa",
+      "periodo": "Octubre 2014/Julio 2021",
+      "descripcion": "Agregar descripcion"
+    },
+    {
+      "empresa": "Empresa 2",
+      "cargo": "Otro cargo",
+      "periodo": "otra fecha/otra fecha",
+      "descripcion": "Agregar info"
+    },
+    {
+      "empresa": "Empresa 3",
+      "cargo": "Otro más",
+      "periodo": "otra fecha/otra fecha",
+      "descripcion": "Agregar info"
+    }
+  ],
+  "educacion": [
+    {
+      "institucion": "Argentina Programa ",
+      "titulo": "Segunda Etapa Plan Argentina Programa #YoProgramo",
+      "periodo": "Enero 2023",
+      "descripcion": "",
+      "enlace": "Certificacion",
+      "url": ""
+    },
+    {
+      "institucion": "Platzi",
+      "titulo": "Fundamentos de Angular",
+      "periodo": "Agosto 2022",
+      "descripcion": "",
+      "enlace": "Certificacion",
+      "url": "https://platzi.com/"
+    },
+    {
+      "institucion": "Argentina Programa",
+      "titulo": "Pimera Etapa Plan Argentina Programa #SeProgramar",
+      "periodo": "Abril 2022",
+      "descripcion": "",
+      "enlace": "Certificación",
+      "url": ""
+    }
+  ],
+  "habilidades": [
+    {
+      "titulo": "Resolución de Problemas",
+      "valor": 40
+    },
+    {
+      "titulo": "Curiosidad",
+      "valor": 10
+    },
+    {
+      "titulo": "Comunicación",
+      "valor": 70
+    },
+    {
+      "titulo": "Autogestión",
+      "valor": 70
+    }
+  ],
+  "idiomas": [
+    {
+      "idioma": "Inglés",
+      "nivel": 70
+    },
+    {
+      "idioma": "Francés",
+      "nivel": 50
+    },
+    {
+      "idioma": "Italiano",
+      "nivel": 100
+    }
+  ],
+  "proyectos": [
+    {
+      "titulo": "Argentina Programa",
+      "nombre": "Pimera etapa plan Argentina Programa #SeProgramar",
+      "periodo": "Abril 2022",
+      "descripcion": "Aplicacion de arquitectura distribuida Portfolio Web",
+      "enlace": "Hacé clic acá para ver el sitio",
+      "url": "https://daskalos.com.ar/"
+    },
+    {
+      "titulo": "Sen Construcciones",
+      "nombre": "Sitio Web Estatico HTML",
+      "periodo": "Abril 2021",
+      "descripcion": "Landing page",
+      "enlace": "https://sen.daskalos.com.ar/",
+      "url": "https://sen.daskalos.com.ar/"
+    }
+  ],
+  "contacto": {
+    "mail": "nasellimariana@gmail.com",
+    "tel": "3517437212",
+    "ciudad": "Córdoba, Argentina"
+  }
+}

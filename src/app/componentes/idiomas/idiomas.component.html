@@ -1,14 +1,15 @@
-<section id="section_skills" class="px-4 py-5">
+<section id="section_idiomas" class="px-4 py-5">
   <h2 class="pb-2 border-bottom mt-4">
-    Habilidades Duras y Blandas
+    Idiomas
     <a href="#" class="btn btn-secondary btn-sm float-end"
       ><i class="fa-solid fa-plus"></i
     ></a>
   </h2>
 
-  <div *ngFor="let habilidad of portfolio.habilidades" class="row g-4 py-3 row-cols-1 row-cols-lg">
+
+  <div *ngFor="let idioma of portfolio.idiomas" class="row g-4 py-3 row-cols-1 row-cols-lg">
     <h5>
-      {{habilidad.titulo}}
+      {{idioma.idioma}}
       <a href="#" class="btn btn-danger btn-sm float-end"
         ><i class="fa-solid fa-trash-can"></i
       ></a>
@@ -16,13 +17,12 @@
         ><i class="fa-solid fa-pen-to-square"></i
       ></a>
     </h5>
-
     <div class="progress">
       <div
-        class="progress-bar progress-bar-striped"
+        class="progress-bar"
         role="progressbar"
-        [style.width.%]="habilidad.valor"
-        [attr.aria-valuenow]="habilidad.valor"
+        [style.width.%]="idioma.nivel"
+        [attr.aria-valuenow]="idioma.nivel"
         aria-valuemin="0"
         aria-valuemax="100"
       ></div>

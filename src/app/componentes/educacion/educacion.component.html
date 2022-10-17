@@ -1,40 +1,26 @@
 <section id="section_educación" class="px-4 pt-5">
   <h2 class="pb-2 border-bottom mt-4">
     Educación Académica
-    <a
-      href="#"
-      class="btn btn-secondary btn-sm float-end"
-      data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop"
-      ><i class="fa-solid fa-plus"></i
-    ></a>
+    <app-btn-agregar></app-btn-agregar>
   </h2>
   <div
     *ngFor="let edu of portfolio.educacion"
     class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
   >
     <div class="col p-4 flex-column position-static">
-      <a
-        href="#"
-        class="btn btn-danger btn-sm float-end"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-        ><i class="fa-solid fa-trash-can"></i
-      ></a>
-      <a
-        href="#"
-        class="btn btn-primary btn-sm float-end"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-        ><i class="fa-solid fa-pen-to-square"></i
-      ></a>
+      <app-btn-editar-eliminar></app-btn-editar-eliminar>
       <strong class="d-inline-block mb-2 text-primary">{{
         edu.institucion
       }}</strong>
       <h3 class="mb-0">{{ edu.titulo }}</h3>
       <div class="mb-1 text-muted">{{ edu.periodo }}</div>
-      <p *ngIf="edu.descripcion">{{edu.descripcion}}</p>
-      <a *ngIf="edu.url" [href]="edu.url" target="_blank" class="stretched-link">{{ edu.enlace }}</a>
+      <p *ngIf="edu.descripcion">{{ edu.descripcion }}</p>
+      <a
+        *ngIf="edu.url"
+        [href]="edu.url"
+        target="_blank"
+        >{{ edu.enlace }}</a
+      >
     </div>
   </div>
 </section>

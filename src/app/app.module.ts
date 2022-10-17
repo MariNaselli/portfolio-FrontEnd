@@ -15,6 +15,10 @@ import { IdiomasComponent } from './componentes/idiomas/idiomas.component';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { LoginComponent } from './modals/login/login.component';
 import { RedesComponent } from './modals/redes/redes.component';
+import { ConfirmareliminarComponent } from './modals/confirmareliminar/confirmareliminar.component';
+import { AgregareditarComponent } from './modals/agregareditar/agregareditar.component';
+import { BtnEditarEliminarComponent } from './buttons/btn-editar-eliminar/btn-editar-eliminar.component';
+import { BtnAgregarComponent } from './buttons/btn-agregar/btn-agregar.component';
 
 
 @NgModule({
@@ -29,7 +33,11 @@ import { RedesComponent } from './modals/redes/redes.component';
     IdiomasComponent,
     ContactoComponent,
     LoginComponent,
-    RedesComponent
+    RedesComponent,
+    ConfirmareliminarComponent,
+    AgregareditarComponent,
+    BtnEditarEliminarComponent,
+    BtnAgregarComponent
   ],
   imports: [
     BrowserModule,

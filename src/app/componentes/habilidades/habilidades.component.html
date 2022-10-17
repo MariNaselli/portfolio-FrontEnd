@@ -1,20 +1,13 @@
 <section id="section_skills" class="px-4 py-5">
   <h2 class="pb-2 border-bottom mt-4">
     Habilidades Duras y Blandas
-    <a href="#" class="btn btn-secondary btn-sm float-end"
-      ><i class="fa-solid fa-plus"></i
-    ></a>
+    <app-btn-agregar></app-btn-agregar>
   </h2>
 
   <div *ngFor="let habilidad of portfolio.habilidades" class="row g-4 py-3 row-cols-1 row-cols-lg">
     <h5>
       {{habilidad.titulo}}
-      <a href="#" class="btn btn-danger btn-sm float-end"
-        ><i class="fa-solid fa-trash-can"></i
-      ></a>
-      <a href="#" class="btn btn-primary btn-sm float-end"
-        ><i class="fa-solid fa-pen-to-square"></i
-      ></a>
+      <app-btn-editar-eliminar></app-btn-editar-eliminar>
     </h5>
 
     <div class="progress">

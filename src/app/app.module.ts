@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { IdiomasComponent } from './componentes/idiomas/idiomas.component';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { LoginComponent } from './modals/login/login.component';
+import { RedesComponent } from './modals/redes/redes.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { LoginComponent } from './modals/login/login.component';
     ProyectosComponent,
     IdiomasComponent,
     ContactoComponent,
-    LoginComponent
+    LoginComponent,
+    RedesComponent
   ],
   imports: [
     BrowserModule,

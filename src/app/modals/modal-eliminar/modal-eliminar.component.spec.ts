@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgregareditarComponent } from './agregareditar.component';
+import { ModalEliminarComponent } from './modal-eliminar.component';
 
-describe('AgregareditarComponent', () => {
-  let component: AgregareditarComponent;
-  let fixture: ComponentFixture<AgregareditarComponent>;
+describe('ModalEliminarComponent', () => {
+  let component: ModalEliminarComponent;
+  let fixture: ComponentFixture<ModalEliminarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AgregareditarComponent ]
+      declarations: [ ModalEliminarComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AgregareditarComponent);
+    fixture = TestBed.createComponent(ModalEliminarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

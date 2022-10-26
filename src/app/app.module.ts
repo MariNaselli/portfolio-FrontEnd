@@ -15,11 +15,12 @@ import { IdiomasComponent } from './componentes/idiomas/idiomas.component';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { LoginComponent } from './modals/login/login.component';
 import { RedesComponent } from './modals/redes/redes.component';
-import { ConfirmareliminarComponent } from './modals/confirmareliminar/confirmareliminar.component';
-import { AgregareditarComponent } from './modals/agregareditar/agregareditar.component';
 import { BtnEditarEliminarComponent } from './buttons/btn-editar-eliminar/btn-editar-eliminar.component';
 import { BtnAgregarComponent } from './buttons/btn-agregar/btn-agregar.component';
-
+import { ModalAgregarEditarComponent } from './modals/modal-agregar-editar/modal-agregar-editar.component';
+import { ModalEliminarComponent } from './modals/modal-eliminar/modal-eliminar.component';
+import { ModalEditarSobreMiComponent } from './modals/modal-editar-sobre-mi/modal-editar-sobre-mi.component';
+import { BtnIngresarComponent } from './buttons/btn-ingresar/btn-ingresar.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +35,12 @@ import { BtnAgregarComponent } from './buttons/btn-agregar/btn-agregar.component
     ContactoComponent,
     LoginComponent,
     RedesComponent,
-    ConfirmareliminarComponent,
-    AgregareditarComponent,
+    ModalEliminarComponent,
+    ModalAgregarEditarComponent,
     BtnEditarEliminarComponent,
-    BtnAgregarComponent
+    BtnAgregarComponent,
+    ModalEditarSobreMiComponent,
+    BtnIngresarComponent
   ],
   imports: [
     BrowserModule,

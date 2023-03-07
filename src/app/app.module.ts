@@ -21,6 +21,7 @@ import { ModalAgregarEditarComponent } from './modals/modal-agregar-editar/modal
 import { ModalEliminarComponent } from './modals/modal-eliminar/modal-eliminar.component';
 import { ModalEditarSobreMiComponent } from './modals/modal-editar-sobre-mi/modal-editar-sobre-mi.component';
 import { BtnIngresarComponent } from './buttons/btn-ingresar/btn-ingresar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BtnIngresarComponent } from './buttons/btn-ingresar/btn-ingresar.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [PortfolioService],
   bootstrap: [AppComponent]

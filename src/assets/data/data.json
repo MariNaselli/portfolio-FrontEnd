@@ -1,8 +1,11 @@
 {
-  "nombre": "Mariana Naselli",
+  "nombre": "Ulito Tu Culito",
   "titulo_principal": "Full Stack Developer Jr",
   "descripcion": "Agregar información Profesional resumida sobre mi................Agregar información Profesional resumida sobre mi................Agregar información Profesional resumida sobre mi................Agregar información Profesional resumida sobre mi................Agregar información Profesional resumida sobre mi................Agregar información Profesional resumida sobre mi................",
   "url_foto": "https://avatars.githubusercontent.com/u/68907895?v=4",
+
+
+
   "experiencias": [
     {
       "empresa": "Administracion Pietro",
@@ -79,6 +82,10 @@
     {
       "idioma": "Italiano",
       "nivel": 100
+    },
+    {
+      "idioma": "Portugués",
+      "nivel": 80
     }
   ],
   "proyectos": [

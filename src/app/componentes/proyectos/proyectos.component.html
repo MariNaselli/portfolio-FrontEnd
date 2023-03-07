@@ -4,7 +4,7 @@
     <app-btn-agregar></app-btn-agregar>
   </h2>
   <div
-    *ngFor="let proyecto of portfolio.proyectos"
+    *ngFor="let item of seccion.items"
     class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
   >
     <div class="col p-4 flex-column position-static">
@@ -12,18 +12,18 @@
       <app-btn-editar-eliminar></app-btn-editar-eliminar>
 
       <strong class="d-inline-block mb-2 text-primary">{{
-        proyecto.titulo
+        item.nombre
       }}</strong>
-      <h3 class="mb-0">{{ proyecto.nombre }}</h3>
-      <div class="mb-1 text-muted">{{ proyecto.periodo }}</div>
+      <h3 class="mb-0">{{ item.titulo }}</h3>
+      <div class="mb-1 text-muted">{{ item.periodo }}</div>
       <p class="card-text mb-auto">
-        {{ proyecto.descripcion }}
+        {{ item.descripcion }}
       </p>
       <a
-        *ngIf="proyecto.url"
-        [href]="proyecto.url"
+        *ngIf="item.url"
+        [href]="item.url"
         target="_blank"
-        >{{ proyecto.enlace }}</a
+        >{{ item.url }}</a
       >
     </div>
   </div>

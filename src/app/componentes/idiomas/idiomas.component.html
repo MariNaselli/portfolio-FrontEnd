@@ -5,19 +5,19 @@
   </h2>
 
   <div
-    *ngFor="let idioma of portfolio.idiomas"
+    *ngFor="let item of seccion.items"
     class="row p-4 g-4 py-3 row-cols-1 row-cols-lg"
   >
     <h5>
-      {{ idioma.idioma }}
+      {{ item.nombre }}
       <app-btn-editar-eliminar></app-btn-editar-eliminar>
     </h5>
     <div class="progress">
       <div
         class="progress-bar"
         role="progressbar"
-        [style.width.%]="idioma.nivel"
-        [attr.aria-valuenow]="idioma.nivel"
+        [style.width.%]="item.nivel_progreso"
+        [attr.aria-valuenow]="item.nivel_progreso"
         aria-valuemin="0"
         aria-valuemax="100"
       ></div>

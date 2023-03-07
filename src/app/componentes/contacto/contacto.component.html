@@ -16,32 +16,32 @@ aria-label="Toggle navigation"
         <ul class="navbar-nav flex-column text-left">
           <li class="nav-item mb-2">
             <a
-              href="mailto:nasellimariana@gmail.com"
+              href="mailto:{{ persona.email }}"
               target="_blank"
               class="nav-link p-0"
             >
               <i class="fa-solid fa-envelope"></i>
-              {{ portfolio.contacto.mail }}</a
+              {{ persona.email }}</a
             >
           </li>
           <li class="nav-item mb-2">
             <a
-              href="https://wa.me/+5493517437212"
+              href="https://wa.me/{{ persona.telefono }}"
               target="_blank"
               class="nav-link p-0"
             >
               <i class="fa-brands fa-whatsapp"></i>
-              {{ portfolio.contacto.tel }}</a
+              {{ persona.telefono }}</a
             >
           </li>
           <li class="nav-item mb-2">
             <a
-              href="https://www.google.com.ar/maps/place/C%C3%B3rdoba/@-31.399084,-64.334431,11z/data=!3m1!4b1!4m5!3m4!1s0x9432985f478f5b69:0xb0a24f9a5366b092!8m2!3d-31.4200833!4d-64.1887761"
+              href="https://www.google.com/maps/search/?api=1&query={{ persona.ubicacion }}"
               target="_blank"
               class="nav-link p-0"
             >
               <i class="fa-solid fa-location-dot"></i>
-              {{ portfolio.contacto.ciudad }}</a
+              {{ persona.ubicacion }}</a
             >
           </li>
         </ul>

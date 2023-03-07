@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Seccion } from 'src/app/clases/seccion';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
 @Component({
@@ -7,13 +8,13 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
   styleUrls: ['./habilidades.component.scss']
 })
 export class HabilidadesComponent implements OnInit {
-  portfolio:any;
+  seccion: Seccion = new Seccion;
 
   constructor(private servicios: PortfolioService) { }
 
   ngOnInit(): void {
-    this.servicios.obtenerDatos().subscribe((data) => {
-      this.portfolio = data;
+    this.servicios.obtenerHabilidades().subscribe((data) => {
+      this.seccion = data;
     });
   }
 

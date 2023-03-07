@@ -5,7 +5,7 @@
       <div class="row align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-5">
           <img
-            [src]="portfolio.url_foto"
+            [src]="persona.urlFoto"
             class="bd-placeholder-img rounded-circle"
             alt="Foto de Perfil"
             width="350"
@@ -18,11 +18,11 @@
         <div class="col-lg-7" >
           <h1 class="display-5 fw-bold lh-1 mb-3">
             <app-btn-editar-eliminar></app-btn-editar-eliminar>
-            {{ portfolio.titulo_principal }}
-            <h2>{{ portfolio.nombre }}</h2>
+            {{ persona.titulo }}
+            <h2>{{ persona.nombre + ' ' + persona.apellido }}</h2>
           </h1>
           <p class="lead text-break">
-            {{ portfolio.descripcion }}
+            {{ persona.descripcion }}
           </p>
         </div>
       </div>

@@ -4,9 +4,9 @@
     <app-btn-agregar></app-btn-agregar>
   </h2>
 
-  <div *ngFor="let habilidad of portfolio.habilidades" class="row p-4 g-4 py-3 row-cols-1 row-cols-lg">
+  <div *ngFor="let item of seccion.items" class="row p-4 g-4 py-3 row-cols-1 row-cols-lg">
     <h5>
-      {{habilidad.titulo}}
+      {{item.nombre}}
       <app-btn-editar-eliminar></app-btn-editar-eliminar>
     </h5>
 
@@ -14,8 +14,8 @@
       <div
         class="progress-bar progress-bar-striped"
         role="progressbar"
-        [style.width.%]="habilidad.valor"
-        [attr.aria-valuenow]="habilidad.valor"
+        [style.width.%]="item.nivel_progreso"
+        [attr.aria-valuenow]="item.nivel_progreso"
         aria-valuemin="0"
         aria-valuemax="100"
       ></div>

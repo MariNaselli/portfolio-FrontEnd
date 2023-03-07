@@ -1,22 +1,23 @@
 <section id="section_experiencias" class="px-4 pt-6">
   <h2 class="pb-2 border-bottom mt-4">
     Experiencia Profesional
-   <app-btn-agregar data-mensaje="Tocó agregar Experiencia Profesional"></app-btn-agregar>
+    <app-btn-agregar
+      data-mensaje="Tocó agregar Experiencia Profesional"
+    ></app-btn-agregar>
   </h2>
   <div
-    *ngFor="let experiencia of portfolio.experiencias"
+    *ngFor="let item of seccion.items"
     class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
   >
     <div class="col p-4 flex-column position-static">
-
       <app-btn-editar-eliminar></app-btn-editar-eliminar>
 
       <strong class="d-inline-block mb-2 text-primary">{{
-        experiencia.empresa
+        item.nombre
       }}</strong>
-      <h3 class="mb-0">{{ experiencia.cargo }}</h3>
-      <div class="mb-1 text-muted">{{ experiencia.periodo }}</div>
-      <p class="card-text mb-auto">{{ experiencia.descripcion }}</p>
+      <h3 class="mb-0">{{ item.titulo }}</h3>
+      <div class="mb-1 text-muted">{{ item.periodo }}</div>
+      <p class="card-text mb-auto">{{ item.descripcion }}</p>
     </div>
   </div>
 </section>

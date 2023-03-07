@@ -4,22 +4,22 @@
     <app-btn-agregar></app-btn-agregar>
   </h2>
   <div
-    *ngFor="let edu of portfolio.educacion"
+    *ngFor="let item of seccion.items"
     class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
   >
     <div class="col p-4 flex-column position-static">
       <app-btn-editar-eliminar></app-btn-editar-eliminar>
       <strong class="d-inline-block mb-2 text-primary">{{
-        edu.institucion
+        item.nombre
       }}</strong>
-      <h3 class="mb-0">{{ edu.titulo }}</h3>
-      <div class="mb-1 text-muted">{{ edu.periodo }}</div>
-      <p *ngIf="edu.descripcion">{{ edu.descripcion }}</p>
+      <h3 class="mb-0">{{ item.titulo }}</h3>
+      <div class="mb-1 text-muted">{{ item.periodo }}</div>
+      <p *ngIf="item.descripcion">{{ item.descripcion }}</p>
       <a
-        *ngIf="edu.url"
-        [href]="edu.url"
+        *ngIf="item.url"
+        [href]="item.url"
         target="_blank"
-        >{{ edu.enlace }}</a
+        >{{ item.url }}</a
       >
     </div>
   </div>

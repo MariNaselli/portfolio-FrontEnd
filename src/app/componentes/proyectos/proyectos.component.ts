@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Seccion } from 'src/app/clases/seccion';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
 @Component({
@@ -8,13 +9,13 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
 })
 export class ProyectosComponent implements OnInit {
 
-  portfolio:any;
+  seccion: Seccion = new Seccion;
 
   constructor(private servicios: PortfolioService) { }
 
   ngOnInit(): void {
-    this.servicios.obtenerDatos().subscribe((data) => {
-      this.portfolio = data;
+    this.servicios.obtenerProyectos().subscribe((data) => {
+      this.seccion = data;
     });
   }
 }

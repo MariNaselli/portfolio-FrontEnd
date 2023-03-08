@@ -33,89 +33,62 @@
   </div>
 </section>
 
-<!-- Modal -->
-<div
-  class="modal fade"
-  #modalPersona
-  tabindex="-1"
-  aria-labelledby="exampleModalPersona"
-  aria-hidden="true"
-  backdrop="static"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          {{ persona.nombre }} {{ persona.apellido }}
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input
-              type="text"
-              class="form-control"
-              id="nombre"
-              name="nombre"
-              required
-              [(ngModel)]="persona.nombre"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido</label>
-            <input
-              type="text"
-              class="form-control"
-              id="apellido"
-              name="apellido"
-              required
-              [(ngModel)]="persona.apellido"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="titulo" class="form-label">Título</label>
-            <input
-              type="text"
-              class="form-control"
-              id="titulo"
-              name="titulo"
-              required
-              [(ngModel)]="persona.titulo"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea
-              class="form-control"
-              id="descripcion"
-              rows="3"
-              name="descripcipcion"
-              required
-              [(ngModel)]="persona.descripcion"
-            ></textarea>
-          </div>
-          <!-- Agrega aquí los demás campos -->
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cerrar
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="guardarCambios(modalPersona)"
-        >
-          Guardar cambios
-        </button>
-      </div>
-    </div>
+<ng-template #modalPersona let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ persona.nombre }} {{ persona.apellido }}</h4>
   </div>
-</div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nombre"
+          name="nombre"
+          required
+          [(ngModel)]="persona.nombre"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input
+          type="text"
+          class="form-control"
+          id="apellido"
+          name="apellido"
+          required
+          [(ngModel)]="persona.apellido"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="titulo" class="form-label">Título</label>
+        <input
+          type="text"
+          class="form-control"
+          id="titulo"
+          name="titulo"
+          required
+          [(ngModel)]="persona.titulo"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea
+          class="form-control"
+          id="descripcion"
+          rows="3"
+          name="descripcipcion"
+          required
+          [(ngModel)]="persona.descripcion"
+        ></textarea>
+      </div>
+      <!-- Agrega aquí los demás campos -->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="guardarCambios(modalPersona)">Guardar cambios</button>
+  </div>
+</ng-template>
+

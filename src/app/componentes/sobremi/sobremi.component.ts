@@ -1,7 +1,12 @@
-import { Component, importProvidersFrom, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  importProvidersFrom,
+  OnInit,
+} from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Persona } from 'src/app/clases/persona';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sobremi',
@@ -10,9 +15,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SobremiComponent implements OnInit {
   persona: Persona = new Persona();
-  modalRef: any;
+  @ViewChild('modalPersona') modalPersona: any;
 
-  constructor(private servicios: PortfolioService, private modalService: NgbModal) {}
+  constructor(
+    private servicios: PortfolioService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.servicios.obtenerPersona().subscribe((data) => {
@@ -23,11 +31,11 @@ export class SobremiComponent implements OnInit {
   guardarCambios(content: any): void {
     this.servicios.actualizarPersona(this.persona).subscribe((response) => {
       console.log(response); // Muestra la respuesta del servidor
-      this.modalRef.close(); // Cierra el modal después de actualizar la persona
+      this.modalPersona.close(); // Cierra el modal después de actualizar la persona
     });
   }
 
   openModal(content: any): void {
-    this.modalRef = this.modalService.open(content);
+    this.modalPersona = this.modalService.open(content);
   }
 }

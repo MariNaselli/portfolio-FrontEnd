@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './componentes/encabezado/encabezado.component';
@@ -22,6 +21,7 @@ import { ModalEliminarComponent } from './modals/modal-eliminar/modal-eliminar.c
 import { ModalEditarSobreMiComponent } from './modals/modal-editar-sobre-mi/modal-editar-sobre-mi.component';
 import { BtnIngresarComponent } from './buttons/btn-ingresar/btn-ingresar.component';
 import { FormsModule } from '@angular/forms';
+import { NgbModule  } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [

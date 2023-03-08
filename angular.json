@@ -28,12 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/assets/bootstrap-5.2.0-dist/css/bootstrap.min.css"
+              "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/bootstrap-5.2.0-dist/js/bootstrap.bundle.min.js",
-              "src/assets/popper/popper.js",
               "src/assets/fontawesome/fontawesome.js"
             ]
           },

@@ -15,13 +15,12 @@
 
         <div class="col-lg-7">
           <h1 class="display-5 fw-bold lh-1 mb-3">
-            <a
-              href="#"
+            <button
               class="btn btn-primary btn-sm float-end"
-              data-bs-toggle="modal"
-              data-bs-target="#modalPersona"
-              ><i class="fa-solid fa-pen-to-square"></i
-            ></a>
+              (click)="openModal(modalPersona)"
+            >
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
             {{ persona.titulo }}
             <h2>{{ persona.nombre + " " + persona.apellido }}</h2>
           </h1>
@@ -37,7 +36,7 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="modalPersona"
+  #modalPersona
   tabindex="-1"
   aria-labelledby="exampleModalPersona"
   aria-hidden="true"
@@ -112,7 +111,7 @@
         <button
           type="button"
           class="btn btn-primary"
-          (click)="guardarCambios()"
+          (click)="guardarCambios(modalPersona)"
         >
           Guardar cambios
         </button>

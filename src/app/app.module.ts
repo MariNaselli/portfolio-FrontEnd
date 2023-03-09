@@ -1,6 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { IndividualConfig, ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './componentes/encabezado/encabezado.component';
 import { SobremiComponent } from './componentes/sobremi/sobremi.component';
@@ -21,7 +24,7 @@ import { ModalEliminarComponent } from './modals/modal-eliminar/modal-eliminar.c
 import { ModalEditarSobreMiComponent } from './modals/modal-editar-sobre-mi/modal-editar-sobre-mi.component';
 import { BtnIngresarComponent } from './buttons/btn-ingresar/btn-ingresar.component';
 import { FormsModule } from '@angular/forms';
-import { NgbModule  } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -41,15 +44,22 @@ import { NgbModule  } from '@ng-bootstrap/ng-bootstrap';
     BtnEditarEliminarComponent,
     BtnAgregarComponent,
     ModalEditarSobreMiComponent,
-    BtnIngresarComponent
+    BtnIngresarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      positionClass: 'toast-top-right'
+    })
   ],
-  providers: [PortfolioService],
-  bootstrap: [AppComponent]
+  providers: [
+    PortfolioService
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -35,28 +35,25 @@ export class SobremiComponent implements OnInit {
   guardando: boolean = false;
   guardarCambios(content: any): void {
     this.guardando = true;
-    this.servicios.actualizarPersona(this.persona).subscribe(
-      (response) => {
-        this.guardando = false;
-        console.log(response); // Muestra la respuesta del servidor
-        this.modalPersona.close(); // Cierra el modal después de actualizar la persona
-        this.toastr.success('Cambios guardados exitosamente'); // Muestra el mensaje Toastr
+
+    this.servicios.actualizarPersona(this.persona).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.modalPersona.close();
+        this.toastr.success('Cambios guardados exitosamente');
       },
-      (error) => {
-        this.guardando = false;
-        console.log(error); // Muestra el error en la consola
-        this.toastr.error('Error al guardar los cambios'); // Muestra el mensaje de error Toastr
+      error: (err) => {
+        console.error(err);
+        this.toastr.error('Ocurrió un error al actualizar la persona');
       }
-    );
+    });
   }
 
 
   openModal(content: any): void {
-    this.modalPersona = this.modalService.open(content);
+    this.modalPersona = this.modalService.open(content, {
+      backdrop: 'static',
+      keyboard: false
+    });
   }
-
-  showSuccess() {
-    this.toastr.success('¡El mensaje de éxito funciona correctamente!');
-  }
-
 }

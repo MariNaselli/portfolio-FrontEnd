@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Persona } from 'src/app/clases/persona';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
   styleUrls: ['./encabezado.component.scss']
 })
 export class EncabezadoComponent implements OnInit {
-  persona:any;
+  persona: Persona = new Persona;
 
   constructor(private servicios:PortfolioService) { }
 
@@ -15,8 +16,6 @@ export class EncabezadoComponent implements OnInit {
     this.servicios.obtenerPersona().subscribe (data => {
       this.persona = data
     });
-
   }
-
 }
 

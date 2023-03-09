@@ -47,9 +47,9 @@
         </ul>
 
         <ul class="navbar-nav flex-wrap ms-md-auto">
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="persona.urlGithub">
             <a
-              href="{{persona?.urlGithub}}"
+              href="{{persona.urlGithub}}"
               target="_blank"
               class="nav-link"
             >
@@ -58,9 +58,9 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="persona.urlInstagram">
             <a
-              href="{{persona?.urlInstagram}}"
+              href="{{persona.urlInstagram}}"
               target="_blank"
               class="nav-link"
             >
@@ -69,6 +69,17 @@
             </a>
           </li>
           <app-btn-ingresar></app-btn-ingresar>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{persona.nombre}} {{persona.apellido}}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Editar perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>

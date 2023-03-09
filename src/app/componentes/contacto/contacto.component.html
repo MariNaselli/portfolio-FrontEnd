@@ -13,8 +13,8 @@ aria-label="Toggle navigation"
 
     <div class=" row justify-content-between">
       <div class="col-3">
-        <ul class="navbar-nav flex-column text-left">
-          <li class="nav-item mb-2">
+        <ul class="navbar-nav flex-column text-left" >
+          <li class="nav-item mb-2" *ngIf="persona.email">
             <a
               href="mailto:{{ persona.email }}"
               target="_blank"
@@ -24,7 +24,7 @@ aria-label="Toggle navigation"
               {{ persona.email }}</a
             >
           </li>
-          <li class="nav-item mb-2">
+          <li class="nav-item mb-2" *ngIf="persona.telefono">
             <a
               href="https://wa.me/{{ persona.telefono }}"
               target="_blank"
@@ -34,7 +34,7 @@ aria-label="Toggle navigation"
               {{ persona.telefono }}</a
             >
           </li>
-          <li class="nav-item mb-2">
+          <li class="nav-item mb-2" *ngIf="persona.ubicacion">
             <a
               href="https://www.google.com/maps/search/?api=1&query={{ persona.ubicacion }}"
               target="_blank"

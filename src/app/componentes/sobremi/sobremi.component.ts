@@ -3,8 +3,6 @@ import {
   ViewChild,
   importProvidersFrom,
   OnInit,
-
-
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Persona } from 'src/app/clases/persona';
@@ -38,11 +36,12 @@ export class SobremiComponent implements OnInit {
 
     this.servicios.actualizarPersona(this.persona).subscribe({
       next: (response) => {
-        console.log(response);
+        this.guardando = false;
         this.modalPersona.close();
         this.toastr.success('Cambios guardados exitosamente');
       },
       error: (err) => {
+        this.guardando = false;
         console.error(err);
         this.toastr.error('Ocurrió un error al actualizar la persona');
       }

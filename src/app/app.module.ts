@@ -15,14 +15,12 @@ import { PortfolioService } from './servicios/portfolio.service';
 import { HttpClientModule } from '@angular/common/http';
 import { IdiomasComponent } from './componentes/idiomas/idiomas.component';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
-import { LoginComponent } from './modals/login/login.component';
 import { RedesComponent } from './modals/redes/redes.component';
 import { BtnEditarEliminarComponent } from './buttons/btn-editar-eliminar/btn-editar-eliminar.component';
 import { BtnAgregarComponent } from './buttons/btn-agregar/btn-agregar.component';
 import { ModalAgregarEditarComponent } from './modals/modal-agregar-editar/modal-agregar-editar.component';
 import { ModalEliminarComponent } from './modals/modal-eliminar/modal-eliminar.component';
 import { ModalEditarSobreMiComponent } from './modals/modal-editar-sobre-mi/modal-editar-sobre-mi.component';
-import { BtnIngresarComponent } from './buttons/btn-ingresar/btn-ingresar.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -37,14 +35,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProyectosComponent,
     IdiomasComponent,
     ContactoComponent,
-    LoginComponent,
     RedesComponent,
     ModalEliminarComponent,
     ModalAgregarEditarComponent,
     BtnEditarEliminarComponent,
     BtnAgregarComponent,
-    ModalEditarSobreMiComponent,
-    BtnIngresarComponent,
+    ModalEditarSobreMiComponent
   ],
   imports: [
     BrowserModule,

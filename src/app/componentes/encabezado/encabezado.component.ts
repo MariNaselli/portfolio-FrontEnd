@@ -10,12 +10,13 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
   styleUrls: ['./encabezado.component.scss'],
 })
 export class EncabezadoComponent implements OnInit {
+
   persona: Persona = new Persona();
-  email = '';
-  password = '';
   isLoggedIn: boolean = false;
+
   @ViewChild('modalLogin') modalLogin: any;
   @ViewChild('modalPersona') modalPersona: any;
+
   constructor(
     private servicios: PortfolioService,
     private modalService: NgbModal,
@@ -46,8 +47,7 @@ export class EncabezadoComponent implements OnInit {
   cerrarModalPersona() {
     this.modalPersona.close();
   }
-  login(): void {
-    this.authService.login(this.email, this.password);
+  cerrarModalLogin() {
     this.modalLogin.close();
   }
   logout(): void {

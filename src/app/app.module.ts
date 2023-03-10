@@ -22,6 +22,8 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalPersonaComponent } from './modals/modal-persona/modal-persona.component';
 import { ModalLoginComponent } from './modals/modal-login/modal-login.component';
+import { ModalItemComponent } from './modals/modal-item/modal-item.component';
+import { SeccionesComponent } from './componentes/secciones/secciones.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { ModalLoginComponent } from './modals/modal-login/modal-login.component'
     BtnEditarEliminarComponent,
     BtnAgregarComponent,
     ModalPersonaComponent,
-    ModalLoginComponent
+    ModalLoginComponent,
+    ModalItemComponent,
+    SeccionesComponent
   ],
   imports: [
     BrowserModule,

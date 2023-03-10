@@ -1,0 +1,96 @@
+<div class="modal-header">
+  <h4 class="modal-title">Nuevo Item</h4>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="mb-3">
+      <label class="form-label">Sección</label>
+      <select
+        id="ddlSeccion"
+        name="ddlSeccion"
+        class="form-control"
+        [(ngModel)]="codigo_seccion_seleccionada"
+        (ngModelChange)="ddlSeccionChange()"
+      >
+        <option value="0">Selecciona</option>
+        <option
+          *ngFor="let seccion of secciones"
+          [value]="seccion.codigo_seccion"
+        >
+          {{ seccion.nombre_seccion }}
+        </option>
+      </select>
+    </div>
+    <div *ngIf="camposVisibles">
+      <div class="mb-3">
+        <label class="form-label">Cabecera</label>
+        <input
+          type="text"
+          class="form-control"
+          id="txtCabecera"
+          required
+          placeholder="Ej. Administración Pietro"
+        />
+      </div>
+      <div class="mb-3" *ngIf="!this.mostrarBarra">
+        <label class="form-label">Titulo Principal</label>
+        <input
+          type="text"
+          class="form-control"
+          id="txtTitulo"
+          required
+          placeholder="Ej: Administrativa"
+        />
+      </div>
+      <div class="mb-3" *ngIf="!this.mostrarBarra">
+        <label class="form-label">Período</label>
+        <input
+          type="text"
+          class="form-control"
+          id="txtPeriodo"
+          required
+          placeholder="Ej: Diciembre 2022"
+        />
+      </div>
+      <div class="mb-3" *ngIf="!this.mostrarBarra">
+        <label class="form-label">Descripción</label>
+        <textarea
+          rows="3"
+          class="form-control"
+          id="txtDescripcion"
+          placeholder=""
+        ></textarea>
+      </div>
+      <div class="mb-3" *ngIf="!this.mostrarBarra">
+        <label class="form-label">URL</label>
+        <input
+          type="text"
+          class="form-control"
+          id="txtPeriodo"
+          id="txtUrl"
+          placeholder=""
+        />
+      </div>
+      <div class="mb-3" *ngIf="mostrarBarra">
+        <label for="customRange3" class="form-label">Barra de Progreso</label>
+        <input
+          type="range"
+          class="form-range"
+          min="0"
+          max="5"
+          step="0.5"
+          id="customRange3"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cerrarModal()">
+    Cerrar
+  </button>
+  <button type="button" class="btn btn-primary"
+  (click)="guardarCambios()">
+    Guardar cambios
+  </button>
+</div>

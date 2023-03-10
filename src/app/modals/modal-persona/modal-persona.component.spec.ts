@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalEliminarComponent } from './modal-eliminar.component';
+import { ModalPersonaComponent } from './modal-persona.component';
 
-describe('ModalEliminarComponent', () => {
-  let component: ModalEliminarComponent;
-  let fixture: ComponentFixture<ModalEliminarComponent>;
+describe('ModalPersonaComponent', () => {
+  let component: ModalPersonaComponent;
+  let fixture: ComponentFixture<ModalPersonaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalEliminarComponent ]
+      declarations: [ ModalPersonaComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModalEliminarComponent);
+    fixture = TestBed.createComponent(ModalPersonaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

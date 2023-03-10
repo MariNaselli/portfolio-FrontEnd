@@ -15,6 +15,7 @@ export class EncabezadoComponent implements OnInit {
   password = '';
   isLoggedIn: boolean = false;
   @ViewChild('modalLogin') modalLogin: any;
+  @ViewChild('modalPersona') modalPersona: any;
   constructor(
     private servicios: PortfolioService,
     private modalService: NgbModal,
@@ -30,13 +31,21 @@ export class EncabezadoComponent implements OnInit {
     });
   }
 
-  openModal(content: any): void {
+  openModalLogin(content: any): void {
     this.modalLogin = this.modalService.open(content, {
       backdrop: 'static',
-      keyboard: false
+      keyboard: false,
     });
   }
-
+  openModalPersona(content: any): void {
+    this.modalPersona = this.modalService.open(content, {
+      backdrop: 'static',
+      keyboard: false,
+    });
+  }
+  cerrarModalPersona() {
+    this.modalPersona.close();
+  }
   login(): void {
     this.authService.login(this.email, this.password);
     this.modalLogin.close();

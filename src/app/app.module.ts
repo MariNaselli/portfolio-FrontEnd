@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalPersonaComponent } from './modals/modal-persona/modal-persona.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

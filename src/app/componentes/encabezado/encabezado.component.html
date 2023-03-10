@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link " href="#">Inicio</a>
+            <a class="nav-link" href="#">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#section_experiencias">Experiencia</a>
@@ -48,11 +48,7 @@
 
         <ul class="navbar-nav flex-wrap ms-md-auto">
           <li class="nav-item" *ngIf="persona.urlGithub">
-            <a
-              href="{{persona.urlGithub}}"
-              target="_blank"
-              class="nav-link"
-            >
+            <a href="{{ persona.urlGithub }}" target="_blank" class="nav-link">
               <i class="fa-brands fa-github"></i>
               <label class="d-block d-sm-none">GitHub</label>
             </a>
@@ -60,7 +56,7 @@
 
           <li class="nav-item" *ngIf="persona.urlInstagram">
             <a
-              href="{{persona.urlInstagram}}"
+              href="{{ persona.urlInstagram }}"
               target="_blank"
               class="nav-link"
             >
@@ -69,19 +65,40 @@
             </a>
           </li>
           <li class="nav-item" *ngIf="!isLoggedIn">
-            <a class="nav-link" href="javascript:void(0);"
-            (click)="openModal(modalLogin)">
+            <a
+              class="nav-link"
+              href="javascript:void(0);"
+              (click)="openModalLogin(modalLogin)"
+            >
               Ingresar
             </a>
           </li>
           <li class="nav-item dropdown" *ngIf="isLoggedIn">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{persona.nombre}} {{persona.apellido}}
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ persona.nombre }} {{ persona.apellido }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Editar perfil</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar Sesión</a></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="javascript:void(0);"
+                  (click)="openModalPersona(modalPersona)"
+                  >Editar perfil</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" href="#" (click)="logout()"
+                  >Cerrar Sesión</a
+                >
+              </li>
             </ul>
           </li>
         </ul>
@@ -95,41 +112,39 @@
     <h4 class="modal-title">Iniciar Sesion</h4>
   </div>
   <div class="modal-body">
-        <div class="mb-3">
-          <label class="form-label">Usuario</label>
-          <input
-            type="email"
-            class="form-control"
-            id="txtUsuario"
-            [(ngModel)]="email"
-            required
-            placeholder="pepe@hutmail.con"
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Contraseña</label>
-          <input
-            type="password"
-            class="form-control"
-            id="txtContraseña"
-            [(ngModel)]="password"
-            required
-            placeholder="******"
-          />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">
-          Cancelar
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="login()"
-        >
-          Ingresar
-        </button>
-      </div>
-    </ng-template>
+    <div class="mb-3">
+      <label class="form-label">Usuario</label>
+      <input
+        type="email"
+        class="form-control"
+        id="txtUsuario"
+        [(ngModel)]="email"
+        required
+        placeholder="pepe@hutmail.con"
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        id="txtContraseña"
+        [(ngModel)]="password"
+        required
+        placeholder="******"
+      />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">
+      Cancelar
+    </button>
+    <button type="button" class="btn btn-primary" (click)="login()">
+      Ingresar
+    </button>
+  </div>
+</ng-template>
 
-
+<ng-template #modalPersona>
+  <app-modal-persona (OnCloseModal)="cerrarModalPersona()"></app-modal-persona>
+</ng-template>

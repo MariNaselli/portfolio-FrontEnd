@@ -51,7 +51,6 @@ export class ModalPersonaComponent implements OnInit {
   }
 
   cerrarModal() {
-    //this.sharedService.closeModal();
     this.OnCloseModal.emit();
   }
 }

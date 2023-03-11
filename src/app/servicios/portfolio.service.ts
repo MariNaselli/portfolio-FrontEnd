@@ -22,6 +22,10 @@ export class PortfolioService {
     return this.http.put<Persona>(`${environment.apiUrl}/api/actualizar-persona`, persona);
   }
 
+  obtenerSecciones(){
+    return this.http.get<any>(`${environment.apiUrl}/api/obtener-secciones`);
+  }
+
   obtenerPortfolio(): Observable<any> {
     return this.http.get('./assets/data/data.json');
   }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Persona } from 'src/app/clases/persona';
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -13,10 +13,13 @@ export class ModalLoginComponent implements OnInit {
   @Output() OnCloseModal: EventEmitter<null> = new EventEmitter();
 
   isLoggedIn: boolean = false;
+  canLogin: boolean = false;
+
 
   email = '';
   password = '';
   persona: Persona = new Persona();
+
 
   constructor(
     private servicios: PortfolioService,
@@ -31,7 +34,15 @@ export class ModalLoginComponent implements OnInit {
     this.authService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
     });
+
+
   }
+
+   updateLoginButton(){
+      this.canLogin = (this.email.trim() !== '' && this.password.trim() !== '');
+    };
+
+
   login(): void {
     this.authService.login(this.email, this.password);
     if (this.isLoggedIn) {

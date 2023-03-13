@@ -17,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { IdiomasComponent } from './componentes/idiomas/idiomas.component';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { BtnEditarEliminarComponent } from './buttons/btn-editar-eliminar/btn-editar-eliminar.component';
-import { BtnAgregarComponent } from './buttons/btn-agregar/btn-agregar.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalPersonaComponent } from './modals/modal-persona/modal-persona.component';
@@ -38,7 +37,6 @@ import { SeccionesComponent } from './componentes/secciones/secciones.component'
     IdiomasComponent,
     ContactoComponent,
     BtnEditarEliminarComponent,
-    BtnAgregarComponent,
     ModalPersonaComponent,
     ModalLoginComponent,
     ModalItemComponent,

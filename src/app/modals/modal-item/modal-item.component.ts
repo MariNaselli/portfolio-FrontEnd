@@ -13,6 +13,7 @@ export class ModalItemComponent implements OnInit {
   codigo_seccion_seleccionada: any;
   mostrarBarra = false;
   camposVisibles = false;
+  seccionSeleccionada: any;
 
   constructor(private servicios: PortfolioService) {}
 
@@ -34,15 +35,18 @@ export class ModalItemComponent implements OnInit {
     switch (parseInt(this.codigo_seccion_seleccionada)) {
       case 0:
         this.camposVisibles = false;
+        this.seccionSeleccionada = false;
         break;
       case 1:
       case 2:
       case 5:
         this.mostrarBarra = false;
+        this.seccionSeleccionada = true;
         break;
       case 3:
       case 4:
         this.mostrarBarra = true;
+        this.seccionSeleccionada = true;
         break;
     }
   }

@@ -11,6 +11,7 @@
       [(ngModel)]="email"
       required
       placeholder="pepe@hutmail.con"
+      (input)="updateLoginButton()"
     />
   </div>
   <div class="mb-3">
@@ -22,6 +23,7 @@
       [(ngModel)]="password"
       required
       placeholder="******"
+      (input)="updateLoginButton()"
     />
   </div>
 </div>
@@ -29,7 +31,8 @@
   <button type="button" class="btn btn-secondary" (click)="cerrarModal()">
     Cancelar
   </button>
-  <button type="button" class="btn btn-primary" (click)="login()">
+  <button type="button" class="btn btn-primary" [disabled]="!canLogin" (click)="login()">
     Ingresar
   </button>
 </div>
+

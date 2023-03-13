@@ -7,14 +7,9 @@ import { SharedService } from './servicios/shared.service';
 
 import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './componentes/encabezado/encabezado.component';
-import { SobremiComponent } from './componentes/sobremi/sobremi.component';
-import { ExperienciaprofesionalComponent } from './componentes/experienciaprofesional/experienciaprofesional.component';
-import { EducacionComponent } from './componentes/educacion/educacion.component';
-import { HabilidadesComponent } from './componentes/habilidades/habilidades.component';
-import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { PortfolioService } from './servicios/portfolio.service';
 import { HttpClientModule } from '@angular/common/http';
-import { IdiomasComponent } from './componentes/idiomas/idiomas.component';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { BtnEditarEliminarComponent } from './buttons/btn-editar-eliminar/btn-editar-eliminar.component';
 import { FormsModule } from '@angular/forms';
@@ -24,17 +19,11 @@ import { ModalLoginComponent } from './modals/modal-login/modal-login.component'
 import { ModalItemComponent } from './modals/modal-item/modal-item.component';
 import { SeccionesComponent } from './componentes/secciones/secciones.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     EncabezadoComponent,
-    SobremiComponent,
-    ExperienciaprofesionalComponent,
-    EducacionComponent,
-    HabilidadesComponent,
-    ProyectosComponent,
-    IdiomasComponent,
+    PerfilComponent,
     ContactoComponent,
     BtnEditarEliminarComponent,
     ModalPersonaComponent,

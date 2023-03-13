@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class PortfolioService {
-  nro_persona: number = 1;
+  nro_persona: number = 3;
 
   constructor(private http: HttpClient) {}
 
@@ -24,6 +24,10 @@ export class PortfolioService {
 
   obtenerSecciones(){
     return this.http.get<any>(`${environment.apiUrl}/api/obtener-secciones`);
+  }
+
+  obtenerSeccionesPorPersona(){
+    return this.http.get<any>(`${environment.apiUrl}/api/obtener-secciones/` + this.nro_persona);
   }
 
   obtenerPortfolio(): Observable<any> {

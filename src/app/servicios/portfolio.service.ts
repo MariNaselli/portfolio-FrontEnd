@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Persona } from '../clases/persona';
 import { Seccion } from '../clases/seccion';
 import { Item } from '../clases/item';
@@ -11,46 +11,60 @@ import { environment } from 'src/environments/environment';
 })
 export class PortfolioService {
   nro_persona: number = 3;
+  private seccionesSubject = new BehaviorSubject<Seccion[]>([]);
+  secciones$ = this.seccionesSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
   obtenerPersona(): Observable<Persona> {
-    return this.http.get<Persona>(`${environment.apiUrl}/api/obtener-persona/`+ this.nro_persona);
+    return this.http.get<Persona>(
+      `${environment.apiUrl}/api/obtener-persona/` + this.nro_persona
+    );
   }
 
   actualizarPersona(persona: Persona): Observable<Persona> {
-    return this.http.put<Persona>(`${environment.apiUrl}/api/actualizar-persona`, persona);
+    return this.http.put<Persona>(
+      `${environment.apiUrl}/api/actualizar-persona`,
+      persona
+    );
   }
 
-  obtenerSecciones(){
+  obtenerSecciones() {
     return this.http.get<any>(`${environment.apiUrl}/api/obtener-secciones`);
   }
 
-  obtenerSeccionesPorPersona(){
-    return this.http.get<any>(`${environment.apiUrl}/api/obtener-secciones/` + this.nro_persona);
+  obtenerSeccionesPorPersona() {
+    return this.http.get<any>(
+      `${environment.apiUrl}/api/obtener-secciones/` + this.nro_persona
+    );
   }
 
-  obtenerPortfolio(): Observable<any> {
-    return this.http.get('./assets/data/data.json');
+  eliminarItem(codigo_item: number): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/api/eliminar-item/` + codigo_item).pipe(
+      tap(() => {
+        // Obtener el arreglo actual de secciones
+        const secciones = this.seccionesSubject.getValue();
+
+        // Buscar la seccion que contiene el item a eliminar
+        const seccionConItem = secciones.find((seccion) =>
+          seccion.items.some((item) => item.codigo_item === codigo_item)
+        );
+
+        if (seccionConItem) {
+          // Eliminar el item de la lista de items de la seccion
+          seccionConItem.items = seccionConItem.items.filter(
+            (item) => item.codigo_item !== codigo_item
+          );
+
+          // Actualizar el arreglo de secciones en el BehaviorSubject
+          this.seccionesSubject.next(secciones);
+        }
+      })
+    );
   }
 
-  obtenerExperiencia(): Observable<any> {
-    return this.http.get<Seccion>(`${environment.apiUrl}/api/seccion/1/persona/` + this.nro_persona);
+  actualizarSecciones(secciones: Seccion[]): void {
+    this.seccionesSubject.next(secciones);
   }
 
-  obtenerEducacion(): Observable<any> {
-    return this.http.get<Seccion>(`${environment.apiUrl}/api/seccion/2/persona/` + this.nro_persona);
-  }
-
-  obtenerHabilidades(): Observable<any> {
-    return this.http.get<Seccion>(`${environment.apiUrl}/api/seccion/3/persona/` + this.nro_persona);
-  }
-
-  obtenerIdiomas(): Observable<any> {
-    return this.http.get<Seccion>(`${environment.apiUrl}/api/seccion/4/persona/` + this.nro_persona);
-  }
-
-  obtenerProyectos(): Observable<any> {
-    return this.http.get<Seccion>(`${environment.apiUrl}/api/seccion/5/persona/` + this.nro_persona);
-  }
 }

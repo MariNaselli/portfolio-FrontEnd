@@ -1,14 +1,14 @@
 import { Item } from "./item";
 
 export class Seccion {
-  codigo: number;
-  nombre: string;
+  codigo_seccion: number;
+  nombre_seccion: string;
   orden: number;
   items: Item[];
 
   constructor() {
-    this.codigo = 0;
-    this.nombre = '';
+    this.codigo_seccion = 0;
+    this.nombre_seccion = '';
     this.orden = 0;
     this.items = [];
   }

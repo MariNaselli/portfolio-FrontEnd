@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { PortfolioService } from 'src/app/servicios/portfolio.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,19 +9,24 @@ import Swal from 'sweetalert2';
   styleUrls: ['./btn-editar-eliminar.component.scss'],
 })
 export class BtnEditarEliminarComponent implements OnInit {
+  @Input() codigoItem!: number;
   isLoggedIn = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private portfolioService: PortfolioService
+  ) {}
 
   ngOnInit(): void {
     this.authService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
     });
   }
+
   confirmarEliminar() {
     Swal.fire({
       title: '¡Atención!',
-      text: '¿Estás seguro de que quieres eliminar esta tarea?',
+      text: '¿Estás seguro de que quieres eliminar?',
       icon: 'warning',
       confirmButtonText: 'Sí, eliminar!',
       confirmButtonColor: 'red',
@@ -29,18 +35,26 @@ export class BtnEditarEliminarComponent implements OnInit {
       cancelButtonColor: 'grey',
     }).then((swal_result) => {
       if (swal_result.isConfirmed) {
-        //LLAMAMOS AL SERVICIO PARA ELIMINAR LA TAREA
-        //this.OnDeleteTask.emit(task);
-        console.log('Eliminar');
+        this.portfolioService.eliminarItem(this.codigoItem).subscribe(
+          () => {
+            Swal.fire({
+              title: '¡Información!',
+              text: 'Se eliminó correctamente',
+              icon: 'success',
+              confirmButtonText: 'Ok',
+              confirmButtonColor: 'green',
+            });
 
-        //MOSTRAMOS UN MENSAJE AL USUARIO INFORMANDO QUE SE ELIMINÓ CORRECTAMENTE
-        Swal.fire({
-          title: '¡Información!',
-          text: 'Se eliminó la tarea correctamente',
-          icon: 'success',
-          confirmButtonText: 'Ok',
-          confirmButtonColor: 'green',
-        });
+            console.log('Item eliminado correctamente.');
+             // Actualizar la lista de secciones en el servicio
+
+          },
+
+          (error) => {
+            console.log('Error al eliminar el item.', error);
+          }
+
+        );
       }
     });
   }

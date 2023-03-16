@@ -6,11 +6,11 @@ import { Persona } from 'src/app/clases/persona';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
 @Component({
-  selector: 'app-sobremi',
-  templateUrl: './sobremi.component.html',
-  styleUrls: ['./sobremi.component.scss'],
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html',
+  styleUrls: ['./perfil.component.scss'],
 })
-export class SobremiComponent implements OnInit {
+export class PerfilComponent implements OnInit {
   persona: Persona = new Persona();
 
   constructor(private servicios: PortfolioService) {}

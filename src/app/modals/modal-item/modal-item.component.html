@@ -10,8 +10,8 @@
         id="ddlSeccion"
         name="ddlSeccion"
         class="form-control"
-        [(ngModel)]="codigo_seccion_seleccionada"
-        (ngModelChange)="ddlSeccionChange()"
+        [(ngModel)]="item.codigo_seccion"
+        (ngModelChange)="mostrarSegunSeccion()"
       >
         <option value="0">Selecciona</option>
         <option
@@ -22,13 +22,15 @@
         </option>
       </select>
     </div>
-    <div *ngIf="camposVisibles">
+    <div *ngIf="camposVisibles" >
       <div class="mb-3">
         <label class="form-label">Cabecera</label>
         <input
           type="text"
           class="form-control"
-          id="txtCabecera"
+          id="nombre"
+          name="nombre"
+          [(ngModel)]="item.nombre"
           required
           placeholder="Ej. Administración Pietro"
         />
@@ -38,7 +40,9 @@
         <input
           type="text"
           class="form-control"
-          id="txtTitulo"
+          id="titulo"
+          name="titulo"
+          [(ngModel)]="item.titulo"
           required
           placeholder="Ej: Administrativa"
         />
@@ -48,7 +52,9 @@
         <input
           type="text"
           class="form-control"
-          id="txtPeriodo"
+          id="periodo"
+          name="periodo"
+          [(ngModel)]="item.periodo"
           required
           placeholder="Ej: Diciembre 2022"
         />
@@ -58,29 +64,34 @@
         <textarea
           rows="3"
           class="form-control"
-          id="txtDescripcion"
+          id="descripcion"
+          name="descripcion"
+          [(ngModel)]="item.descripcion"
           placeholder=""
         ></textarea>
       </div>
-      <div class="mb-3" *ngIf="!this.mostrarBarra">
+       <div class="mb-3" *ngIf="!this.mostrarBarra">
         <label class="form-label">URL</label>
         <input
           type="text"
           class="form-control"
-          id="txtPeriodo"
-          id="txtUrl"
+          id="url"
+          name="url"
+          [(ngModel)]="item.url"
           placeholder=""
         />
       </div>
-      <div class="mb-3" *ngIf="mostrarBarra">
+      <div class="mb-3" *ngIf="this.mostrarBarra">
         <label for="customRange3" class="form-label">Barra de Progreso</label>
         <input
           type="range"
           class="form-range"
           min="0"
-          max="5"
-          step="0.5"
-          id="customRange3"
+          max="100"
+          step="1"
+          id="nivel_progreso"
+          name="nivel_progreso"
+          [(ngModel)]="item.nivel_progreso"
         />
       </div>
     </div>
@@ -91,7 +102,8 @@
     Cerrar
   </button>
   <button type="button" class="btn btn-primary"
-  (click)="guardarCambios()" [disabled]="!seccionSeleccionada">
+  [disabled]="item.codigo_seccion == 0"
+  (click)="guardarCambios()">
     Guardar cambios
   </button>
 </div>

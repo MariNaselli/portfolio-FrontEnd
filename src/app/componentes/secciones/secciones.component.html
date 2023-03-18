@@ -1,5 +1,5 @@
 <button
-  class="btn btn-primary float-end me-4"
+  class="btn btn-primary btn-sm float-end me-4"
   (click)="nuevoItem(modalItem)"
   *ngIf="isLoggedIn"
 >
@@ -23,7 +23,7 @@
     class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
   >
     <div class="col p-4 flex-column position-static">
-      <app-btn-editar-eliminar [codigoItem]="item.codigo_item"></app-btn-editar-eliminar>
+      <app-btn-editar-eliminar [item]="item"></app-btn-editar-eliminar>
       <strong class="d-inline-block mb-2 text-primary">{{
         item.nombre
       }}</strong>

@@ -29,16 +29,16 @@ export class SeccionesComponent implements OnInit {
       this.isLoggedIn = isLoggedIn;
     });
 
-   // Suscribirse al observable del servicio para actualizar los items
-  this.portfolioService.secciones$.subscribe((secciones) => {
-    this.secciones = secciones;
-  });
+    // Suscribirse al observable del servicio para actualizar los items
+    this.portfolioService.secciones$.subscribe((secciones) => {
+      this.secciones = secciones;
+    });
 
-  // Llama a obtenerSeccionesPorPersona() para cargar las secciones iniciales
-  this.portfolioService.obtenerSeccionesPorPersona().subscribe((data) => {
-    this.secciones = data;
-    this.portfolioService.actualizarSecciones(data);
-  });
+    // Llama a obtenerSeccionesPorPersona() para cargar las secciones iniciales
+    this.portfolioService.obtenerSeccionesPorPersona().subscribe((data) => {
+      this.secciones = data;
+      this.portfolioService.actualizarSecciones(data);
+    });
   }
   nuevoItem(content: any): void {
     this.modalItem = this.modalService.open(content, {
@@ -49,7 +49,4 @@ export class SeccionesComponent implements OnInit {
   cerrarModalItem() {
     this.modalItem.close();
   }
-
-
-
 }

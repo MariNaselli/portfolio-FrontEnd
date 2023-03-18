@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Item } from 'src/app/clases/item';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 import Swal from 'sweetalert2';
@@ -9,12 +11,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./btn-editar-eliminar.component.scss'],
 })
 export class BtnEditarEliminarComponent implements OnInit {
-  @Input() codigoItem!: number;
+  @Input() item!: Item;
+
   isLoggedIn = false;
+  @ViewChild('modalItem') modalItem: any;
 
   constructor(
     private authService: AuthService,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +40,7 @@ export class BtnEditarEliminarComponent implements OnInit {
       cancelButtonColor: 'grey',
     }).then((swal_result) => {
       if (swal_result.isConfirmed) {
-        this.portfolioService.eliminarItem(this.codigoItem).subscribe(
+        this.portfolioService.eliminarItem(this.item.codigo_item).subscribe(
           () => {
             Swal.fire({
               title: '¡Información!',
@@ -52,10 +57,26 @@ export class BtnEditarEliminarComponent implements OnInit {
 
           (error) => {
             console.log('Error al eliminar el item.', error);
+            Swal.fire({
+              title: 'Atención!',
+              text: 'Error al eliminar el item.',
+              icon: 'error',
+              confirmButtonText: 'Ok',
+              confirmButtonColor: 'red',
+            });
           }
 
         );
       }
+    });
+  }
+  cerrarModalItem() {
+    this.modalItem.close();
+  }
+  editarItem(content: any): void {
+    this.modalItem = this.modalService.open(content, {
+      backdrop: 'static',
+      keyboard: false,
     });
   }
 }

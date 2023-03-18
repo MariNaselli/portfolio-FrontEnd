@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Item } from 'src/app/clases/item';
 import { Seccion } from 'src/app/clases/seccion';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
@@ -8,12 +9,11 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
   styleUrls: ['./modal-item.component.scss'],
 })
 export class ModalItemComponent implements OnInit {
+  @Input() item: Item = new Item();
   @Output() OnCloseModal: EventEmitter<null> = new EventEmitter();
   secciones: any;
-  codigo_seccion_seleccionada: any;
-  mostrarBarra = false;
+  mostrarBarra: boolean = false;
   camposVisibles = false;
-  seccionSeleccionada: any;
 
   constructor(private servicios: PortfolioService) {}
 
@@ -21,7 +21,7 @@ export class ModalItemComponent implements OnInit {
     this.servicios.obtenerSecciones().subscribe((data) => {
       this.secciones = data;
     });
-    this.codigo_seccion_seleccionada = 0;
+    this.mostrarSegunSeccion();
   }
 
   guardarCambios(): void {}
@@ -30,23 +30,20 @@ export class ModalItemComponent implements OnInit {
     this.OnCloseModal.emit();
   }
 
-  ddlSeccionChange() {
+  mostrarSegunSeccion() {
     this.camposVisibles = true;
-    switch (parseInt(this.codigo_seccion_seleccionada)) {
+    switch (parseInt(this.item.codigo_seccion.toString())) {
       case 0:
         this.camposVisibles = false;
-        this.seccionSeleccionada = false;
         break;
       case 1:
       case 2:
       case 5:
         this.mostrarBarra = false;
-        this.seccionSeleccionada = true;
         break;
       case 3:
       case 4:
         this.mostrarBarra = true;
-        this.seccionSeleccionada = true;
         break;
     }
   }

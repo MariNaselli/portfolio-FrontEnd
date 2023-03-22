@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:9090' // OJO!! SIN BARRA AL FINAL
+  apiUrl: 'http://localhost:1989' // OJO!! SIN BARRA AL FINAL
 };
 
 /*

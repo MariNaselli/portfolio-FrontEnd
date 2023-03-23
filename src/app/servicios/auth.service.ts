@@ -20,7 +20,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<boolean> {
     // Aquí validamos el usuario y la contraseña
-    if (username === 'admin' && password === 'admin') {
+    if (username === 'nasellimariana@gmail.com' && password === 'Cv7Y6mmzKecrbEc') {
       // Si son correctos, actualizamos el estado del usuario logueado
       this.currentUserSubject.next(true);
       const token = 'GENERAR_TOKEN_JWT_AQUI';

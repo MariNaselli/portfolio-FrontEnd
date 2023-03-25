@@ -5,18 +5,24 @@ import { Persona } from '../clases/persona';
 import { Seccion } from '../clases/seccion';
 import { Item } from '../clases/item';
 import { environment } from 'src/environments/environment';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PortfolioService {
   nro_persona: number = 3;
+  loading$ = this.loadingService.loading$;
   private seccionesSubject = new BehaviorSubject<Seccion[]>([]);
   secciones$ = this.seccionesSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private loadingService: LoadingService
+  ) {}
 
   obtenerPersona(): Observable<Persona> {
+    //this.loadingService.hideLoading();
     return this.http.get<Persona>(
       `${environment.apiUrl}/api/obtener-persona/` + this.nro_persona
     );
@@ -37,10 +43,7 @@ export class PortfolioService {
   }
   crearItem(item: Item): Observable<Item> {
     item.codigo_persona = this.nro_persona;
-    return this.http.post<Item>(
-      `${environment.apiUrl}/api/crear-item`,
-      item
-    );
+    return this.http.post<Item>(`${environment.apiUrl}/api/crear-item`, item);
   }
 
   obtenerSecciones() {
@@ -54,31 +57,32 @@ export class PortfolioService {
   }
 
   eliminarItem(codigo_item: number): Observable<void> {
-    return this.http.delete<void>(`${environment.apiUrl}/api/eliminar-item/` + codigo_item).pipe(
-      tap(() => {
-        // Obtener el arreglo actual de secciones
-        const secciones = this.seccionesSubject.getValue();
+    return this.http
+      .delete<void>(`${environment.apiUrl}/api/eliminar-item/` + codigo_item)
+      .pipe(
+        tap(() => {
+          // Obtener el arreglo actual de secciones
+          const secciones = this.seccionesSubject.getValue();
 
-        // Buscar la seccion que contiene el item a eliminar
-        const seccionConItem = secciones.find((seccion) =>
-          seccion.items.some((item) => item.codigo_item === codigo_item)
-        );
-
-        if (seccionConItem) {
-          // Eliminar el item de la lista de items de la seccion
-          seccionConItem.items = seccionConItem.items.filter(
-            (item) => item.codigo_item !== codigo_item
+          // Buscar la seccion que contiene el item a eliminar
+          const seccionConItem = secciones.find((seccion) =>
+            seccion.items.some((item) => item.codigo_item === codigo_item)
           );
 
-          // Actualizar el arreglo de secciones en el BehaviorSubject
-          this.seccionesSubject.next(secciones);
-        }
-      })
-    );
+          if (seccionConItem) {
+            // Eliminar el item de la lista de items de la seccion
+            seccionConItem.items = seccionConItem.items.filter(
+              (item) => item.codigo_item !== codigo_item
+            );
+
+            // Actualizar el arreglo de secciones en el BehaviorSubject
+            this.seccionesSubject.next(secciones);
+          }
+        })
+      );
   }
 
   actualizarSecciones(secciones: Seccion[]): void {
     this.seccionesSubject.next(secciones);
   }
-
 }

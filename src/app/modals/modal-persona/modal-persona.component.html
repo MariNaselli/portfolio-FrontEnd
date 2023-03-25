@@ -3,7 +3,7 @@
   <button type="button" aria-label="Close" (click)="cerrarModal()" class="btn-close"></button>
 </div>
 <div class="modal-body">
-  <form>
+  <form #personaForm="ngForm">
     <div class="row">
       <div class="col mb-3">
         <label for="nombre" class="form-label">Nombre</label>
@@ -14,7 +14,11 @@
           name="nombre"
           required
           [(ngModel)]="persona.nombre"
+          #nombreField="ngModel"
         />
+        <div *ngIf="nombreField.invalid && nombreField.touched" class="text-danger">
+          El campo es obligatorio.
+        </div>
       </div>
       <div class="col mb-3">
         <label for="apellido" class="form-label">Apellido</label>
@@ -25,7 +29,11 @@
           name="apellido"
           required
           [(ngModel)]="persona.apellido"
+          #apellidoField="ngModel"
         />
+        <div *ngIf="apellidoField.invalid && apellidoField.touched" class="text-danger">
+          El campo es obligatorio.
+        </div>
       </div>
     </div>
     <div class="row">
@@ -38,9 +46,14 @@
           name="titulo"
           required
           [(ngModel)]="persona.titulo"
+          #tituloField="ngModel"
         />
+        <div *ngIf="tituloField.invalid && tituloField.touched" class="text-danger">
+          El campo es obligatorio.
+        </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col mb-3">
         <label for="descripcion" class="form-label">Descripción</label>
@@ -153,7 +166,7 @@
   <button
     type="button"
     class="btn btn-primary"
-    [disabled]="guardando"
+    [disabled]="guardando || personaForm.invalid"
     (click)="guardarCambios()"
   >
     Guardar cambios

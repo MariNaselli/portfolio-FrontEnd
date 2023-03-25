@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Persona } from 'src/app/clases/persona';
 import { Seccion } from 'src/app/clases/seccion';
@@ -18,6 +18,7 @@ export class EncabezadoComponent implements OnInit {
 
   @ViewChild('modalLogin') modalLogin: any;
   @ViewChild('modalPersona') modalPersona: any;
+  @ViewChild('navbar') navbar!: ElementRef;
 
   constructor(
     private servicios: PortfolioService,
@@ -57,5 +58,11 @@ export class EncabezadoComponent implements OnInit {
   }
   logout(): void {
     this.authService.logout();
+  }
+  cerrarMenu() {
+    console.log('Cerrar menú');
+    if (this.navbar.nativeElement.classList.contains('show')) {
+      this.navbar.nativeElement.classList.remove('show');
+    }
   }
 }

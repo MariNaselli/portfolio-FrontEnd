@@ -22,7 +22,6 @@ export class PortfolioService {
   ) {}
 
   obtenerPersona(): Observable<Persona> {
-    //this.loadingService.hideLoading();
     return this.http.get<Persona>(
       `${environment.apiUrl}/api/obtener-persona/` + this.nro_persona
     );

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/clases/item';
 import { Seccion } from 'src/app/clases/seccion';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
@@ -15,16 +16,53 @@ export class ModalItemComponent implements OnInit {
   mostrarBarra: boolean = false;
   camposVisibles = false;
 
-  constructor(private servicios: PortfolioService) {}
+  constructor(
+    private servicios: PortfolioService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.servicios.obtenerSecciones().subscribe((data) => {
       this.secciones = data;
     });
     this.mostrarSegunSeccion();
+    console.log(this.item);
   }
+  guardando: boolean = false;
+  guardarItem(): void {
+    this.guardando = true;
+    if (this.item.codigo_item == 0) {
+      //ES UN ITEM NUEVO
+      this.servicios.crearItem(this.item).subscribe({
+        next: (response) => {
+          this.OnCloseModal.emit();
+          this.guardando = false;
+          this.toastr.success('Item creado exitosamente');
+        },
+        error: (err) => {
+          console.error(err);
+          this.guardando = false;
+          this.toastr.error('Ocurrió un error al crear el item');
+        },
+      });
 
-  guardarCambios(): void {}
+
+    } else {
+      //ACTUALIZAR EL ITEM PORQUE YA EXISTE, SU CÒDIGO NO ES 0
+      this.servicios.actualizarItem(this.item).subscribe({
+        next: (response) => {
+          this.OnCloseModal.emit();
+          this.guardando = false;
+          this.toastr.success('Cambios guardados exitosamente');
+        },
+        error: (err) => {
+          console.error(err);
+          this.guardando = false;
+          this.toastr.error('Ocurrió un error al actualizar el item');
+        },
+      });
+    }
+  }
 
   cerrarModal() {
     this.OnCloseModal.emit();

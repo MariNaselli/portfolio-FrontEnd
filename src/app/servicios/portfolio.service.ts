@@ -29,6 +29,20 @@ export class PortfolioService {
     );
   }
 
+  actualizarItem(item: Item): Observable<Item> {
+    return this.http.put<Item>(
+      `${environment.apiUrl}/api/actualizar-item/` + item.codigo_item,
+      item
+    );
+  }
+  crearItem(item: Item): Observable<Item> {
+    item.codigo_persona = this.nro_persona;
+    return this.http.post<Item>(
+      `${environment.apiUrl}/api/crear-item`,
+      item
+    );
+  }
+
   obtenerSecciones() {
     return this.http.get<any>(`${environment.apiUrl}/api/obtener-secciones`);
   }

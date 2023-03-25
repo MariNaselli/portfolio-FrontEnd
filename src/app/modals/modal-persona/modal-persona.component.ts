@@ -37,9 +37,7 @@ export class ModalPersonaComponent implements OnInit {
       next: (response) => {
         this.guardando = false;
        //this.sharedService.closeModal();
-
         this.OnCloseModal.emit();
-
         this.toastr.success('Cambios guardados exitosamente');
       },
       error: (err) => {

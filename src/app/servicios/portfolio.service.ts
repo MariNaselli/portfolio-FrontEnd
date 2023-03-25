@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, finalize, Observable, tap } from 'rxjs';
 import { Persona } from '../clases/persona';
 import { Item } from '../clases/item';
 import { environment } from 'src/environments/environment';
-
 import { Portfolio } from '../clases/portfolio';
 import { LoadingService } from './loading.service';
 
@@ -52,32 +51,44 @@ export class PortfolioService {
   }
 
   actualizarPersona(persona: Persona): Observable<Persona> {
+    this.loadingService.showLoading();
     return this.http.put<Persona>(
       `${environment.apiUrl}/api/actualizar-persona`,
       persona
     ).pipe(
       tap(() => {
         this.refrescarPortfolio();
+      }),
+      finalize(() => {
+        this.loadingService.hideLoading();
       })
     );
   }
 
   actualizarItem(item: Item): Observable<Item> {
+    this.loadingService.showLoading();
     return this.http.put<Item>(
       `${environment.apiUrl}/api/actualizar-item/` + item.codigo_item,
       item
     ).pipe(
       tap(() => {
         this.refrescarPortfolio();
+      }),
+      finalize(() => {
+        this.loadingService.hideLoading();
       })
     );
   }
 
   crearItem(item: Item): Observable<Item> {
+    this.loadingService.showLoading();
     item.codigo_persona = this.nro_persona;
     return this.http.post<Item>(`${environment.apiUrl}/api/crear-item`, item).pipe(
       tap(() => {
         this.refrescarPortfolio();
+      }),
+      finalize(() => {
+        this.loadingService.hideLoading();
       })
     );
   }
@@ -87,14 +98,20 @@ export class PortfolioService {
   }
 
   eliminarItem(codigo_item: number): Observable<void> {
+    this.loadingService.showLoading();
+
     return this.http
       .delete<void>(`${environment.apiUrl}/api/eliminar-item/` + codigo_item)
       .pipe(
         tap(() => {
           this.refrescarPortfolio();
+        }),
+        finalize(() => {
+          this.loadingService.hideLoading();
         })
       );
   }
+
 
   actualizarPortfolio(portfolio: Portfolio): void {
     this.portfolioSubject.next(portfolio);

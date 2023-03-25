@@ -1,9 +1,5 @@
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
-import { Persona } from 'src/app/clases/persona';
-import { LoadingService } from 'src/app/servicios/loading.service';
+import { Component, OnInit } from '@angular/core';
+import { Portfolio } from 'src/app/clases/portfolio';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
 @Component({
@@ -12,24 +8,16 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
   styleUrls: ['./perfil.component.scss'],
 })
 export class PerfilComponent implements OnInit {
-  persona: Persona = new Persona();
+  portfolio: Portfolio = new Portfolio();
 
   constructor(
-    private servicios: PortfolioService,
-    private loading: LoadingService
-    ) {}
+    private portfolioService: PortfolioService
+  ) {}
 
   ngOnInit(): void {
-    this.servicios.obtenerPersona().subscribe({
-      next: (data) => {
-        this.persona = data;
-      },
-      error: (error) => {
-        console.log('Hubo un error al obtener la persona: ', error);
-      },
-      complete: () => {
-        this.loading.hideLoading();
-      }
+    // Suscribirse al observable del servicio para actualizar los items
+    this.portfolioService.portfolio$.subscribe((portfolio) => {
+      this.portfolio = portfolio;
     });
   }
 }

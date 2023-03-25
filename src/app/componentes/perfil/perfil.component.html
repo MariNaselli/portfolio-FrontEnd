@@ -4,7 +4,7 @@
       <div class="row align-items-center g-5 py-5">
         <div class="col-10 col-sm-8 col-lg-5">
           <img
-            [src]="persona.urlFoto"
+            [src]="portfolio.persona.urlFoto"
             class="bd-placeholder-img rounded-circle img-responsive-custom"
             alt="Foto de Perfil"
             loading="lazy"
@@ -12,11 +12,11 @@
         </div>
         <div class="col-lg-7">
           <h1 class="display-5 fw-bold lh-1 mb-3">
-            {{ persona.titulo }}
-            <h2>{{ persona.nombre + " " + persona.apellido }}</h2>
+            {{ portfolio.persona.titulo }}
+            <h2>{{ portfolio.persona.nombre + " " + portfolio.persona.apellido }}</h2>
           </h1>
           <p class="lead text-break">
-            {{ persona.descripcion }}
+            {{ portfolio.persona.descripcion }}
           </p>
         </div>
       </div>

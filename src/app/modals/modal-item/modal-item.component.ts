@@ -17,12 +17,12 @@ export class ModalItemComponent implements OnInit {
   camposVisibles = false;
 
   constructor(
-    private servicios: PortfolioService,
+    private portfolioService: PortfolioService,
     private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.servicios.obtenerSecciones().subscribe((data) => {
+    this.portfolioService.obtenerSecciones().subscribe((data) => {
       this.secciones = data;
     });
     this.mostrarSegunSeccion();
@@ -32,7 +32,7 @@ export class ModalItemComponent implements OnInit {
     this.guardando = true;
     if (this.item.codigo_item == 0) {
       //ES UN ITEM NUEVO
-      this.servicios.crearItem(this.item).subscribe({
+      this.portfolioService.crearItem(this.item).subscribe({
         next: (response) => {
           this.OnCloseModal.emit();
           this.guardando = false;
@@ -48,7 +48,7 @@ export class ModalItemComponent implements OnInit {
 
     } else {
       //ACTUALIZAR EL ITEM PORQUE YA EXISTE, SU CÒDIGO NO ES 0
-      this.servicios.actualizarItem(this.item).subscribe({
+      this.portfolioService.actualizarItem(this.item).subscribe({
         next: (response) => {
           this.OnCloseModal.emit();
           this.guardando = false;
@@ -65,6 +65,7 @@ export class ModalItemComponent implements OnInit {
 
   cerrarModal() {
     this.OnCloseModal.emit();
+    this.portfolioService.refrescarPortfolio();
   }
 
   mostrarSegunSeccion() {

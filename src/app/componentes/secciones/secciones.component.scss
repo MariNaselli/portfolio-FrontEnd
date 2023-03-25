@@ -1,0 +1,8 @@
+.seccion-ajustada::before {
+  content: "";
+  display: block;
+  height: 57px; /* Ajusta esta altura al tamaño de tu menú */
+  margin-top: -57px; /* Ajusta este margen al tamaño de tu menú */
+  visibility: hidden;
+  pointer-events: none;
+}

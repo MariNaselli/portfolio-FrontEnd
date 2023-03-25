@@ -18,6 +18,7 @@ import { ModalPersonaComponent } from './modals/modal-persona/modal-persona.comp
 import { ModalLoginComponent } from './modals/modal-login/modal-login.component';
 import { ModalItemComponent } from './modals/modal-item/modal-item.component';
 import { SeccionesComponent } from './componentes/secciones/secciones.component';
+import { LoadingComponent } from './componentes/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SeccionesComponent } from './componentes/secciones/secciones.component'
     ModalPersonaComponent,
     ModalLoginComponent,
     ModalItemComponent,
-    SeccionesComponent
+    SeccionesComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

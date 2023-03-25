@@ -26,7 +26,6 @@ export class ModalItemComponent implements OnInit {
       this.secciones = data;
     });
     this.mostrarSegunSeccion();
-    console.log(this.item);
   }
   guardando: boolean = false;
   guardarItem(): void {

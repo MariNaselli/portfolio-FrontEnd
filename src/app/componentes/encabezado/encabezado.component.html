@@ -8,7 +8,6 @@
           height="30"
           class="d-inline-block align-text-top"
         />
-        #YoProgramo
       </a>
       <button
         class="navbar-toggler"
@@ -26,7 +25,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#" (click)="cerrarMenu()">Inicio</a>
           </li>
-          <li class="nav-item"  *ngFor="let seccion of secciones">
+          <li class="nav-item"  *ngFor="let seccion of portfolio.secciones">
             <a class="nav-link" (click)="cerrarMenu()" href="#section_{{ seccion.codigo_seccion }}">{{seccion.nombre_seccion}}</a>
           </li>
           <li class="nav-item">
@@ -36,9 +35,9 @@
 
         <ul class="navbar-nav flex-wrap ms-md-auto">
 
-          <li class="nav-item" *ngIf="persona.urlLinkedin">
+          <li class="nav-item" *ngIf="portfolio.persona.urlLinkedin">
             <a
-              href="{{ persona.urlLinkedin }}"
+              href="{{ portfolio.persona.urlLinkedin }}"
               target="_blank"
               class="nav-link"
             >
@@ -46,15 +45,15 @@
             </a>
           </li>
 
-          <li class="nav-item" *ngIf="persona.urlGithub">
-            <a href="{{ persona.urlGithub }}" target="_blank" class="nav-link">
+          <li class="nav-item" *ngIf="portfolio.persona.urlGithub">
+            <a href="{{ portfolio.persona.urlGithub }}" target="_blank" class="nav-link">
               <i class="fa-brands fa-github"></i>
             </a>
           </li>
 
-          <li class="nav-item" *ngIf="persona.urlInstagram">
+          <li class="nav-item" *ngIf="portfolio.persona.urlInstagram">
             <a
-              href="{{ persona.urlInstagram }}"
+              href="{{ portfolio.persona.urlInstagram }}"
               target="_blank"
               class="nav-link"
             >
@@ -79,7 +78,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {{ persona.nombre }} {{ persona.apellido }}
+              {{ portfolio.persona.nombre }} {{ portfolio.persona.apellido }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>

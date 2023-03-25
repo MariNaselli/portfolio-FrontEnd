@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { IndividualConfig, ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedService } from './servicios/shared.service';
 
 import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './componentes/encabezado/encabezado.component';
@@ -45,8 +44,7 @@ import { LoadingComponent } from './componentes/loading/loading.component';
     })
   ],
   providers: [
-    PortfolioService,
-    SharedService,
+    PortfolioService
   ],
   bootstrap: [AppComponent],
 })

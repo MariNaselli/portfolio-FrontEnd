@@ -14,34 +14,34 @@ aria-label="Toggle navigation"
     <div class=" row justify-content-between">
       <div class="col-9">
         <ul class="navbar-nav flex-column text-left" >
-          <li class="nav-item mb-2" *ngIf="persona.email">
+          <li class="nav-item mb-2" *ngIf="portfolio.persona.email">
             <a
-              href="mailto:{{ persona.email }}"
+              href="mailto:{{ portfolio.persona.email }}"
               target="_blank"
               class="nav-link p-0"
             >
               <i class="fa-solid fa-envelope"></i>
-              {{ persona.email }}</a
+              {{ portfolio.persona.email }}</a
             >
           </li>
-          <li class="nav-item mb-2" *ngIf="persona.telefono">
+          <li class="nav-item mb-2" *ngIf="portfolio.persona.telefono">
             <a
-              href="https://wa.me/{{ persona.telefono }}"
+              href="https://wa.me/{{ portfolio.persona.telefono }}"
               target="_blank"
               class="nav-link p-0"
             >
               <i class="fa-brands fa-whatsapp"></i>
-              {{ persona.telefono }}</a
+              {{ portfolio.persona.telefono }}</a
             >
           </li>
-          <li class="nav-item mb-2" *ngIf="persona.ubicacion">
+          <li class="nav-item mb-2" *ngIf="portfolio.persona.ubicacion">
             <a
-              href="https://www.google.com/maps/search/?api=1&query={{ persona.ubicacion }}"
+              href="https://www.google.com/maps/search/?api=1&query={{ portfolio.persona.ubicacion }}"
               target="_blank"
               class="nav-link p-0"
             >
               <i class="fa-solid fa-location-dot"></i>
-              {{ persona.ubicacion }}</a
+              {{ portfolio.persona.ubicacion }}</a
             >
           </li>
         </ul>

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Persona } from 'src/app/clases/persona';
+import { Portfolio } from 'src/app/clases/portfolio';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
@@ -15,27 +16,24 @@ export class ModalLoginComponent implements OnInit {
   isLoggedIn: boolean = false;
   canLogin: boolean = false;
 
-
   email = '';
   password = '';
-  persona: Persona = new Persona();
-
+  portfolio: Portfolio = new Portfolio();
 
   constructor(
-    private servicios: PortfolioService,
+    private portfolioService: PortfolioService,
     private authService: AuthService,
     private toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
-    this.servicios.obtenerPersona().subscribe((data) => {
-      this.persona = data;
-    });
     this.authService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
       this.isLoggedIn = isLoggedIn;
     });
-
-
+    // Suscribirse al observable del servicio para actualizar el portfolio
+    this.portfolioService.portfolio$.subscribe((portfolio) => {
+      this.portfolio = portfolio;
+    });
   }
 
    updateLoginButton(){

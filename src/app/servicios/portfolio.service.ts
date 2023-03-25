@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Persona } from '../clases/persona';
-import { Seccion } from '../clases/seccion';
 import { Item } from '../clases/item';
 import { environment } from 'src/environments/environment';
+
+import { Portfolio } from '../clases/portfolio';
 import { LoadingService } from './loading.service';
 
 @Injectable({
@@ -12,25 +13,52 @@ import { LoadingService } from './loading.service';
 })
 export class PortfolioService {
   nro_persona: number = 3;
-  loading$ = this.loadingService.loading$;
-  private seccionesSubject = new BehaviorSubject<Seccion[]>([]);
-  secciones$ = this.seccionesSubject.asObservable();
+  private portfolioSubject = new BehaviorSubject<Portfolio>(new Portfolio);
+  portfolio$ = this.portfolioSubject.asObservable();
 
   constructor(
     private http: HttpClient,
     private loadingService: LoadingService
   ) {}
 
-  obtenerPersona(): Observable<Persona> {
-    return this.http.get<Persona>(
-      `${environment.apiUrl}/api/obtener-persona/` + this.nro_persona
+  cargarPortfolioInicial(): void {
+    this.loadingService.showLoading();
+
+    this.obtenerPortfolio().subscribe({
+      next: (data) => {
+        this.actualizarPortfolio(data);
+      },
+      error: (error) => {
+        console.log('Hubo un error al obtener el portfolio: ', error);
+        this.loadingService.hideLoading();
+      },
+      complete: () => {
+        this.loadingService.hideLoading();
+      },
+    });
+  }
+
+
+  obtenerPortfolio(): Observable<Portfolio> {
+    return this.http.get<Portfolio>(
+      `${environment.apiUrl}/api/portfolio/persona/` + this.nro_persona
     );
+  }
+
+  refrescarPortfolio(): void {
+    this.obtenerPortfolio().subscribe((portfolio: Portfolio) => {
+      this.portfolioSubject.next(portfolio);
+    });
   }
 
   actualizarPersona(persona: Persona): Observable<Persona> {
     return this.http.put<Persona>(
       `${environment.apiUrl}/api/actualizar-persona`,
       persona
+    ).pipe(
+      tap(() => {
+        this.refrescarPortfolio();
+      })
     );
   }
 
@@ -38,21 +66,24 @@ export class PortfolioService {
     return this.http.put<Item>(
       `${environment.apiUrl}/api/actualizar-item/` + item.codigo_item,
       item
+    ).pipe(
+      tap(() => {
+        this.refrescarPortfolio();
+      })
     );
   }
+
   crearItem(item: Item): Observable<Item> {
     item.codigo_persona = this.nro_persona;
-    return this.http.post<Item>(`${environment.apiUrl}/api/crear-item`, item);
+    return this.http.post<Item>(`${environment.apiUrl}/api/crear-item`, item).pipe(
+      tap(() => {
+        this.refrescarPortfolio();
+      })
+    );
   }
 
   obtenerSecciones() {
     return this.http.get<any>(`${environment.apiUrl}/api/obtener-secciones`);
-  }
-
-  obtenerSeccionesPorPersona() {
-    return this.http.get<any>(
-      `${environment.apiUrl}/api/obtener-secciones/` + this.nro_persona
-    );
   }
 
   eliminarItem(codigo_item: number): Observable<void> {
@@ -60,28 +91,12 @@ export class PortfolioService {
       .delete<void>(`${environment.apiUrl}/api/eliminar-item/` + codigo_item)
       .pipe(
         tap(() => {
-          // Obtener el arreglo actual de secciones
-          const secciones = this.seccionesSubject.getValue();
-
-          // Buscar la seccion que contiene el item a eliminar
-          const seccionConItem = secciones.find((seccion) =>
-            seccion.items.some((item) => item.codigo_item === codigo_item)
-          );
-
-          if (seccionConItem) {
-            // Eliminar el item de la lista de items de la seccion
-            seccionConItem.items = seccionConItem.items.filter(
-              (item) => item.codigo_item !== codigo_item
-            );
-
-            // Actualizar el arreglo de secciones en el BehaviorSubject
-            this.seccionesSubject.next(secciones);
-          }
+          this.refrescarPortfolio();
         })
       );
   }
 
-  actualizarSecciones(secciones: Seccion[]): void {
-    this.seccionesSubject.next(secciones);
+  actualizarPortfolio(portfolio: Portfolio): void {
+    this.portfolioSubject.next(portfolio);
   }
 }

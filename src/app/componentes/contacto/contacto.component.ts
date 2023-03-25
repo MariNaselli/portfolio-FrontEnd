@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from 'src/app/clases/persona';
+import { Portfolio } from 'src/app/clases/portfolio';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',
-  styleUrls: ['./contacto.component.scss']
+  styleUrls: ['./contacto.component.scss'],
 })
 export class ContactoComponent implements OnInit {
-  persona: Persona = new Persona;
+  portfolio: Portfolio = new Portfolio();
 
-  constructor(private servicios: PortfolioService) { }
+  constructor(
+    private portfolioService: PortfolioService) {}
 
   ngOnInit(): void {
-    this.servicios.obtenerPersona().subscribe((data) => {
-      this.persona = data;
+    // Suscribirse al observable del servicio para actualizar el portfolio
+    this.portfolioService.portfolio$.subscribe((portfolio) => {
+      this.portfolio = portfolio;
     });
   }
 }

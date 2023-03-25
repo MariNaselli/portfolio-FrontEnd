@@ -1,9 +1,8 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { Persona } from 'src/app/clases/persona';
+import { Portfolio } from 'src/app/clases/portfolio';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
-import { SharedService } from 'src/app/servicios/shared.service';
 
 @Component({
   selector: 'app-modal-persona',
@@ -14,18 +13,18 @@ export class ModalPersonaComponent implements OnInit {
 
   @Output() OnCloseModal: EventEmitter<null> = new EventEmitter();
 
-  persona: Persona = new Persona();
+  portfolio: Portfolio = new Portfolio();
 
   constructor(
-    private servicios: PortfolioService,
+    private portfolioService: PortfolioService,
     private modalService: NgbModal,
-    private toastr: ToastrService,
-    private sharedService: SharedService
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.servicios.obtenerPersona().subscribe((data) => {
-      this.persona = data;
+    // Suscribirse al observable del servicio para actualizar el portfolio
+    this.portfolioService.portfolio$.subscribe((portfolio) => {
+      this.portfolio = portfolio;
     });
   }
 
@@ -33,10 +32,9 @@ export class ModalPersonaComponent implements OnInit {
   guardarCambios(): void {
     this.guardando = true;
 
-    this.servicios.actualizarPersona(this.persona).subscribe({
+    this.portfolioService.actualizarPersona(this.portfolio.persona).subscribe({
       next: (response) => {
         this.guardando = false;
-       //this.sharedService.closeModal();
         this.OnCloseModal.emit();
         this.toastr.success('Cambios guardados exitosamente');
       },
@@ -50,5 +48,6 @@ export class ModalPersonaComponent implements OnInit {
 
   cerrarModal() {
     this.OnCloseModal.emit();
+    this.portfolioService.refrescarPortfolio();
   }
 }

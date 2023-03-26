@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Persona } from 'src/app/clases/persona';
 import { Portfolio } from 'src/app/clases/portfolio';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
@@ -23,7 +22,7 @@ export class ModalLoginComponent implements OnInit {
   constructor(
     private portfolioService: PortfolioService,
     private authService: AuthService,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -36,10 +35,9 @@ export class ModalLoginComponent implements OnInit {
     });
   }
 
-   updateLoginButton(){
-      this.canLogin = (this.email.trim() !== '' && this.password.trim() !== '');
-    };
-
+  updateLoginButton() {
+    this.canLogin = this.email.trim() !== '' && this.password.trim() !== '';
+  }
 
   login(): void {
     this.authService.login(this.email, this.password);

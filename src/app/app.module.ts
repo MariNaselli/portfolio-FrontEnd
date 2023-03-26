@@ -1,9 +1,8 @@
-import { NgModule, InjectionToken } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { IndividualConfig, ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './componentes/encabezado/encabezado.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
@@ -12,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { BtnEditarEliminarComponent } from './buttons/btn-editar-eliminar/btn-editar-eliminar.component';
 import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalPersonaComponent } from './modals/modal-persona/modal-persona.component';
 import { ModalLoginComponent } from './modals/modal-login/modal-login.component';
 import { ModalItemComponent } from './modals/modal-item/modal-item.component';

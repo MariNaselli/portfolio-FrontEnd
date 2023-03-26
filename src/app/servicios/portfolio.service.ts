@@ -12,7 +12,7 @@ import { LoadingService } from './loading.service';
 })
 export class PortfolioService {
   nro_persona: number = 3;
-  private portfolioSubject = new BehaviorSubject<Portfolio>(new Portfolio);
+  private portfolioSubject = new BehaviorSubject<Portfolio>(new Portfolio());
   portfolio$ = this.portfolioSubject.asObservable();
 
   constructor(
@@ -37,7 +37,6 @@ export class PortfolioService {
     });
   }
 
-
   obtenerPortfolio(): Observable<Portfolio> {
     return this.http.get<Portfolio>(
       `${environment.apiUrl}/api/portfolio/persona/` + this.nro_persona
@@ -52,45 +51,48 @@ export class PortfolioService {
 
   actualizarPersona(persona: Persona): Observable<Persona> {
     this.loadingService.showLoading();
-    return this.http.put<Persona>(
-      `${environment.apiUrl}/api/actualizar-persona`,
-      persona
-    ).pipe(
-      tap(() => {
-        this.refrescarPortfolio();
-      }),
-      finalize(() => {
-        this.loadingService.hideLoading();
-      })
-    );
+    return this.http
+      .put<Persona>(`${environment.apiUrl}/api/actualizar-persona`, persona)
+      .pipe(
+        tap(() => {
+          this.refrescarPortfolio();
+        }),
+        finalize(() => {
+          this.loadingService.hideLoading();
+        })
+      );
   }
 
   actualizarItem(item: Item): Observable<Item> {
     this.loadingService.showLoading();
-    return this.http.put<Item>(
-      `${environment.apiUrl}/api/actualizar-item/` + item.codigo_item,
-      item
-    ).pipe(
-      tap(() => {
-        this.refrescarPortfolio();
-      }),
-      finalize(() => {
-        this.loadingService.hideLoading();
-      })
-    );
+    return this.http
+      .put<Item>(
+        `${environment.apiUrl}/api/actualizar-item/` + item.codigo_item,
+        item
+      )
+      .pipe(
+        tap(() => {
+          this.refrescarPortfolio();
+        }),
+        finalize(() => {
+          this.loadingService.hideLoading();
+        })
+      );
   }
 
   crearItem(item: Item): Observable<Item> {
     this.loadingService.showLoading();
     item.codigo_persona = this.nro_persona;
-    return this.http.post<Item>(`${environment.apiUrl}/api/crear-item`, item).pipe(
-      tap(() => {
-        this.refrescarPortfolio();
-      }),
-      finalize(() => {
-        this.loadingService.hideLoading();
-      })
-    );
+    return this.http
+      .post<Item>(`${environment.apiUrl}/api/crear-item`, item)
+      .pipe(
+        tap(() => {
+          this.refrescarPortfolio();
+        }),
+        finalize(() => {
+          this.loadingService.hideLoading();
+        })
+      );
   }
 
   obtenerSecciones() {
@@ -111,7 +113,6 @@ export class PortfolioService {
         })
       );
   }
-
 
   actualizarPortfolio(portfolio: Portfolio): void {
     this.portfolioSubject.next(portfolio);

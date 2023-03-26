@@ -1,6 +1,13 @@
 <div class="modal-header">
-  <h4 class="modal-title">{{ portfolio.persona.nombre }} {{ portfolio.persona.apellido }}</h4>
-  <button type="button" aria-label="Close" (click)="cerrarModal()" class="btn-close"></button>
+  <h4 class="modal-title">
+    {{ portfolio.persona.nombre }} {{ portfolio.persona.apellido }}
+  </h4>
+  <button
+    type="button"
+    aria-label="Close"
+    (click)="cerrarModal()"
+    class="btn-close"
+  ></button>
 </div>
 <div class="modal-body">
   <form #personaForm="ngForm">
@@ -16,7 +23,10 @@
           [(ngModel)]="portfolio.persona.nombre"
           #nombreField="ngModel"
         />
-        <div *ngIf="nombreField.invalid && nombreField.touched" class="text-danger">
+        <div
+          *ngIf="nombreField.invalid && nombreField.touched"
+          class="text-danger"
+        >
           El campo es obligatorio.
         </div>
       </div>
@@ -31,7 +41,10 @@
           [(ngModel)]="portfolio.persona.apellido"
           #apellidoField="ngModel"
         />
-        <div *ngIf="apellidoField.invalid && apellidoField.touched" class="text-danger">
+        <div
+          *ngIf="apellidoField.invalid && apellidoField.touched"
+          class="text-danger"
+        >
           El campo es obligatorio.
         </div>
       </div>
@@ -48,7 +61,10 @@
           [(ngModel)]="portfolio.persona.titulo"
           #tituloField="ngModel"
         />
-        <div *ngIf="tituloField.invalid && tituloField.touched" class="text-danger">
+        <div
+          *ngIf="tituloField.invalid && tituloField.touched"
+          class="text-danger"
+        >
           El campo es obligatorio.
         </div>
       </div>

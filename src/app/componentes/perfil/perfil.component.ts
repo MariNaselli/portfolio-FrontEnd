@@ -10,9 +10,7 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
 export class PerfilComponent implements OnInit {
   portfolio: Portfolio = new Portfolio();
 
-  constructor(
-    private portfolioService: PortfolioService
-  ) {}
+  constructor(private portfolioService: PortfolioService) {}
 
   ngOnInit(): void {
     // Suscribirse al observable del servicio para actualizar los items

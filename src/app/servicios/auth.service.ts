@@ -3,11 +3,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  private currentUserSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private currentUserSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
   private tokenKey = 'auth_token';
 
   constructor(private cookieService: CookieService) {
@@ -20,7 +20,10 @@ export class AuthService {
 
   login(username: string, password: string): Observable<boolean> {
     // Aquí validamos el usuario y la contraseña
-    if (username === 'nasellimariana@gmail.com' && password === 'Cv7Y6mmzKecrbEc') {
+    if (
+      username === 'nasellimariana@gmail.com' &&
+      password === 'Cv7Y6mmzKecrbEc'
+    ) {
       // Si son correctos, actualizamos el estado del usuario logueado
       this.currentUserSubject.next(true);
       const token = 'GENERAR_TOKEN_JWT_AQUI';
@@ -28,7 +31,7 @@ export class AuthService {
       return this.currentUserSubject.asObservable();
     } else {
       // Si son incorrectos, retornamos un observable con valor false
-      return new Observable(observer => observer.next(false));
+      return new Observable((observer) => observer.next(false));
     }
   }
 

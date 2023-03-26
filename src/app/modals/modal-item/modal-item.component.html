@@ -1,6 +1,11 @@
 <div class="modal-header">
   <h4 class="modal-title">Item</h4>
-  <button type="button" aria-label="Close" (click)="cerrarModal()" class="btn-close"></button>
+  <button
+    type="button"
+    aria-label="Close"
+    (click)="cerrarModal()"
+    class="btn-close"
+  ></button>
 </div>
 <div class="modal-body">
   <form #itemForm="ngForm">
@@ -22,9 +27,9 @@
         </option>
       </select>
     </div>
-    <div *ngIf="camposVisibles" >
+    <div *ngIf="camposVisibles">
       <div class="mb-3">
-        <label class="form-label">Cabecera</label>
+        <label class="form-label">Titulo</label>
         <input
           type="text"
           class="form-control"
@@ -35,7 +40,10 @@
           placeholder=""
           #nombreField="ngModel"
         />
-        <div *ngIf="nombreField.invalid && nombreField.touched" class="text-danger">
+        <div
+          *ngIf="nombreField.invalid && nombreField.touched"
+          class="text-danger"
+        >
           El campo es obligatorio.
         </div>
       </div>
@@ -51,7 +59,10 @@
           #tituloField="ngModel"
           placeholder=""
         />
-        <div *ngIf="tituloField.invalid && tituloField.touched" class="text-danger">
+        <div
+          *ngIf="tituloField.invalid && tituloField.touched"
+          class="text-danger"
+        >
           El campo es obligatorio.
         </div>
       </div>
@@ -67,7 +78,10 @@
           #periodoField="ngModel"
           placeholder="Ej: Diciembre 2022"
         />
-        <div *ngIf="periodoField.invalid && periodoField.touched" class="text-danger">
+        <div
+          *ngIf="periodoField.invalid && periodoField.touched"
+          class="text-danger"
+        >
           El campo es obligatorio.
         </div>
       </div>
@@ -82,7 +96,7 @@
           placeholder=""
         ></textarea>
       </div>
-       <div class="mb-3" *ngIf="!this.mostrarBarra">
+      <div class="mb-3" *ngIf="!this.mostrarBarra">
         <label class="form-label">URL</label>
         <input
           type="text"
@@ -113,9 +127,14 @@
   <button type="button" class="btn btn-secondary" (click)="cerrarModal()">
     Cerrar
   </button>
-  <button type="button" class="btn btn-primary"
-  [disabled]="item.codigo_seccion == 0 || guardando == true || itemForm.invalid"
-  (click)="guardarItem()">
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="
+      item.codigo_seccion == 0 || guardando == true || itemForm.invalid
+    "
+    (click)="guardarItem()"
+  >
     Guardar cambios
   </button>
 </div>

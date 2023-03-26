@@ -31,7 +31,10 @@
       <div class="mb-1 text-muted">{{ item.periodo }}</div>
       <p class="card-text mb-auto">{{ item.descripcion }}</p>
       <a *ngIf="item.url" [href]="item.url" target="_blank">{{ item.url }}</a>
-      <div class="progress" *ngIf="item.codigo_seccion == 3 || item.codigo_seccion == 4">
+      <div
+        class="progress"
+        *ngIf="item.codigo_seccion == 3 || item.codigo_seccion == 4"
+      >
         <div
           class="progress-bar"
           role="progressbar"

@@ -55,7 +55,6 @@ export class EncabezadoComponent implements OnInit {
     this.authService.logout();
   }
   cerrarMenu() {
-    console.log('Cerrar menú');
     if (this.navbar.nativeElement.classList.contains('show')) {
       this.navbar.nativeElement.classList.remove('show');
     }

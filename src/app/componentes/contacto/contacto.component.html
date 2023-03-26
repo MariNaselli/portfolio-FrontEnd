@@ -1,59 +1,63 @@
 <button
-class="navbar-toggler"
-type="button"
-data-bs-toggle="collapse"
-data-bs-target="#navbarNav"
-aria-controls="navbarNav"
-aria-expanded="false"
-aria-label="Toggle navigation"
+  class="navbar-toggler"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#navbarNav"
+  aria-controls="navbarNav"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
 >
-<span class="navbar-toggler-icon"></span>
+  <span class="navbar-toggler-icon"></span>
 </button>
-<footer id="section_contacto"class="row py-3 my-3 ml-3 border-top justify-content-center">
-
-    <div class=" row justify-content-between">
-      <div class="col-9">
-        <ul class="navbar-nav flex-column text-left" >
-          <li class="nav-item mb-2" *ngIf="portfolio.persona.email">
-            <a
-              href="mailto:{{ portfolio.persona.email }}"
-              target="_blank"
-              class="nav-link p-0"
-            >
-              <i class="fa-solid fa-envelope"></i>
-              {{ portfolio.persona.email }}</a
-            >
-          </li>
-          <li class="nav-item mb-2" *ngIf="portfolio.persona.telefono">
-            <a
-              href="https://wa.me/{{ portfolio.persona.telefono }}"
-              target="_blank"
-              class="nav-link p-0"
-            >
-              <i class="fa-brands fa-whatsapp"></i>
-              {{ portfolio.persona.telefono }}</a
-            >
-          </li>
-          <li class="nav-item mb-2" *ngIf="portfolio.persona.ubicacion">
-            <a
-              href="https://www.google.com/maps/search/?api=1&query={{ portfolio.persona.ubicacion }}"
-              target="_blank"
-              class="nav-link p-0"
-            >
-              <i class="fa-solid fa-location-dot"></i>
-              {{ portfolio.persona.ubicacion }}</a
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="col-3">
-        <img
-          _ngcontent-rsr-c17=""
-          src="../assets/images/APLogo-20-20.png"
-          alt="Logo"
-          height="30"
-          class="float-end"
-        />
-      </div>
+<footer
+  id="section_contacto"
+  class="row py-3 my-3 ml-3 border-top justify-content-center"
+>
+  <div class="row justify-content-between">
+    <div class="col-9">
+      <ul class="navbar-nav flex-column text-left">
+        <li class="nav-item mb-2" *ngIf="portfolio.persona.email">
+          <a
+            href="mailto:{{ portfolio.persona.email }}"
+            target="_blank"
+            class="nav-link p-0"
+          >
+            <i class="fa-solid fa-envelope"></i>
+            {{ portfolio.persona.email }}</a
+          >
+        </li>
+        <li class="nav-item mb-2" *ngIf="portfolio.persona.telefono">
+          <a
+            href="https://wa.me/{{ portfolio.persona.telefono }}"
+            target="_blank"
+            class="nav-link p-0"
+          >
+            <i class="fa-brands fa-whatsapp"></i>
+            {{ portfolio.persona.telefono }}</a
+          >
+        </li>
+        <li class="nav-item mb-2" *ngIf="portfolio.persona.ubicacion">
+          <a
+            href="https://www.google.com/maps/search/?api=1&query={{
+              portfolio.persona.ubicacion
+            }}"
+            target="_blank"
+            class="nav-link p-0"
+          >
+            <i class="fa-solid fa-location-dot"></i>
+            {{ portfolio.persona.ubicacion }}</a
+          >
+        </li>
+      </ul>
     </div>
+    <div class="col-3">
+      <img
+        _ngcontent-rsr-c17=""
+        src="../assets/images/APLogo-20-20.png"
+        alt="Logo"
+        height="30"
+        class="float-end"
+      />
+    </div>
+  </div>
 </footer>

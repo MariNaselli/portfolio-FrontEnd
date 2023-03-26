@@ -10,7 +10,6 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
   styleUrls: ['./secciones.component.scss'],
 })
 export class SeccionesComponent implements OnInit {
-
   @ViewChild('modalItem') modalItem: any;
   isLoggedIn = false;
 

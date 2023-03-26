@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss']
+  styleUrls: ['./loading.component.scss'],
 })
 export class LoadingComponent {
   messages = [
@@ -16,7 +16,7 @@ export class LoadingComponent {
     'Atrapando mariposas de bytes... 🦋',
     'Preparando la fiesta de datos... 🎉',
     'Engrasando las ruedas del WiFi... 🛠️',
-    'Consultando con el oráculo de la web... 🔮'
+    'Consultando con el oráculo de la web... 🔮',
   ];
   currentMessage = '';
 

@@ -1,5 +1,5 @@
-import { Persona } from './persona'; // Asegúrate de tener la clase Persona en TypeScript
-import { Seccion } from './seccion'; // La clase Seccion ya fue proporcionada en la pregunta
+import { Persona } from './persona';
+import { Seccion } from './seccion';
 
 export class Portfolio {
   persona: Persona;

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/clases/item';
-import { Seccion } from 'src/app/clases/seccion';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
 @Component({
@@ -44,8 +43,6 @@ export class ModalItemComponent implements OnInit {
           this.toastr.error('Ocurrió un error al crear el item');
         },
       });
-
-
     } else {
       //ACTUALIZAR EL ITEM PORQUE YA EXISTE, SU CÒDIGO NO ES 0
       this.portfolioService.actualizarItem(this.item).subscribe({

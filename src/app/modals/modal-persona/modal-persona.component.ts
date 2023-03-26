@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Portfolio } from 'src/app/clases/portfolio';
@@ -10,7 +16,6 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
   styleUrls: ['./modal-persona.component.scss'],
 })
 export class ModalPersonaComponent implements OnInit {
-
   @Output() OnCloseModal: EventEmitter<null> = new EventEmitter();
 
   portfolio: Portfolio = new Portfolio();

@@ -51,8 +51,7 @@ export class BtnEditarEliminarComponent implements OnInit {
             });
 
             console.log('Item eliminado correctamente.');
-             // Actualizar la lista de secciones en el servicio
-
+            // Actualizar la lista de secciones en el servicio
           },
 
           (error) => {
@@ -65,7 +64,6 @@ export class BtnEditarEliminarComponent implements OnInit {
               confirmButtonColor: 'red',
             });
           }
-
         );
       }
     });

@@ -26,9 +26,6 @@ export class ModalLoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
-      this.isLoggedIn = isLoggedIn;
-    });
     // Suscribirse al observable del servicio para actualizar el portfolio
     this.portfolioService.portfolio$.subscribe((portfolio) => {
       this.portfolio = portfolio;
@@ -40,13 +37,20 @@ export class ModalLoginComponent implements OnInit {
   }
 
   login(): void {
-    this.authService.login(this.email, this.password);
-    if (this.isLoggedIn) {
-      this.OnCloseModal.emit();
-      this.toastr.success('Ingreso correcto');
-    } else {
-      this.toastr.error('Los datos ingresados no son correctos');
-    }
+    this.authService.login(this.email, this.password).subscribe({
+      next: (response) => {
+        if (response.success) {
+            this.OnCloseModal.emit();
+            this.toastr.success('Ingreso correcto');
+        }else{
+          this.toastr.error('Los datos ingresados no son correctos');
+        }
+      },
+      error: (err) => {
+        console.error(err);
+        this.toastr.error('Los datos ingresados no son correctos');
+      },
+    });
   }
   cerrarModal() {
     this.OnCloseModal.emit();

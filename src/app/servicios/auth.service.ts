@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
+export interface LoginDto {
+  username: string;
+  password: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -9,34 +17,36 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
   private tokenKey = 'auth_token';
+  private apiUrlNetsJS = environment.apiUrlNetsJS;
 
-  constructor(private cookieService: CookieService) {
+  constructor(private cookieService: CookieService, private http: HttpClient) {
     const token = this.cookieService.get(this.tokenKey);
     if (token) {
-      // Si hay un token guardado en la cookie, actualizamos el estado del usuario logueado
       this.currentUserSubject.next(true);
     }
   }
 
-  login(username: string, password: string): Observable<boolean> {
-    // Aquí validamos el usuario y la contraseña
-    if (
-      username === 'nasellimariana@gmail.com' &&
-      password === 'Cv7Y6mmzKecrbEc'
-    ) {
-      // Si son correctos, actualizamos el estado del usuario logueado
-      this.currentUserSubject.next(true);
-      const token = 'GENERAR_TOKEN_JWT_AQUI';
-      this.cookieService.set(this.tokenKey, token);
-      return this.currentUserSubject.asObservable();
-    } else {
-      // Si son incorrectos, retornamos un observable con valor false
-      return new Observable((observer) => observer.next(false));
-    }
+  login(username: string, password: string): Observable<any> {
+    let url = `${this.apiUrlNetsJS}/auth/login`;
+    return this.http
+      .post<{ token: string }>(url, {
+        username,
+        password,
+      })
+      .pipe(
+        map((response) => {
+          if (response.token) {
+            // Guarda el token en las cookies
+            this.cookieService.set(this.tokenKey, response.token);
+            this.currentUserSubject.next(true);
+            return { success: true};
+          }
+          return { success: false};
+        })
+      );
   }
 
   logout(): void {
-    // Actualizamos el estado del usuario logueado
     this.currentUserSubject.next(false);
     this.cookieService.delete(this.tokenKey);
   }

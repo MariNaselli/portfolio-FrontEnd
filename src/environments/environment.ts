@@ -5,7 +5,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:1989', // OJO!! SIN BARRA AL FINAL
+  apiUrlSpringBoot: 'http://localhost:1989', // OJO!! SIN BARRA AL FINAL
+  apiUrlNetsJS: 'http://localhost:3000',
   firebaseConfig: {
     apiKey: "AIzaSyDxnEu_HpEKw2xcm2R3aOOvKdy62b4y0co",
     authDomain: "portfolio-web-2559b.firebaseapp.com",

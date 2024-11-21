@@ -39,7 +39,7 @@ export class PortfolioService {
 
   obtenerPortfolio(): Observable<Portfolio> {
     return this.http.get<Portfolio>(
-      `${environment.apiUrl}/api/portfolio/persona/` + this.nro_persona
+      `${environment.apiUrlNetsJS}/portfolio/persona/` + this.nro_persona
     );
   }
 
@@ -52,7 +52,7 @@ export class PortfolioService {
   actualizarPersona(persona: Persona): Observable<Persona> {
     this.loadingService.showLoading();
     return this.http
-      .put<Persona>(`${environment.apiUrl}/api/actualizar-persona`, persona)
+      .put<Persona>(`${environment.apiUrlSpringBoot}/api/actualizar-persona`, persona)
       .pipe(
         tap(() => {
           this.refrescarPortfolio();
@@ -67,7 +67,7 @@ export class PortfolioService {
     this.loadingService.showLoading();
     return this.http
       .put<Item>(
-        `${environment.apiUrl}/api/actualizar-item/` + item.codigo_item,
+        `${environment.apiUrlSpringBoot}/api/actualizar-item/` + item.codigo_item,
         item
       )
       .pipe(
@@ -84,7 +84,7 @@ export class PortfolioService {
     this.loadingService.showLoading();
     item.codigo_persona = this.nro_persona;
     return this.http
-      .post<Item>(`${environment.apiUrl}/api/crear-item`, item)
+      .post<Item>(`${environment.apiUrlSpringBoot}/api/crear-item`, item)
       .pipe(
         tap(() => {
           this.refrescarPortfolio();
@@ -96,14 +96,14 @@ export class PortfolioService {
   }
 
   obtenerSecciones() {
-    return this.http.get<any>(`${environment.apiUrl}/api/obtener-secciones`);
+    return this.http.get<any>(`${environment.apiUrlSpringBoot}/api/obtener-secciones`);
   }
 
   eliminarItem(codigo_item: number): Observable<void> {
     this.loadingService.showLoading();
 
     return this.http
-      .delete<void>(`${environment.apiUrl}/api/eliminar-item/` + codigo_item)
+      .delete<void>(`${environment.apiUrlSpringBoot}/api/eliminar-item/` + codigo_item)
       .pipe(
         tap(() => {
           this.refrescarPortfolio();

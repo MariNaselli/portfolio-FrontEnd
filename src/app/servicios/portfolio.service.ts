@@ -67,7 +67,7 @@ export class PortfolioService {
     this.loadingService.showLoading();
     return this.http
       .put<Item>(
-        `${environment.apiUrlSpringBoot}/api/actualizar-item/` + item.codigo_item,
+        `${environment.apiUrlNetsJS}/items/actualizar-item/` + item.codigo_item,
         item
       )
       .pipe(
@@ -84,7 +84,7 @@ export class PortfolioService {
     this.loadingService.showLoading();
     item.codigo_persona = this.nro_persona;
     return this.http
-      .post<Item>(`${environment.apiUrlSpringBoot}/api/crear-item`, item)
+      .post<Item>(`${environment.apiUrlNetsJS}/items/crear-item`, item)
       .pipe(
         tap(() => {
           this.refrescarPortfolio();
@@ -103,7 +103,7 @@ export class PortfolioService {
     this.loadingService.showLoading();
 
     return this.http
-      .delete<void>(`${environment.apiUrlSpringBoot}/api/eliminar-item/` + codigo_item)
+      .delete<void>(`${environment.apiUrlNetsJS}/items/eliminar-item/` + codigo_item)
       .pipe(
         tap(() => {
           this.refrescarPortfolio();

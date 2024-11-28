@@ -25,6 +25,7 @@ export class PortfolioService {
 
     this.obtenerPortfolio().subscribe({
       next: (data) => {
+        console.log(data);
         this.actualizarPortfolio(data);
       },
       error: (error) => {
@@ -96,7 +97,7 @@ export class PortfolioService {
   }
 
   obtenerSecciones() {
-    return this.http.get<any>(`${environment.apiUrlSpringBoot}/api/obtener-secciones`);
+    return this.http.get<any>(`${environment.apiUrlNetsJS}/secciones/obtener-secciones`);
   }
 
   eliminarItem(codigo_item: number): Observable<void> {

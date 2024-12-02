@@ -38,11 +38,21 @@ export class PortfolioService {
     });
   }
 
+  // obtenerPortfolio(): Observable<Portfolio> {
+  //   return this.http.get<Portfolio>(
+  //     `${environment.apiUrlNetsJS}/portfolio/persona/` + this.nro_persona
+  //   );
+  // }
+
   obtenerPortfolio(): Observable<Portfolio> {
-    return this.http.get<Portfolio>(
-      `${environment.apiUrlNetsJS}/portfolio/persona/` + this.nro_persona
-    );
+    return this.http
+      .get<Portfolio>(`${environment.apiUrlNetsJS}/portfolio/persona/` + this.nro_persona)
+      .pipe(
+        tap((data) => console.log('Datos del backend:', data)) // Confirma los datos
+      );
   }
+  
+
 
   refrescarPortfolio(): void {
     this.obtenerPortfolio().subscribe((portfolio: Portfolio) => {
@@ -53,7 +63,7 @@ export class PortfolioService {
   actualizarPersona(persona: Persona): Observable<Persona> {
     this.loadingService.showLoading();
     return this.http
-      .put<Persona>(`${environment.apiUrlSpringBoot}/api/actualizar-persona`, persona)
+      .put<Persona>(`${environment.apiUrlNetsJS}/personas/actualizar-persona/`, persona)
       .pipe(
         tap(() => {
           this.refrescarPortfolio();
@@ -63,6 +73,7 @@ export class PortfolioService {
         })
       );
   }
+  
 
   actualizarItem(item: Item): Observable<Item> {
     this.loadingService.showLoading();

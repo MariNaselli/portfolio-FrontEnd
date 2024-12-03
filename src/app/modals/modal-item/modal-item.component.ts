@@ -21,9 +21,9 @@ export class ModalItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.portfolioService.obtenerSecciones().subscribe((data) => {
-      this.secciones = data;
-    });
+    // this.portfolioService.obtenerSecciones().subscribe((data) => {
+    //   this.secciones = data;
+    // });
     this.mostrarSegunSeccion();
   }
   guardando: boolean = false;
@@ -31,7 +31,7 @@ export class ModalItemComponent implements OnInit {
     this.guardando = true;
     if (this.item.codigo_item == 0) {
       //ES UN ITEM NUEVO
-      this.portfolioService.crearItem(this.item).subscribe({
+      this.portfolioService.crearItem(this.item, this.item.codigo_persona).subscribe({
         next: (response) => {
           this.OnCloseModal.emit();
           this.guardando = false;
@@ -62,7 +62,7 @@ export class ModalItemComponent implements OnInit {
 
   cerrarModal() {
     this.OnCloseModal.emit();
-    this.portfolioService.refrescarPortfolio();
+    // this.portfolioService.refrescarPortfolio();
   }
 
   mostrarSegunSeccion() {

@@ -33,7 +33,7 @@
       <a *ngIf="item.url" [href]="item.url" target="_blank">{{ item.url }}</a>
       <div
         class="progress"
-        *ngIf="item.codigo_seccion == 3 || item.codigo_seccion == 4"
+        *ngIf="item.nivel_progreso !== 0"
       >
         <div
           class="progress-bar"

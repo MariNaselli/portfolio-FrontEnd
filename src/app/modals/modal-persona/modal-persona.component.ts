@@ -53,6 +53,6 @@ export class ModalPersonaComponent implements OnInit {
 
   cerrarModal() {
     this.OnCloseModal.emit();
-    this.portfolioService.refrescarPortfolio();
+    // this.portfolioService.refrescarPortfolio();
   }
 }

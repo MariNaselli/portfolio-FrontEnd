@@ -3,6 +3,7 @@ import { Portfolio } from './clases/portfolio';
 import { LoadingService } from './servicios/loading.service';
 //import { LoadingService } from './servicios/loading.service';
 import { PortfolioService } from './servicios/portfolio.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,20 +11,4 @@ import { PortfolioService } from './servicios/portfolio.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  portfolio: Portfolio = new Portfolio();
-  loading: boolean = true;
-
-  title = 'angular-project';
-
-  constructor(
-    private loadingService: LoadingService,
-    private portfolioService: PortfolioService
-  ) {}
-
-  ngOnInit(): void {
-    this.loadingService.loading$.subscribe((isLoading: boolean) => {
-      this.loading = isLoading;
-    });
-    this.portfolioService.cargarPortfolioInicial();
-  }
 }

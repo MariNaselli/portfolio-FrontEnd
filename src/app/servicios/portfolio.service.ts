@@ -11,7 +11,6 @@ import { LoadingService } from './loading.service';
   providedIn: 'root',
 })
 export class PortfolioService {
-  nro_persona: number = 6;
   private portfolioSubject = new BehaviorSubject<Portfolio>(new Portfolio());
   portfolio$ = this.portfolioSubject.asObservable();
 
@@ -20,62 +19,33 @@ export class PortfolioService {
     private loadingService: LoadingService
   ) {}
 
-  cargarPortfolioInicial(): void {
+  obtenerPortfolio(codigoPersona: number): void {
     this.loadingService.showLoading();
-
-    this.obtenerPortfolio().subscribe({
-      next: (data) => {
-        console.log(data);
-        this.actualizarPortfolio(data);
-      },
-      error: (error) => {
-        console.log('Hubo un error al obtener el portfolio: ', error);
-        this.loadingService.hideLoading();
-      },
-      complete: () => {
-        this.loadingService.hideLoading();
-      },
-    });
-  }
-
-  obtenerPortfolio(): Observable<Portfolio> {
-    return this.http
-      .get<Portfolio>(`${environment.apiUrlNetsJS}/portfolio/persona/` + this.nro_persona)
+    this.http
+      .get<Portfolio>(`${environment.apiUrlNetsJS}/portfolio/persona/${codigoPersona}`)
       .pipe(
-        tap((data) => console.log('Datos del backend:', data)) // Confirma los datos
-      );
-  }
-  
-  refrescarPortfolio(): void {
-    this.obtenerPortfolio().subscribe((portfolio: Portfolio) => {
-      this.portfolioSubject.next(portfolio);
-    });
+        tap((portfolio) => {
+          console.log('Portfolio obtenido:', portfolio);
+          this.portfolioSubject.next(portfolio); // Actualiza el observable
+        }),
+        finalize(() => {
+          this.loadingService.hideLoading();
+        })
+      )
+      .subscribe({
+        error: (error) => {
+          console.error('Error al obtener el portfolio:', error);
+        },
+      });
   }
 
   actualizarPersona(persona: Persona): Observable<Persona> {
     this.loadingService.showLoading();
     return this.http
-      .put<Persona>(`${environment.apiUrlNetsJS}/personas/actualizar-persona/`, persona)
+      .put<Persona>(`${environment.apiUrlNetsJS}/personas/actualizar-persona`, persona)
       .pipe(
         tap(() => {
-          this.refrescarPortfolio();
-        }),
-        finalize(() => {
-          this.loadingService.hideLoading();
-        })
-      );
-  }
-  
-  actualizarItem(item: Item): Observable<Item> {
-    this.loadingService.showLoading();
-    return this.http
-      .put<Item>(
-        `${environment.apiUrlNetsJS}/items/actualizar-item/` + item.codigo_item,
-        item
-      )
-      .pipe(
-        tap(() => {
-          this.refrescarPortfolio();
+          this.obtenerPortfolio(persona.codigo); // Actualiza el portfolio
         }),
         finalize(() => {
           this.loadingService.hideLoading();
@@ -83,14 +53,28 @@ export class PortfolioService {
       );
   }
 
-  crearItem(item: Item): Observable<Item> {
+  actualizarItem(item: Item): Observable<Item> {
     this.loadingService.showLoading();
-    item.codigo_persona = this.nro_persona;
+    return this.http
+      .put<Item>(`${environment.apiUrlNetsJS}/items/actualizar-item/${item.codigo_item}`, item)
+      .pipe(
+        tap(() => {
+          this.obtenerPortfolio(item.codigo_persona); // Actualiza el portfolio
+        }),
+        finalize(() => {
+          this.loadingService.hideLoading();
+        })
+      );
+  }
+
+  crearItem(item: Item, codigoPersona: number): Observable<Item> {
+    this.loadingService.showLoading();
+    item.codigo_persona = codigoPersona;
     return this.http
       .post<Item>(`${environment.apiUrlNetsJS}/items/crear-item`, item)
       .pipe(
         tap(() => {
-          this.refrescarPortfolio();
+          this.obtenerPortfolio(codigoPersona); // Actualiza el portfolio
         }),
         finalize(() => {
           this.loadingService.hideLoading();
@@ -98,18 +82,13 @@ export class PortfolioService {
       );
   }
 
-  obtenerSecciones() {
-    return this.http.get<any>(`${environment.apiUrlNetsJS}/secciones/obtener-secciones`);
-  }
-
-  eliminarItem(codigo_item: number): Observable<void> {
+  eliminarItem(codigoItem: number, codigoPersona: number): Observable<void> {
     this.loadingService.showLoading();
-
     return this.http
-      .delete<void>(`${environment.apiUrlNetsJS}/items/eliminar-item/` + codigo_item)
+      .delete<void>(`${environment.apiUrlNetsJS}/items/eliminar-item/${codigoItem}`)
       .pipe(
         tap(() => {
-          this.refrescarPortfolio();
+          this.obtenerPortfolio(codigoPersona); // Actualiza el portfolio
         }),
         finalize(() => {
           this.loadingService.hideLoading();
@@ -117,7 +96,5 @@ export class PortfolioService {
       );
   }
 
-  actualizarPortfolio(portfolio: Portfolio): void {
-    this.portfolioSubject.next(portfolio);
-  }
+  
 }

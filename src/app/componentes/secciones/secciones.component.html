@@ -10,7 +10,7 @@
 </ng-template>
 
 <section
-  id="section_{{ seccion.codigo_seccion }}"
+  id="{{ utilidadesService.generarSlug(seccion.nombre_seccion) }}"
   class="px-4 pt-6 seccion-ajustada"
   *ngFor="let seccion of portfolio.secciones"
 >
@@ -31,10 +31,7 @@
       <div class="mb-1 text-muted">{{ item.periodo }}</div>
       <p class="card-text mb-auto">{{ item.descripcion }}</p>
       <a *ngIf="item.url" [href]="item.url" target="_blank">{{ item.url }}</a>
-      <div
-        class="progress"
-        *ngIf="item.nivel_progreso !== 0"
-      >
+      <div class="progress" *ngIf="item.nivel_progreso !== 0">
         <div
           class="progress-bar"
           role="progressbar"

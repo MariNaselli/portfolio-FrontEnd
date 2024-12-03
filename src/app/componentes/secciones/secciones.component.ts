@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Portfolio } from 'src/app/clases/portfolio';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
+import { UtilidadesService } from 'src/app/utils/utilidades.service';
 
 @Component({
   selector: 'app-secciones',
@@ -18,7 +19,8 @@ export class SeccionesComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private authService: AuthService,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    public utilidadesService: UtilidadesService
   ) {}
 
   ngOnInit(): void {

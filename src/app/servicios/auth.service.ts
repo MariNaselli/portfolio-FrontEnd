@@ -33,17 +33,16 @@ export class AuthService {
     }
   }
 
-  login(username: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<any> {
     let url = `${this.apiUrlNetsJS}/auth/login`;
     return this.http
       .post<{ token: string }>(url, {
-        username,
+        email,
         password,
       })
       .pipe(
         map((response) => {
           if (response.token) {
-            // Guarda el token en las cookies
             this.cookieService.set(this.tokenKey, response.token);
             this.currentUserSubject.next(true);
             return { success: true };
@@ -52,7 +51,7 @@ export class AuthService {
         })
       );
   }
-
+  
   signup(data: SignupDto): Observable<any> {
     const url = `${this.apiUrlNetsJS}/auth/signup`;
     return this.http.post(url, data).pipe(
@@ -64,7 +63,7 @@ export class AuthService {
       })
     );
   }
-
+  
   logout(): void {
     this.currentUserSubject.next(false);
     this.cookieService.delete(this.tokenKey);

@@ -38,12 +38,6 @@ export class PortfolioService {
     });
   }
 
-  // obtenerPortfolio(): Observable<Portfolio> {
-  //   return this.http.get<Portfolio>(
-  //     `${environment.apiUrlNetsJS}/portfolio/persona/` + this.nro_persona
-  //   );
-  // }
-
   obtenerPortfolio(): Observable<Portfolio> {
     return this.http
       .get<Portfolio>(`${environment.apiUrlNetsJS}/portfolio/persona/` + this.nro_persona)
@@ -52,8 +46,6 @@ export class PortfolioService {
       );
   }
   
-
-
   refrescarPortfolio(): void {
     this.obtenerPortfolio().subscribe((portfolio: Portfolio) => {
       this.portfolioSubject.next(portfolio);
@@ -74,7 +66,6 @@ export class PortfolioService {
       );
   }
   
-
   actualizarItem(item: Item): Observable<Item> {
     this.loadingService.showLoading();
     return this.http

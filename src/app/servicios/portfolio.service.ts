@@ -11,7 +11,7 @@ import { LoadingService } from './loading.service';
   providedIn: 'root',
 })
 export class PortfolioService {
-  nro_persona: number = 3;
+  nro_persona: number = 2;
   private portfolioSubject = new BehaviorSubject<Portfolio>(new Portfolio());
   portfolio$ = this.portfolioSubject.asObservable();
 

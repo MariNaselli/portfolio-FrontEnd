@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Iniciar Sesion</h4>
+  <h4 class="modal-title">{{ activeTab === 'login' ? 'Iniciar Sesión' : 'Crear Cuenta' }}</h4>
   <button
     type="button"
     aria-label="Close"
@@ -8,29 +8,119 @@
   ></button>
 </div>
 <div class="modal-body">
-  <div class="mb-3">
-    <label class="form-label">Usuario</label>
-    <input
-      type="email"
-      class="form-control"
-      id="txtUsuario"
-      [(ngModel)]="email"
-      required
-      placeholder="Ingrese su email"
-      (input)="updateLoginButton()"
-    />
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Contraseña</label>
-    <input
-      type="password"
-      class="form-control"
-      id="txtContraseña"
-      [(ngModel)]="password"
-      required
-      placeholder="Ingrese su contraseña"
-      (input)="updateLoginButton()"
-    />
+  <!-- Tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        [class.active]="activeTab === 'login'"
+        (click)="setActiveTab('login')"
+      >
+        Iniciar Sesión
+      </button>
+    </li>
+    <li class="nav-item">
+      <button
+        class="nav-link"
+        [class.active]="activeTab === 'signup'"
+        (click)="setActiveTab('signup')"
+      >
+        Crear Cuenta
+      </button>
+    </li>
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content mt-3">
+    <div [hidden]="activeTab !== 'login'">
+      <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input
+          type="email"
+          class="form-control"
+          id="txtUsuario"
+          [(ngModel)]="email"
+          required
+          placeholder="Ingrese su email"
+          (input)="updateLoginButton()"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="txtContraseña"
+          [(ngModel)]="password"
+          required
+          placeholder="Ingrese su contraseña"
+          (input)="updateLoginButton()"
+        />
+      </div>
+    </div>
+
+    <div [hidden]="activeTab !== 'signup'">
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="txtNombre"
+          [(ngModel)]="nombre"
+          required
+          (input)="updateSignupButton()"
+          placeholder="Ingrese su nombre"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        <input
+          type="text"
+          class="form-control"
+          id="txtApellido"
+          [(ngModel)]="apellido"
+          required
+          (input)="updateSignupButton()"
+          placeholder="Ingrese su apellido"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="txtEmailSignup"
+          [(ngModel)]="emailSignup"
+          required
+          (input)="updateSignupButton()"
+          placeholder="Ingrese su email"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="txtPasswordSingup"
+          [(ngModel)]="passwordSignup"
+          required
+          (input)="updateSignupButton()"
+          placeholder="Ingrese su contraseña"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Confirmar Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="txtPasswordRepeatSingup"
+          [(ngModel)]="passwordRepeatSignup"
+          required
+          (input)="updateSignupButton()"
+          placeholder="Repita su contraseña"
+        />
+      </div>
+    </div>
   </div>
 </div>
 <div class="modal-footer">
@@ -38,11 +128,21 @@
     Cancelar
   </button>
   <button
+    *ngIf="activeTab === 'login'"
     type="button"
     class="btn btn-primary"
     [disabled]="!canLogin"
     (click)="login()"
   >
     Ingresar
+  </button>
+  <button
+    *ngIf="activeTab === 'signup'"
+    type="button"
+    class="btn btn-primary"
+    [disabled]="!canSignup"
+    (click)="signup()"
+  >
+    Crear Cuenta
   </button>
 </div>

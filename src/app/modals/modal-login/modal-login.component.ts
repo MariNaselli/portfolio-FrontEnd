@@ -1,58 +1,87 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Portfolio } from 'src/app/clases/portfolio';
 import { AuthService } from 'src/app/servicios/auth.service';
-import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
 @Component({
   selector: 'app-modal-login',
   templateUrl: './modal-login.component.html',
   styleUrls: ['./modal-login.component.scss'],
 })
-export class ModalLoginComponent implements OnInit {
+export class ModalLoginComponent {
   @Output() OnCloseModal: EventEmitter<null> = new EventEmitter();
 
-  isLoggedIn: boolean = false;
-  canLogin: boolean = false;
+  activeTab: 'login' | 'signup' = 'login';
+  canLogin = false;
+  canSignup = false;
 
   email = '';
   password = '';
-  portfolio: Portfolio = new Portfolio();
+  nombre = '';
+  apellido = '';
+  emailSignup = '';
+  passwordSignup = '';
+  passwordRepeatSignup = '';
 
   constructor(
-    private portfolioService: PortfolioService,
     private authService: AuthService,
     private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {
-    // Suscribirse al observable del servicio para actualizar el portfolio
-    this.portfolioService.portfolio$.subscribe((portfolio) => {
-      this.portfolio = portfolio;
-    });
-  }
-
   updateLoginButton() {
     this.canLogin = this.email.trim() !== '' && this.password.trim() !== '';
+  }
+
+  updateSignupButton() {
+    this.canSignup =
+      this.nombre.trim() !== '' &&
+      this.apellido.trim() !== '' &&
+      this.emailSignup.trim() !== '' &&
+      this.passwordSignup.trim() !== '' &&
+      this.passwordRepeatSignup.trim() !== '' &&
+      this.passwordSignup.trim() == this.passwordRepeatSignup.trim();
   }
 
   login(): void {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         if (response.success) {
-            this.OnCloseModal.emit();
-            this.toastr.success('Ingreso correcto');
-        }else{
+          this.OnCloseModal.emit();
+          this.toastr.success('Ingreso correcto');
+        } else {
           this.toastr.error('Los datos ingresados no son correctos');
         }
       },
       error: (err) => {
         console.error(err);
-        this.toastr.error('Los datos ingresados no son correctos');
+        this.toastr.error('Error en el servidor');
       },
     });
   }
+
+  signup(): void {
+    const newUser = {
+      nombre: this.nombre,
+      apellido: this.apellido,
+      email: this.emailSignup,
+      password: this.passwordSignup
+    };
+    this.authService.signup(newUser).subscribe({
+      next: () => {
+        this.toastr.success('Cuenta creada exitosamente');
+        this.setActiveTab('login'); // Cambiar a la pestaña de login tras registrarse
+      },
+      error: (err) => {
+        console.error(err);
+        this.toastr.error('Error al crear la cuenta');
+      },
+    });
+  }
+
   cerrarModal() {
     this.OnCloseModal.emit();
+  }
+
+  setActiveTab(tab: 'login' | 'signup') {
+    this.activeTab = tab;
   }
 }

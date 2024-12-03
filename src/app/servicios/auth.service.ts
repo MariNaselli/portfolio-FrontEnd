@@ -10,6 +10,13 @@ export interface LoginDto {
   password: string;
 }
 
+export interface SignupDto {
+  nombre: string;
+  apellido: string;
+  email: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -39,11 +46,23 @@ export class AuthService {
             // Guarda el token en las cookies
             this.cookieService.set(this.tokenKey, response.token);
             this.currentUserSubject.next(true);
-            return { success: true};
+            return { success: true };
           }
-          return { success: false};
+          return { success: false };
         })
       );
+  }
+
+  signup(data: SignupDto): Observable<any> {
+    const url = `${this.apiUrlNetsJS}/auth/signup`;
+    return this.http.post(url, data).pipe(
+      map((response: any) => {
+        if (response.success) {
+          return { success: true, message: response.message || 'Usuario creado exitosamente' };
+        }
+        return { success: false, message: response.message || 'Error al crear el usuario' };
+      })
+    );
   }
 
   logout(): void {

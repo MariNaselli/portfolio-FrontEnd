@@ -1,9 +1,9 @@
-<main class="container-fluid">
-  <app-encabezado></app-encabezado>
+<div *ngIf="!loading">
   <app-perfil></app-perfil>
   <app-secciones></app-secciones>
   <app-contacto></app-contacto>
-</main>
+</div>
+
 <div *ngIf="loading">
   <app-loading></app-loading>
 </div>

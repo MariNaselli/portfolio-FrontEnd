@@ -82,13 +82,13 @@ export class PortfolioService {
       );
   }
 
-  eliminarItem(codigoItem: number, codigoPersona: number): Observable<void> {
+  eliminarItem(item: Item): Observable<void> {
     this.loadingService.showLoading();
     return this.http
-      .delete<void>(`${environment.apiUrlNetsJS}/items/eliminar-item/${codigoItem}`)
+      .delete<void>(`${environment.apiUrlNetsJS}/items/eliminar-item/${item.codigo_item}`)
       .pipe(
         tap(() => {
-          this.obtenerPortfolio(codigoPersona); // Actualiza el portfolio
+          this.obtenerPortfolio(item.codigo_persona); // Actualiza el portfolio
         }),
         finalize(() => {
           this.loadingService.hideLoading();

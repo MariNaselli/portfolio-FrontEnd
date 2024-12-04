@@ -40,7 +40,7 @@ export class BtnEditarEliminarComponent implements OnInit {
       cancelButtonColor: 'grey',
     }).then((swal_result) => {
       if (swal_result.isConfirmed) {
-        this.portfolioService.eliminarItem(this.item.codigo_item, this.item.codigo_persona).subscribe(
+        this.portfolioService.eliminarItem(this.item).subscribe(
           () => {
             Swal.fire({
               title: '¡Información!',

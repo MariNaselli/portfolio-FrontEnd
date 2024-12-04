@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/clases/item';
+import { Portfolio } from 'src/app/clases/portfolio';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
 export class ModalItemComponent implements OnInit {
   @Input() item: Item = new Item();
   @Output() OnCloseModal: EventEmitter<null> = new EventEmitter();
+  portfolio: Portfolio = new Portfolio();
   secciones: any;
   mostrarBarra: boolean = false;
   camposVisibles = false;
@@ -25,13 +27,18 @@ export class ModalItemComponent implements OnInit {
       this.secciones = data;
     });
     this.mostrarSegunSeccion();
+    this.portfolioService.portfolio$.subscribe((portfolio) => {
+      this.portfolio = portfolio;
+    });
   }
   guardando: boolean = false;
   guardarItem(): void {
     this.guardando = true;
     if (this.item.codigo_item == 0) {
       //ES UN ITEM NUEVO
-      this.portfolioService.crearItem(this.item, this.item.codigo_persona).subscribe({
+      console.log(this.item)
+      this.item.codigo_persona = this.portfolio.persona.codigo;
+      this.portfolioService.crearItem(this.item).subscribe({
         next: (response) => {
           this.OnCloseModal.emit();
           this.guardando = false;

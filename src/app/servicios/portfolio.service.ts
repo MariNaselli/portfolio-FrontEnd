@@ -68,14 +68,13 @@ export class PortfolioService {
       );
   }
 
-  crearItem(item: Item, codigoPersona: number): Observable<Item> {
+  crearItem(item: Item): Observable<Item> {
     this.loadingService.showLoading();
-    item.codigo_persona = codigoPersona;
     return this.http
       .post<Item>(`${environment.apiUrlNetsJS}/items/crear-item`, item)
       .pipe(
         tap(() => {
-          this.obtenerPortfolio(codigoPersona); // Actualiza el portfolio
+          this.obtenerPortfolio(item.codigo_persona); // Actualiza el portfolio
         }),
         finalize(() => {
           this.loadingService.hideLoading();

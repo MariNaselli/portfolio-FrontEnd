@@ -6,6 +6,7 @@ import { Item } from '../clases/item';
 import { environment } from 'src/environments/environment';
 import { Portfolio } from '../clases/portfolio';
 import { LoadingService } from './loading.service';
+import { Seccion } from '../clases/seccion';
 
 @Injectable({
   providedIn: 'root',
@@ -89,6 +90,20 @@ export class PortfolioService {
       .pipe(
         tap(() => {
           this.obtenerPortfolio(codigoPersona); // Actualiza el portfolio
+        }),
+        finalize(() => {
+          this.loadingService.hideLoading();
+        })
+      );
+  }
+
+  obtenerSecciones(): Observable<Seccion[]> {
+    this.loadingService.showLoading();
+    return this.http
+      .get<Seccion[]>(`${environment.apiUrlNetsJS}/secciones/obtener-secciones`)
+      .pipe(
+        tap((secciones) => {
+          console.log('Secciones obtenidas:', secciones);
         }),
         finalize(() => {
           this.loadingService.hideLoading();

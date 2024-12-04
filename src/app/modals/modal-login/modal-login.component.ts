@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/servicios/auth.service';
 })
 export class ModalLoginComponent {
   @Output() OnCloseModal: EventEmitter<null> = new EventEmitter();
-
+  isLoading: boolean = false;
   activeTab: 'login' | 'signup' = 'login';
   canLogin = false;
   canSignup = false;
@@ -42,6 +42,7 @@ export class ModalLoginComponent {
   }
 
   login(): void {
+    this.isLoading = true;
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         if (response.success) {
@@ -50,8 +51,10 @@ export class ModalLoginComponent {
         } else {
           this.toastr.error('Los datos ingresados no son correctos');
         }
+        this.isLoading = false;
       },
       error: (err) => {
+        this.isLoading = false;
         console.error(err);
         this.toastr.error('Error en el servidor');
       },

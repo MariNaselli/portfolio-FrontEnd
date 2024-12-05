@@ -16,7 +16,7 @@ export class EncabezadoComponent implements OnInit {
   isLoggedIn: boolean = false;
 
   @ViewChild('modalLogin') modalLogin: any;
-  @ViewChild('modalPersona') modalPersona: any;
+  // @ViewChild('modalPersona') modalPersona: any;
   @ViewChild('navbar') navbar!: ElementRef;
 
   constructor(
@@ -45,16 +45,16 @@ export class EncabezadoComponent implements OnInit {
     });
     this.cerrarMenu();
   }
-  openModalPersona(content: any): void {
-    this.modalPersona = this.modalService.open(content, {
-      backdrop: 'static',
-      keyboard: false,
-    });
-    this.cerrarMenu();
-  }
-  cerrarModalPersona() {
-    this.modalPersona.close();
-  }
+  // openModalPersona(content: any): void {
+  //   this.modalPersona = this.modalService.open(content, {
+  //     backdrop: 'static',
+  //     keyboard: false,
+  //   });
+  //   this.cerrarMenu();
+  // }
+  // cerrarModalPersona() {
+  //   this.modalPersona.close();
+  // }
   cerrarModalLogin() {
     this.modalLogin.close();
   }

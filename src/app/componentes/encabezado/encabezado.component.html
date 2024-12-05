@@ -86,14 +86,14 @@
               {{ portfolio.persona.nombre }} {{ portfolio.persona.apellido }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
+              <!-- <li>
                 <a
                   class="dropdown-item"
                   href="javascript:void(0);"
                   (click)="openModalPersona(modalPersona)"
                   >Editar perfil</a
                 >
-              </li>
+              </li> -->
               <li><hr class="dropdown-divider" /></li>
               <li>
                 <a class="dropdown-item" href="#" (click)="logout()"
@@ -112,6 +112,6 @@
   <app-modal-login (OnCloseModal)="cerrarModalLogin()"></app-modal-login>
 </ng-template>
 
-<ng-template #modalPersona>
+<!-- <ng-template #modalPersona>
   <app-modal-persona (OnCloseModal)="cerrarModalPersona()"></app-modal-persona>
-</ng-template>
+</ng-template> -->

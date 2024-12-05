@@ -20,6 +20,12 @@
           <p class="lead text-break">
             {{ portfolio.persona.descripcion }}
           </p>
+          <a
+          href="javascript:void(0);"
+          class="btn btn-primary btn-sm float-start"
+          (click)="openModalPersona(modalPersona)"
+          ><i class="fa-solid fa-pen-to-square"></i
+        ></a>
         </div>
       </div>
     </div>
@@ -30,3 +36,7 @@
     </div>
   </div> -->
 </section>
+
+<ng-template #modalPersona>
+  <app-modal-persona (OnCloseModal)="cerrarModalPersona()"></app-modal-persona>
+</ng-template>

@@ -104,7 +104,6 @@ export class PortfolioService {
   
 
   obtenerSecciones(): Observable<Seccion[]> {
-    this.loadingService.showLoading();
     return this.http
       .get<Seccion[]>(`${environment.apiUrlNetsJS}/secciones/obtener-secciones`)
       .pipe(
@@ -112,7 +111,6 @@ export class PortfolioService {
           console.log('Secciones obtenidas:', secciones);
         }),
         finalize(() => {
-          this.loadingService.hideLoading();
         })
       );
   }

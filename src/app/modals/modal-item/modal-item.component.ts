@@ -23,12 +23,15 @@ export class ModalItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.item)
     this.portfolioService.obtenerSecciones().subscribe((data) => {
       this.secciones = data;
+      this.mostrarSegunSeccion();
     });
-    this.mostrarSegunSeccion();
+   
     this.portfolioService.portfolio$.subscribe((portfolio) => {
       this.portfolio = portfolio;
+      this.mostrarSegunSeccion();
     });
   }
   guardando: boolean = false;

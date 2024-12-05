@@ -88,13 +88,20 @@ export class PortfolioService {
       .delete<void>(`${environment.apiUrlNetsJS}/items/eliminar-item/${item.codigo_item}`)
       .pipe(
         tap(() => {
-          this.obtenerPortfolio(item.codigo_persona); // Actualiza el portfolio
+          // Actualiza el estado local eliminando el ítem directamente
+          const updatedPortfolio = { ...this.portfolioSubject.value };
+          updatedPortfolio.secciones = updatedPortfolio.secciones.map((seccion) => {
+            return {
+              ...seccion,
+              items: seccion.items.filter((i) => i.codigo_item !== item.codigo_item),
+            };
+          });
+          this.portfolioSubject.next(updatedPortfolio); // Notifica el cambio
         }),
-        finalize(() => {
-          this.loadingService.hideLoading();
-        })
+        finalize(() => this.loadingService.hideLoading())
       );
   }
+  
 
   obtenerSecciones(): Observable<Seccion[]> {
     this.loadingService.showLoading();

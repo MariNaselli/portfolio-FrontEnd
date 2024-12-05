@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 
 const routes: Routes = [
-  { path: 'portfolio/:codigo', component: PortfolioComponent },
+  { path: 'portfolio/:nombre-apellido-codigo', component: PortfolioComponent }
   // { path: '', redirectTo: '/portfolio/3', pathMatch: 'full' }, // Ruta por defecto
 ];
 

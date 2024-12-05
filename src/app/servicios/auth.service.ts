@@ -25,6 +25,9 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
   private tokenKey = 'auth_token';
+  private nombreKey = 'user_nombre';
+  private apellidoKey = 'user_apellido';
+
   private apiUrlNetsJS = environment.apiUrlNetsJS;
 
   constructor(
@@ -44,11 +47,14 @@ export class AuthService {
       })
       .pipe(
         map((response) => {
-          if (response.token && response.codigo_persona) {
+          console.log('Respuesta del login:', response); // Verificar datos recibidos
+          if (response.token && response.codigo_persona && response.nombre && response.apellido) {
             this.cookieService.set(this.tokenKey, response.token);
+            this.cookieService.set(this.nombreKey, response.nombre);
+            this.cookieService.set(this.apellidoKey, response.apellido);
             this.currentUserSubject.next(true);
             // Redirigir al portfolio del usuario
-            this.router.navigate([`/portfolio/${response.codigo_persona}`]);
+            this.router.navigate([`/portfolio/${response.nombre.toLowerCase()}-${response.apellido.toLowerCase()}-${response.codigo_persona}`]);
             return { success: true };
           }
           return { success: false };

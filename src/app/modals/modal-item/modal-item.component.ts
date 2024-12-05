@@ -37,10 +37,9 @@ export class ModalItemComponent implements OnInit {
   guardando: boolean = false;
   guardarItem(): void {
     this.guardando = true;
+    this.item.codigo_persona = this.portfolio.persona.codigo;
     if (this.item.codigo_item == 0) {
       //ES UN ITEM NUEVO
-      console.log(this.item)
-      this.item.codigo_persona = this.portfolio.persona.codigo;
       this.portfolioService.crearItem(this.item).subscribe({
         next: (response) => {
           this.OnCloseModal.emit();

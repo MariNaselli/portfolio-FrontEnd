@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Portfolio } from 'src/app/clases/portfolio';
+import { Portfolio } from 'src/app/models/portfolio';
 
 @Component({
   selector: 'app-contacto',

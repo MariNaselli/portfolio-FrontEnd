@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Item } from 'src/app/clases/item';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { PortfolioService } from 'src/app/servicios/portfolio.service';
+import { Item } from 'src/app/models/item';
+import { AuthService } from 'src/app/services/auth.service';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 import Swal from 'sweetalert2';
 
 @Component({

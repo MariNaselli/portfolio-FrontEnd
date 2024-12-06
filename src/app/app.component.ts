@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from './servicios/portfolio.service';
+import { PortfolioService } from './services/portfolio.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-modal-login',

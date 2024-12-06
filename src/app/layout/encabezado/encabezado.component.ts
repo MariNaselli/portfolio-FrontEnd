@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Portfolio } from 'src/app/clases/portfolio';
-import { AuthService } from 'src/app/servicios/auth.service';
-import { PortfolioService } from 'src/app/servicios/portfolio.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Router } from '@angular/router';
 import { UtilidadesService } from 'src/app/utils/utilidades.service';
 import { ToastrService } from 'ngx-toastr';
+import { Portfolio } from 'src/app/models/portfolio';
 
 @Component({
   selector: 'app-encabezado',

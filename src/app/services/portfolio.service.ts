@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, finalize, Observable, tap } from 'rxjs';
-import { Persona } from '../clases/persona';
-import { Item } from '../clases/item';
-import { environment } from 'src/environments/environment';
-import { Portfolio } from '../clases/portfolio';
-import { LoadingService } from './loading.service';
-import { Seccion } from '../clases/seccion';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, tap, finalize, Observable } from "rxjs";
+import { environment } from "src/environments/environment";
+import { Persona } from "../models/persona";
+import { Portfolio } from "../models/portfolio";
+import { Seccion } from "../models/seccion";
+import { LoadingService } from "./loading.service";
+import { Item } from "../models/item";
+
 
 @Injectable({
   providedIn: 'root',

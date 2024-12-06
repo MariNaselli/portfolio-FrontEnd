@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Portfolio } from 'src/app/clases/portfolio';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Portfolio } from 'src/app/models/portfolio';
 
 @Component({
   selector: 'app-perfil',

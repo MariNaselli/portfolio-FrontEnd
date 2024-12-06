@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingService } from '../servicios/loading.service';
-import { PortfolioService } from '../servicios/portfolio.service';
-import { Portfolio } from '../clases/portfolio';
-import { AuthService } from '../servicios/auth.service';
+import { Portfolio } from 'src/app/models/portfolio';
+import { LoadingService } from 'src/app/services/loading.service';
+import { PortfolioService } from 'src/app/services/portfolio.service';
+
 
 @Component({
   selector: 'app-portfolio',

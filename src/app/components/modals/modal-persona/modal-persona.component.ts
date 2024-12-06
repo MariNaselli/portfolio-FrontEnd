@@ -3,12 +3,11 @@ import {
   EventEmitter,
   OnInit,
   Output,
-  ViewChild,
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { Portfolio } from 'src/app/clases/portfolio';
-import { PortfolioService } from 'src/app/servicios/portfolio.service';
+import { Portfolio } from 'src/app/models/portfolio';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
   selector: 'app-modal-persona',

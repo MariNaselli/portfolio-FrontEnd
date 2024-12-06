@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Portfolio } from 'src/app/clases/portfolio';
+import { Portfolio } from 'src/app/models/portfolio';
 import { UtilidadesService } from 'src/app/utils/utilidades.service';
 
 @Component({

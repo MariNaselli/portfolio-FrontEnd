@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Item } from 'src/app/clases/item';
-import { Portfolio } from 'src/app/clases/portfolio';
-import { PortfolioService } from 'src/app/servicios/portfolio.service';
+import { Item } from 'src/app/models/item';
+import { Portfolio } from 'src/app/models/portfolio';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
   selector: 'app-modal-item',
@@ -23,12 +23,12 @@ export class ModalItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.item)
+    console.log(this.item);
     this.portfolioService.obtenerSecciones().subscribe((data) => {
       this.secciones = data;
       this.mostrarSegunSeccion();
     });
-   
+
     this.portfolioService.portfolio$.subscribe((portfolio) => {
       this.portfolio = portfolio;
       this.mostrarSegunSeccion();

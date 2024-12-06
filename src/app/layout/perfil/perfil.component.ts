@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Portfolio } from 'src/app/models/portfolio';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-perfil',
@@ -9,14 +10,20 @@ import { Portfolio } from 'src/app/models/portfolio';
 })
 export class PerfilComponent implements OnInit {
   @Input() portfolio: Portfolio = new Portfolio();
-
+  puedeEditar: boolean = false;
   @ViewChild('modalPersona') modalPersona: any;
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal, 
+    private authService: AuthService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Suscribirse al observable de "esPropietarioPortfolio$"
+    this.authService.esPropietarioPortfolio$().subscribe((isOwner) => {
+      this.puedeEditar = isOwner;
+    });
+  }
 
   openModalPersona(content: any): void {
     this.modalPersona = this.modalService.open(content, {

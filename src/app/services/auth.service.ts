@@ -25,21 +25,36 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<any | null> = new BehaviorSubject<
     any | null
   >(null);
+  private isPortfolioOwnerSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   private localStorageKey = 'auth_user_data';
 
   private apiUrlNetsJS = environment.apiUrlNetsJS;
 
   constructor(
     private http: HttpClient,
-    private router: Router,
-    private portfolioService: PortfolioService
+    private router: Router
   ) {
+
     const userData = localStorage.getItem(this.localStorageKey);
     if (userData) {
       this.currentUserSubject.next(JSON.parse(userData));
     }
+    
   }
 
+   // Método para verificar si el usuario logueado es el propietario del portfolio
+   verificarPropietarioPortfolio(codigoPersona: number): void {
+    const currentUser = this.currentUserSubject.value;
+    const isOwner = currentUser?.codigo === codigoPersona; // Verifica si los códigos coinciden
+    this.isPortfolioOwnerSubject.next(isOwner); // Emite el nuevo estado
+  }
+
+  // Observable para los componentes interesados
+  esPropietarioPortfolio$(): Observable<boolean> {
+    return this.isPortfolioOwnerSubject.asObservable();
+  }
+  
   login(email: string, password: string): Observable<any> {
     const url = `${environment.apiUrlNetsJS}/auth/login`;
     return this.http.post<any>(url, { email, password }).pipe(
@@ -66,7 +81,7 @@ export class AuthService {
               response.codigo_persona
             }`,
           ]);
-          // this.portfolioService.obtenerPortfolio(userData.codigo);
+          this.verificarPropietarioPortfolio(response.codigo_persona);
           return { success: true };
         }
         return { success: false };
@@ -95,6 +110,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.localStorageKey);
     this.currentUserSubject.next(null);
+    this.isPortfolioOwnerSubject.next(false);
   }
 
   getCurrentUser(): Observable<any | null> {

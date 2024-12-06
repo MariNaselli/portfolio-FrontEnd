@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
 export class BtnEditarEliminarComponent implements OnInit {
   @Input() item!: Item;
 
-  isLoggedIn = false;
   @ViewChild('modalItem') modalItem: any;
 
   constructor(

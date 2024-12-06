@@ -7,6 +7,7 @@ import { Portfolio } from "../models/portfolio";
 import { Seccion } from "../models/seccion";
 import { LoadingService } from "./loading.service";
 import { Item } from "../models/item";
+import { AuthService } from "./auth.service";
 
 
 @Injectable({
@@ -18,7 +19,8 @@ export class PortfolioService {
 
   constructor(
     private http: HttpClient,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private authService: AuthService
   ) {}
 
   obtenerPortfolio(codigoPersona: number): void {
@@ -29,6 +31,7 @@ export class PortfolioService {
         tap((portfolio) => {
           console.log('Portfolio obtenido:', portfolio);
           this.portfolioSubject.next(portfolio); // Actualiza el observable
+          this.authService.verificarPropietarioPortfolio(codigoPersona); // Verifica el propietario
         }),
         finalize(() => {
           this.loadingService.hideLoading();
@@ -40,6 +43,7 @@ export class PortfolioService {
         },
       });
   }
+  
 
   actualizarPersona(persona: Persona): Observable<Persona> {
     this.loadingService.showLoading();

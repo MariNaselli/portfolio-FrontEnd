@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { PortfolioService } from './portfolio.service';
 
 export interface LoginDto {
   username: string;
@@ -22,44 +22,56 @@ export interface SignupDto {
   providedIn: 'root',
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<boolean> =
-    new BehaviorSubject<boolean>(false);
-  private tokenKey = 'auth_token';
-  private nombreKey = 'user_nombre';
-  private apellidoKey = 'user_apellido';
+  private currentUserSubject: BehaviorSubject<any | null> = new BehaviorSubject<
+    any | null
+  >(null);
+  private localStorageKey = 'auth_user_data';
 
   private apiUrlNetsJS = environment.apiUrlNetsJS;
 
   constructor(
-    private cookieService: CookieService, private http: HttpClient, private router: Router) {
-    const token = this.cookieService.get(this.tokenKey);
-    if (token) {
-      this.currentUserSubject.next(true);
+    private http: HttpClient,
+    private router: Router,
+    private portfolioService: PortfolioService
+  ) {
+    const userData = localStorage.getItem(this.localStorageKey);
+    if (userData) {
+      this.currentUserSubject.next(JSON.parse(userData));
     }
   }
 
   login(email: string, password: string): Observable<any> {
-    let url = `${this.apiUrlNetsJS}/auth/login`;
-    return this.http
-      .post<any>(url, {
-        email,
-        password,
+    const url = `${environment.apiUrlNetsJS}/auth/login`;
+    return this.http.post<any>(url, { email, password }).pipe(
+      map((response) => {
+        if (
+          response.token &&
+          response.codigo_persona &&
+          response.nombre &&
+          response.apellido
+        ) {
+          const userData = {
+            token: response.token,
+            email,
+            codigo: response.codigo_persona,
+            nombre: response.nombre,
+            apellido: response.apellido,
+          };
+          localStorage.setItem(this.localStorageKey, JSON.stringify(userData));
+          this.currentUserSubject.next(userData);
+
+          // Redirigir al portfolio del usuario
+          this.router.navigate([
+            `/portfolio/${response.nombre.toLowerCase()}-${response.apellido.toLowerCase()}-${
+              response.codigo_persona
+            }`,
+          ]);
+          // this.portfolioService.obtenerPortfolio(userData.codigo);
+          return { success: true };
+        }
+        return { success: false };
       })
-      .pipe(
-        map((response) => {
-          console.log('Respuesta del login:', response); // Verificar datos recibidos
-          if (response.token && response.codigo_persona && response.nombre && response.apellido) {
-            this.cookieService.set(this.tokenKey, response.token);
-            this.cookieService.set(this.nombreKey, response.nombre);
-            this.cookieService.set(this.apellidoKey, response.apellido);
-            this.currentUserSubject.next(true);
-            // Redirigir al portfolio del usuario
-            this.router.navigate([`/portfolio/${response.nombre.toLowerCase()}-${response.apellido.toLowerCase()}-${response.codigo_persona}`]);
-            return { success: true };
-          }
-          return { success: false };
-        })
-      );
+    );
   }
 
   signup(data: SignupDto): Observable<any> {
@@ -81,11 +93,11 @@ export class AuthService {
   }
 
   logout(): void {
-    this.currentUserSubject.next(false);
-    this.cookieService.delete(this.tokenKey);
+    localStorage.removeItem(this.localStorageKey);
+    this.currentUserSubject.next(null);
   }
 
-  isLoggedIn(): Observable<boolean> {
+  getCurrentUser(): Observable<any | null> {
     return this.currentUserSubject.asObservable();
   }
 }

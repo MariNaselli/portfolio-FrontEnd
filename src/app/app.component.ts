@@ -1,7 +1,4 @@
-import { Component } from '@angular/core';
-import { Portfolio } from './clases/portfolio';
-import { LoadingService } from './servicios/loading.service';
-//import { LoadingService } from './servicios/loading.service';
+import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from './servicios/portfolio.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,4 +8,5 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+
 }

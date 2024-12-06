@@ -1,7 +1,7 @@
-<div *ngIf="!loading">
-  <app-perfil></app-perfil>
-  <app-secciones></app-secciones>
-  <app-contacto></app-contacto>
+<div *ngIf="!loading && portfolio.persona.codigo !== 0">
+  <app-perfil [portfolio]="portfolio"></app-perfil>
+  <app-secciones [portfolio]="portfolio"></app-secciones>
+  <app-contacto [portfolio]="portfolio"></app-contacto>
 </div>
 
 <div *ngIf="loading">

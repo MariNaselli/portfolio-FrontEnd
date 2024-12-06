@@ -83,20 +83,20 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {{ portfolio.persona.nombre }} {{ portfolio.persona.apellido }}
+              {{ userData.nombre }} {{ userData.apellido }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <!-- <li>
+              <li>
                 <a
                   class="dropdown-item"
                   href="javascript:void(0);"
-                  (click)="openModalPersona(modalPersona)"
-                  >Editar perfil</a
+                  (click)="openModalCurrentUser()"
+                  >Tus datos</a
                 >
-              </li> -->
+              </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <a class="dropdown-item" href="#" (click)="logout()"
+                <a class="dropdown-item" (click)="logout()"
                   >Cerrar Sesión</a
                 >
               </li>

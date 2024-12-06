@@ -23,9 +23,9 @@ export class BtnEditarEliminarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
-      this.isLoggedIn = isLoggedIn;
-    });
+    // this.authService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
+    //   this.isLoggedIn = isLoggedIn;
+    // });
   }
 
   confirmarEliminar() {

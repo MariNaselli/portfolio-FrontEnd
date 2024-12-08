@@ -1,5 +1,5 @@
 export class Persona {
-  codigo: number;
+  uuid: string;
   nombre: string;
   apellido: string;
   titulo: string;
@@ -14,7 +14,7 @@ export class Persona {
   urlFoto: string;
 
   constructor() {
-    this.codigo = 0;
+    this.uuid = '';
     this.nombre = '';
     this.apellido = '';
     this.titulo = '';

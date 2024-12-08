@@ -37,7 +37,7 @@ export class ModalItemComponent implements OnInit {
   guardando: boolean = false;
   guardarItem(): void {
     this.guardando = true;
-    this.item.codigo_persona = this.portfolio.persona.codigo;
+    this.item.uuid_persona  = this.portfolio.persona.uuid;
     if (this.item.codigo_item == 0) {
       //ES UN ITEM NUEVO
       this.portfolioService.crearItem(this.item).subscribe({

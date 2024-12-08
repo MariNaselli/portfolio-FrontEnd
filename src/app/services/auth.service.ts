@@ -25,28 +25,24 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<any | null> = new BehaviorSubject<
     any | null
   >(null);
-  private isPortfolioOwnerSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private isPortfolioOwnerSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
 
   private localStorageKey = 'auth_user_data';
 
   private apiUrlNetsJS = environment.apiUrlNetsJS;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) {
-
+  constructor(private http: HttpClient, private router: Router) {
     const userData = localStorage.getItem(this.localStorageKey);
     if (userData) {
       this.currentUserSubject.next(JSON.parse(userData));
     }
-    
   }
 
-   // Método para verificar si el usuario logueado es el propietario del portfolio
-   verificarPropietarioPortfolio(codigoPersona: number): void {
+  // Método para verificar si el usuario logueado es el propietario del portfolio
+  verificarPropietarioPortfolio(uuid: string): void {
     const currentUser = this.currentUserSubject.value;
-    const isOwner = currentUser?.codigo === codigoPersona; // Verifica si los códigos coinciden
+    const isOwner = currentUser?.uuid === uuid; // Verifica si los códigos coinciden
     this.isPortfolioOwnerSubject.next(isOwner); // Emite el nuevo estado
   }
 
@@ -54,34 +50,30 @@ export class AuthService {
   esPropietarioPortfolio$(): Observable<boolean> {
     return this.isPortfolioOwnerSubject.asObservable();
   }
-  
+
   login(email: string, password: string): Observable<any> {
     const url = `${environment.apiUrlNetsJS}/auth/login`;
     return this.http.post<any>(url, { email, password }).pipe(
       map((response) => {
         if (
           response.token &&
-          response.codigo_persona &&
+          response.uuid &&
           response.nombre &&
           response.apellido
         ) {
           const userData = {
             token: response.token,
             email,
-            codigo: response.codigo_persona,
+            uuid: response.uuid,
             nombre: response.nombre,
             apellido: response.apellido,
           };
           localStorage.setItem(this.localStorageKey, JSON.stringify(userData));
           this.currentUserSubject.next(userData);
 
-          // Redirigir al portfolio del usuario
-          this.router.navigate([
-            `/portfolio/${response.nombre.toLowerCase()}-${response.apellido.toLowerCase()}-${
-              response.codigo_persona
-            }`,
-          ]);
-          this.verificarPropietarioPortfolio(response.codigo_persona);
+          // Redirigir al portfolio del usuario usando uuid
+          this.router.navigate([`/portfolio/${response.uuid}`]);
+          this.verificarPropietarioPortfolio(response.uuid);
           return { success: true };
         }
         return { success: false };

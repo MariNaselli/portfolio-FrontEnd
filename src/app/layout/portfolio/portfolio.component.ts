@@ -28,16 +28,18 @@ export class PortfolioComponent implements OnInit {
     });
 
     this.portfolioService.portfolio$.subscribe((portfolio) => {
+      console.log('Portfolio recibido en el frontend:', portfolio);
       this.portfolio = portfolio;
     });
 
     // Captura el código desde la URL
     this.route.params.subscribe((params) => {
-      const fullParam = params['nombre-apellido-codigo']; // Captura el parámetro completo
+      const fullParam = params['uuid']; // Captura el parámetro completo
       if (fullParam) {
-        const codigo = +fullParam.split('-').pop(); // Extrae el número al final (3 en este caso)
-        if (codigo) {
-          this.portfolioService.obtenerPortfolio(codigo); // Llama al servicio con el código extraído
+        // const nombre_apellido_uuid = fullParam.split('-').pop(); // Extrae el UUID de la URL
+        const nombre_apellido_uuid = fullParam;
+        if (nombre_apellido_uuid) {
+          this.portfolioService.obtenerPortfolio(nombre_apellido_uuid); // Llama al servicio con el código extraído
         } else {
           console.error('El código de persona no es válido.');
         }

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PortfolioComponent } from './layout/portfolio/portfolio.component';
 
 const routes: Routes = [
-  { path: 'portfolio/:nombre-apellido-codigo', component: PortfolioComponent },
+  { path: 'portfolio/:uuid', component: PortfolioComponent },
   { path: '', component: PortfolioComponent }
 ];
 

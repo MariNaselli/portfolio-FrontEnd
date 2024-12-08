@@ -7,7 +7,7 @@ export class Item {
   url: string;
   nivel_progreso: number;
   eliminado: number;
-  codigo_persona: number;
+  uuid_persona: string;
   codigo_seccion: number;
 
   constructor() {
@@ -19,7 +19,7 @@ export class Item {
     this.url = '';
     this.nivel_progreso = 0;
     this.eliminado = 0;
-    this.codigo_persona = 0;
+    this.uuid_persona = '';
     this.codigo_seccion = 0;
   }
 }

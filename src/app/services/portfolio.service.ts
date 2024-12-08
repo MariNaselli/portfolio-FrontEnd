@@ -23,15 +23,15 @@ export class PortfolioService {
     private authService: AuthService
   ) {}
 
-  obtenerPortfolio(codigoPersona: number): void {
+  obtenerPortfolio(uuid: string): void {
     this.loadingService.showLoading();
     this.http
-      .get<Portfolio>(`${environment.apiUrlNetsJS}/portfolio/persona/${codigoPersona}`)
+      .get<Portfolio>(`${environment.apiUrlNetsJS}/portfolio/persona/${uuid}`)
       .pipe(
         tap((portfolio) => {
           console.log('Portfolio obtenido:', portfolio);
           this.portfolioSubject.next(portfolio); // Actualiza el observable
-          this.authService.verificarPropietarioPortfolio(codigoPersona); // Verifica el propietario
+          this.authService.verificarPropietarioPortfolio(uuid); // Verifica el propietario
         }),
         finalize(() => {
           this.loadingService.hideLoading();
@@ -51,7 +51,7 @@ export class PortfolioService {
       .put<Persona>(`${environment.apiUrlNetsJS}/personas/actualizar-persona`, persona)
       .pipe(
         tap(() => {
-          this.obtenerPortfolio(persona.codigo); // Actualiza el portfolio
+          this.obtenerPortfolio(persona.uuid); // Actualiza el portfolio
         }),
         finalize(() => {
           this.loadingService.hideLoading();
@@ -65,7 +65,7 @@ export class PortfolioService {
       .put<Item>(`${environment.apiUrlNetsJS}/items/actualizar-item/${item.codigo_item}`, item)
       .pipe(
         tap(() => {
-          this.obtenerPortfolio(item.codigo_persona); // Actualiza el portfolio
+          this.obtenerPortfolio(item.uuid_persona); // Actualiza el portfolio
         }),
         finalize(() => {
           this.loadingService.hideLoading();
@@ -79,7 +79,7 @@ export class PortfolioService {
       .post<Item>(`${environment.apiUrlNetsJS}/items/crear-item`, item)
       .pipe(
         tap(() => {
-          this.obtenerPortfolio(item.codigo_persona); // Actualiza el portfolio
+          this.obtenerPortfolio(item.uuid_persona); // Actualiza el portfolio
         }),
         finalize(() => {
           this.loadingService.hideLoading();

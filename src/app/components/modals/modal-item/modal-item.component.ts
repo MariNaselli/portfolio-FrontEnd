@@ -36,6 +36,7 @@ export class ModalItemComponent implements OnInit {
   }
   guardando: boolean = false;
   guardarItem(): void {
+    console.log(this.item);
     this.guardando = true;
     this.item.uuid_persona  = this.portfolio.persona.uuid;
     if (this.item.codigo_item == 0) {

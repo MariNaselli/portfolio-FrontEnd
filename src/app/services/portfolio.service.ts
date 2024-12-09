@@ -62,7 +62,7 @@ export class PortfolioService {
   actualizarItem(item: Item): Observable<Item> {
     this.loadingService.showLoading();
     return this.http
-      .put<Item>(`${environment.apiUrlNetsJS}/items/actualizar-item/${item.codigo_item}`, item)
+      .put<Item>(`${environment.apiUrlNetsJS}/items/actualizar-item/${item.uuid_item}`, item)
       .pipe(
         tap(() => {
           this.obtenerPortfolio(item.uuid_persona); // Actualiza el portfolio
@@ -90,7 +90,7 @@ export class PortfolioService {
   eliminarItem(item: Item): Observable<void> {
     this.loadingService.showLoading();
     return this.http
-      .delete<void>(`${environment.apiUrlNetsJS}/items/eliminar-item/${item.codigo_item}`)
+      .delete<void>(`${environment.apiUrlNetsJS}/items/eliminar-item/${item.uuid_item}`)
       .pipe(
         tap(() => {
           // Actualiza el estado local eliminando el ítem directamente
@@ -98,7 +98,7 @@ export class PortfolioService {
           updatedPortfolio.secciones = updatedPortfolio.secciones.map((seccion) => {
             return {
               ...seccion,
-              items: seccion.items.filter((i) => i.codigo_item !== item.codigo_item),
+              items: seccion.items.filter((i) => i.uuid_item !== item.uuid_item),
             };
           });
           this.portfolioSubject.next(updatedPortfolio); // Notifica el cambio

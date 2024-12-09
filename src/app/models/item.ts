@@ -1,4 +1,5 @@
 export class Item {
+  uuid_item: string;
   codigo_item: number;
   nombre: string;
   titulo: string;
@@ -11,6 +12,7 @@ export class Item {
   codigo_seccion: number;
 
   constructor() {
+    this.uuid_item = '';
     this.codigo_item = 0;
     this.nombre = '';
     this.titulo = '';

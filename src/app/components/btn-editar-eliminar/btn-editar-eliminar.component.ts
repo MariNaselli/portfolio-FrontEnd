@@ -48,13 +48,10 @@ export class BtnEditarEliminarComponent implements OnInit {
               confirmButtonText: 'Ok',
               confirmButtonColor: 'green',
             });
-
-            console.log('Item eliminado correctamente.');
             // Actualizar la lista de secciones en el servicio
           },
 
           (error) => {
-            console.log('Error al eliminar el item.', error);
             Swal.fire({
               title: 'Atención!',
               text: 'Error al eliminar el item.',

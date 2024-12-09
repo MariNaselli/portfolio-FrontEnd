@@ -23,7 +23,6 @@ export class ModalItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.item);
     this.portfolioService.obtenerSecciones().subscribe((data) => {
       this.secciones = data;
       this.mostrarSegunSeccion();
@@ -36,10 +35,9 @@ export class ModalItemComponent implements OnInit {
   }
   guardando: boolean = false;
   guardarItem(): void {
-    console.log(this.item);
     this.guardando = true;
     this.item.uuid_persona  = this.portfolio.persona.uuid;
-    if (this.item.codigo_item == 0) {
+    if (this.item.uuid_item == '') {
       //ES UN ITEM NUEVO
       this.portfolioService.crearItem(this.item).subscribe({
         next: (response) => {

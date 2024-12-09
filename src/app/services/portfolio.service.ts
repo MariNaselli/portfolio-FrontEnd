@@ -29,7 +29,6 @@ export class PortfolioService {
       .get<Portfolio>(`${environment.apiUrlNetsJS}/portfolio/persona/${uuid}`)
       .pipe(
         tap((portfolio) => {
-          console.log('Portfolio obtenido:', portfolio);
           this.portfolioSubject.next(portfolio); // Actualiza el observable
           this.authService.verificarPropietarioPortfolio(uuid); // Verifica el propietario
         }),
@@ -113,7 +112,6 @@ export class PortfolioService {
       .get<Seccion[]>(`${environment.apiUrlNetsJS}/secciones/obtener-secciones`)
       .pipe(
         tap((secciones) => {
-          console.log('Secciones obtenidas:', secciones);
         }),
         finalize(() => {
         })

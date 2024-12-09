@@ -14,9 +14,10 @@ import { ModalLoginComponent } from './components/modals/modal-login/modal-login
 import { ModalPersonaComponent } from './components/modals/modal-persona/modal-persona.component';
 import { ContactoComponent } from './layout/contacto/contacto.component';
 import { EncabezadoComponent } from './layout/encabezado/encabezado.component';
-import { PerfilComponent } from './layout/perfil/perfil.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 import { PortfolioComponent } from './layout/portfolio/portfolio.component';
-import { SeccionesComponent } from './layout/secciones/secciones.component';
+import { SeccionesComponent } from './components/secciones/secciones.component';
+import { PortfolioNoEncontradoComponent } from './components/portfolio-no-encontrado/portfolio-no-encontrado.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SeccionesComponent } from './layout/secciones/secciones.component';
     ModalItemComponent,
     SeccionesComponent,
     LoadingComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    PortfolioNoEncontradoComponent
   ],
   imports: [
     BrowserModule,

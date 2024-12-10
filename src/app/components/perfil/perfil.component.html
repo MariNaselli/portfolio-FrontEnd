@@ -8,6 +8,8 @@
             class="bd-placeholder-img rounded-circle img-responsive-custom"
             alt="Foto de Perfil"
             loading="lazy"
+            (click)="openModalFoto(modalFoto)"
+            style="cursor: pointer"
           />
         </div>
         <div class="col-lg-7">
@@ -36,3 +38,35 @@
 <ng-template #modalPersona>
   <app-modal-persona (OnCloseModal)="cerrarModalPersona()"></app-modal-persona>
 </ng-template>
+
+<!-- Modal Foto -->
+<ng-template #modalFoto>
+  <div class="modal-header">
+    <h5 class="modal-title">Cambiar foto de perfil</h5>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="cerrarModal()" 
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="subirFoto()" #formFoto="ngForm">
+      <div class="mb-3">
+        <label for="foto" class="form-label">Seleccionar nueva foto</label>
+        <input
+          type="file"
+          class="form-control"
+          id="foto"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!fotoSeleccionada">
+        Subir foto
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+

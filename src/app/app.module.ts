@@ -18,7 +18,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { PortfolioComponent } from './layout/portfolio/portfolio.component';
 import { SeccionesComponent } from './components/secciones/secciones.component';
 import { PortfolioNoEncontradoComponent } from './components/portfolio-no-encontrado/portfolio-no-encontrado.component';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { PortfolioNoEncontradoComponent } from './components/portfolio-no-encont
     SeccionesComponent,
     LoadingComponent,
     PortfolioComponent,
-    PortfolioNoEncontradoComponent
+    PortfolioNoEncontradoComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +41,7 @@ import { PortfolioNoEncontradoComponent } from './components/portfolio-no-encont
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ImageCropperModule,
     ToastrModule.forRoot({
       timeOut: 1500,
       positionClass: 'toast-top-right'

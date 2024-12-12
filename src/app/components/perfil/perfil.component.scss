@@ -7,3 +7,9 @@
     max-width: 75%;
   }
 }
+
+.modal-body image-cropper {
+  max-height: 450px; /* Tamaño máximo del área de recorte */
+  overflow: hidden;
+}
+

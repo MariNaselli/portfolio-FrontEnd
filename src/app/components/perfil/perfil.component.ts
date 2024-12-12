@@ -1,9 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Portfolio } from 'src/app/models/portfolio';
 import { AuthService } from 'src/app/services/auth.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { ToastrService } from 'ngx-toastr';  
+import { ToastrService } from 'ngx-toastr';
+import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-perfil',
@@ -14,14 +16,18 @@ export class PerfilComponent implements OnInit {
   @Input() portfolio: Portfolio = new Portfolio();
   puedeEditar: boolean = false;
   @ViewChild('modalPersona') modalPersona: any;
-  fotoSeleccionada: File | null = null;
+  // fotoSeleccionada: File | null = null;
+  @ViewChild('imageCropper') imageCropper: ImageCropperComponent | undefined;
+  imageChangedEvent: any = '';
+  croppedImage: SafeUrl | undefined; // Cambiamos el tipo a SafeUrl para URLs sanitizadas
+  croppedBlob: Blob | undefined; // Blob para enviar al backend
 
   constructor(
-    private modalService: NgbModal, 
+    private modalService: NgbModal,
     private authService: AuthService,
     private portfolioService: PortfolioService,
     private toastr: ToastrService,
-    
+    private sanitizer: DomSanitizer // Inyectamos DomSanitizer
 
   ) {}
 
@@ -43,51 +49,84 @@ export class PerfilComponent implements OnInit {
     this.modalPersona.close();
   }
 
+  modalRef: NgbModalRef | undefined;
   openModalFoto(modalFoto: any): void {
-    this.modalService.open(modalFoto, { size: 'lg', centered: true });
+    this.modalRef = this.modalService.open(modalFoto, { size: 'lg', centered: true });
   }
 
   cerrarModal() {
-    this.modalService.dismissAll();  // Cierra todos los modales abiertos
+    // this.modalService.dismissAll(); // Cierra todos los modales abiertos
+    //Cerramos solo el modal al cual tenemos referencia
+    this.modalRef?.close();
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.fotoSeleccionada = input.files[0];
+  // onFileSelected(event: Event): void {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files.length > 0) {
+  //     this.fotoSeleccionada = input.files[0];
+  //     this.croppedImage = ''; // Reset cropped image when a new file is selected
+  //   }
+  // }
+  //metodo que se llama cuando un usuario selecciona una imagen
+
+  fileChangeEvent(event: Event): void {
+    this.imageChangedEvent = event; // Asigna el evento al recortador
+  }
+  //metodo que se llama cuando la imagen es recortada
+  imageCropped(event: ImageCroppedEvent): void {
+    if (event.blob) {
+      this.croppedBlob = event.blob; // Guarda el Blob
+      this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(event.blob));
+    } else {
+      this.croppedBlob = undefined;
+      this.croppedImage = undefined;
     }
   }
+
   subirFoto(): void {
-    if (!this.fotoSeleccionada) {
-      alert('Por favor selecciona una foto antes de subirla.');
+    if (!this.croppedBlob) {
+      alert('Por favor selecciona y ajusta una foto antes de subirla.');
       return;
     }
-  
+
     const formData = new FormData();
-    formData.append('foto', this.fotoSeleccionada);
-  
-    const uuidPersona = this.portfolio.persona.uuid;  // Asegúrate de que este uuid es el correcto
+    formData.append('foto', this.croppedBlob, 'foto.png');
+
+    const uuidPersona = this.portfolio.persona.uuid;
     if (!uuidPersona) {
       alert('No se pudo encontrar el UUID de la persona.');
       return;
     }
-  
-    // Llama al servicio para subir la foto
+
     this.portfolioService.subirFoto(formData, uuidPersona).subscribe({
       next: (response) => {
-        // Actualiza la URL de la foto en el portfolio
         this.portfolio.persona.urlFoto = response.urlFotoActualizada;
+        this.modalRef?.close();
         this.toastr.success('Foto actualizada con éxito');
-
-        this.modalService.dismissAll();  // Cierra todos los modales abiertos
       },
       error: (err) => {
         console.error('Error al subir la foto:', err);
         this.toastr.error('Ocurrió un error al actualizar la foto.');
-        
       },
     });
   }
+
   
+  
+
+  //cuando la imagen es cargada correctamente
+  imageLoaded(): void {
+    console.log('Imagen cargada correctamente');
+  }
+
+  cropperReady(): void {
+    console.log('Recortador listo');
+  }
+
+  loadImageFailed(): void {
+    console.error('Error al cargar la imagen');
+  }
+
+
   
 }

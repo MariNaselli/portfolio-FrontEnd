@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { RouterModule } from '@angular/router'; // Importa esto
+
 
 @Component({
   selector: 'app-portfolio-list',
@@ -9,19 +9,32 @@ import { RouterModule } from '@angular/router'; // Importa esto
 })
 export class PortfolioListComponent {
   portfolios: any[] = [];
+  filteredPortfolios: any[] = [];
+  searchQuery: string = '';
 
   constructor(private portfolioService: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioService.listarPortfolios().subscribe({
       next: (data) => {
+        console.log('Datos cargados:', data); // Verifica los datos
         this.portfolios = data;
-        console.log('Portfolios cargados:', this.portfolios);
+        
+        this.filteredPortfolios = this.portfolios; // Inicializa el filtro con todos los portfolios
       },
       error: (err) => {
         console.error('Error al cargar portfolios:', err);
       },
     });
+  }
+
+  applyFilter(): void {
+    const query = this.searchQuery.toLowerCase().trim();
+    this.filteredPortfolios = this.portfolios.filter(portfolio =>
+      (portfolio.nombre?.toLowerCase().includes(query) || '') ||
+      (portfolio.apellido?.toLowerCase().includes(query) || '') ||
+      (portfolio.titulo?.toLowerCase().includes(query) || '')
+    );
   }
 }
 

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UtilidadesService } from 'src/app/utils/utilidades.service';
 import { ToastrService } from 'ngx-toastr';
 import { Portfolio } from 'src/app/models/portfolio';
+import { ModalUserComponent } from 'src/app/components/modals/modal-user/modal-user.component';
 
 @Component({
   selector: 'app-encabezado',
@@ -19,7 +20,10 @@ export class EncabezadoComponent implements OnInit {
 
   @ViewChild('modalLogin') modalLogin: any;
   // @ViewChild('modalPersona') modalPersona: any;
+  @ViewChild('modalUser') modalUser: any;
+
   @ViewChild('navbar') navbar!: ElementRef;
+  modalRef: any;
 
   constructor(
     private portfolioService: PortfolioService,
@@ -31,7 +35,8 @@ export class EncabezadoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.getCurrentUser().subscribe((userData) => {
+
+     this.authService.getCurrentUser().subscribe((userData) => {
       if (userData) {
         this.isLoggedIn = true;
         this.userData = userData;
@@ -57,6 +62,19 @@ export class EncabezadoComponent implements OnInit {
   cerrarModalLogin() {
     this.modalLogin.close();
   }
+
+  openModalUser(): void {
+    //aca obtener portfolio por el uuid del usuario logueado
+    this.modalRef = this.modalService.open(this.modalUser, {
+      size: 'sm',
+      centered: true,
+    });
+  }
+
+  cerrarModalUser(): void {
+    this.modalService.dismissAll();
+  }
+
   logout(): void {
     this.authService.logout();
   }
@@ -82,7 +100,9 @@ export class EncabezadoComponent implements OnInit {
       });
   }
 
-  openModalCurrentUser() {
-    this.toastr.info('Mostrar modal con los datos basicos del usuario logueado. Nombre, Apellido y Correo Electronico');
-  }
+  // openModalCurrentUser() {
+  //   this.toastr.info(
+  //     'Mostrar modal con los datos basicos del usuario logueado. Nombre, Apellido y Correo Electronico'
+  //   );
+  // }
 }

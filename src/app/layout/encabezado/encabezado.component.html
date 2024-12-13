@@ -98,8 +98,8 @@
                 <a
                   class="dropdown-item"
                   href="javascript:void(0);"
-                  (click)="openModalCurrentUser()"
-                  >Tus datos</a
+                  (click)="openModalUser()"
+                  >Mi Perfil</a
                 >
               </li>
               <li><hr class="dropdown-divider" /></li>
@@ -117,6 +117,15 @@
 <ng-template #modalLogin>
   <app-modal-login (OnCloseModal)="cerrarModalLogin()"></app-modal-login>
 </ng-template>
+
+<!-- Modal User -->
+<ng-template #modalUser>
+  <app-modal-user
+    [userData]="userData"
+    (OnCloseModal)="cerrarModalUser()"
+  ></app-modal-user>
+</ng-template>
+
 
 <!-- <ng-template #modalPersona>
   <app-modal-persona (OnCloseModal)="cerrarModalPersona()"></app-modal-persona>

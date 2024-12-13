@@ -67,6 +67,7 @@ export class AuthService {
             uuid: response.uuid,
             nombre: response.nombre,
             apellido: response.apellido,
+            url_foto: response.url_foto
           };
           localStorage.setItem(this.localStorageKey, JSON.stringify(userData));
           this.currentUserSubject.next(userData);

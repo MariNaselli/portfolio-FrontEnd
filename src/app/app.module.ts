@@ -20,6 +20,8 @@ import { SeccionesComponent } from './components/secciones/secciones.component';
 import { PortfolioNoEncontradoComponent } from './components/portfolio-no-encontrado/portfolio-no-encontrado.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ModalUserComponent } from './components/modals/modal-user/modal-user.component';
+import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
+// import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { ModalUserComponent } from './components/modals/modal-user/modal-user.co
     LoadingComponent,
     PortfolioComponent,
     PortfolioNoEncontradoComponent,
-    ModalUserComponent
+    ModalUserComponent,
+    PortfolioListComponent
   ],
   imports: [
     BrowserModule,

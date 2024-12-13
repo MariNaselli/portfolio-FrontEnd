@@ -121,5 +121,9 @@ export class PortfolioService {
   subirFoto(formData: FormData, uuid: string): Observable<any> {
     return this.http.post(`${environment.apiUrlNetsJS}/personas/${uuid}/foto`, formData);
   }
+
+  listarPortfolios(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrlNetsJS}/portfolio/listar-portfolios`);
+  }
   
 }

@@ -1,0 +1,25 @@
+<div class="container">
+  <!-- Encabezado con margen inferior -->
+  <div class="row mb-4"> <!-- mb-4 agrega margen inferior -->
+    <div class="col">
+      <h1>Tu Portafolio</h1>
+    </div>
+  </div>
+
+  <!-- Fila de tarjetas con margen superior -->
+  <div class="row row-cols-1 row-cols-md-4 row-cols-lg-5 g-4 mt-4"> <!-- mt-4 agrega margen superior a las tarjetas -->
+    <div class="col" *ngFor="let portfolio of portfolios">
+      <div class="card mb-4" style="max-width: 250px;">
+        <img [src]="portfolio.urlFoto || 'assets/images/profile.jpg'" class="card-img-top" alt="{{ portfolio.nombre }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ portfolio.nombre }} {{ portfolio.apellido }}</h5>
+          <p class="card-text">{{ portfolio.titulo }}</p>
+          <a [routerLink]="['/portfolio', portfolio.uuid]" class="btn btn-primary">Ver Portfolio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

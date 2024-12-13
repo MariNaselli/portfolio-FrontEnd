@@ -48,7 +48,15 @@ export class EncabezadoComponent implements OnInit {
     // Suscribirse al observable del servicio para actualizar el portfolio
     this.portfolioService.portfolio$.subscribe((portfolio) => {
       this.portfolio = portfolio;
-    });
+      if (this.portfolio.persona) {
+        this.userData = {
+          ...this.userData, // Mantener los datos anteriores de userData
+          nombre: this.portfolio.persona.nombre,
+          apellido: this.portfolio.persona.apellido
+        };
+      }
+    
+    }); 
   }
 
   openModalLogin(content: any): void {

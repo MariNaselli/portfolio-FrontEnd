@@ -81,20 +81,7 @@
         (loadImageFailed)="loadImageFailed()"
       ></image-cropper>
 
-      <!-- <div class="mt-3">
-          <button class="btn btn-outline-primary" (click)="zoomIn()">Acercar</button>
-          <button class="btn btn-outline-secondary" (click)="zoomOut()">Alejar</button>
-        </div> -->
-      <!-- Mostrar la imagen recortada -->
-      <!-- <div *ngIf="croppedImage">
-        <img
-          [src]="croppedImage"
-          class="img-thumbnail mt-3"
-          alt="Imagen Recortada"
-        />
-      </div> -->
-
-      <button type="submit" class="btn btn-primary" [disabled]="!croppedImage">
+      <button type="submit" class="btn btn-primary" [disabled]="!croppedImage || isLoading">
         Subir foto
       </button>
     </form>

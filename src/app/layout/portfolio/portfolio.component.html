@@ -1,13 +1,9 @@
-<div *ngIf="!loading && portfolio === null">
+<div *ngIf="portfolio === null">
   <app-portfolio-no-encontrado></app-portfolio-no-encontrado>
 </div>
 
-<div *ngIf="!loading && portfolio !== null && portfolio?.persona?.uuid !== ''">
+<div *ngIf="portfolio !== null && portfolio?.persona?.uuid !== ''">
   <app-perfil [portfolio]="portfolio"></app-perfil>
   <app-secciones [portfolio]="portfolio"></app-secciones>
   <app-contacto [portfolio]="portfolio"></app-contacto>
-</div>
-
-<div *ngIf="loading">
-  <app-loading></app-loading>
 </div>

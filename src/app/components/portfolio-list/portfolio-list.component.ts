@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -11,18 +12,23 @@ export class PortfolioListComponent {
   filteredPortfolios: any[] = [];
   searchQuery: string = '';
 
-  constructor(private portfolioService: PortfolioService) {}
+  constructor(
+    private portfolioService: PortfolioService,
+    private loadingService: LoadingService
+  ) {}
 
   ngOnInit(): void {
     this.portfolioService.limpiarPorfolio();
 
+    this.loadingService.showLoading();
     this.portfolioService.listarPortfolios().subscribe({
       next: (data) => {
-        console.log('Datos cargados:', data); // Verifica los datos
         this.portfolios = data;
-        this.filteredPortfolios = this.portfolios; // Inicializa el filtro con todos los portfolios
+        this.filteredPortfolios = this.portfolios;
+        this.loadingService.hideLoading();
       },
       error: (err) => {
+        this.loadingService.hideLoading();
         console.error('Error al cargar portfolios:', err);
       },
     });

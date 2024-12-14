@@ -11,7 +11,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
   styleUrls: ['./portfolio.component.scss'],
 })
 export class PortfolioComponent implements OnInit {
-  loading: boolean = false;
+  // loading: boolean = false;
   isEditable: boolean = false; // Bandera que indica si se pueden editar los campos
   portfolio: Portfolio = new Portfolio();
 
@@ -22,10 +22,7 @@ export class PortfolioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Observa el estado de carga
-    this.loadingService.loading$.subscribe((isLoading: boolean) => {
-      this.loading = isLoading;
-    });
+
 
     this.portfolioService.portfolio$.subscribe((portfolio) => {
       this.portfolio = portfolio;

@@ -21,7 +21,7 @@ export class PerfilComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: SafeUrl | undefined; // Cambiamos el tipo a SafeUrl para URLs sanitizadas
   croppedBlob: Blob | undefined; // Blob para enviar al backend
-
+  isLoading: boolean = false;
   constructor(
     private modalService: NgbModal,
     private authService: AuthService,
@@ -60,15 +60,6 @@ export class PerfilComponent implements OnInit {
     this.modalRef?.close();
   }
 
-  // onFileSelected(event: Event): void {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files && input.files.length > 0) {
-  //     this.fotoSeleccionada = input.files[0];
-  //     this.croppedImage = ''; // Reset cropped image when a new file is selected
-  //   }
-  // }
-  //metodo que se llama cuando un usuario selecciona una imagen
-
   fileChangeEvent(event: Event): void {
     this.imageChangedEvent = event; // Asigna el evento al recortador
   }
@@ -85,7 +76,7 @@ export class PerfilComponent implements OnInit {
 
   subirFoto(): void {
     if (!this.croppedBlob) {
-      alert('Por favor selecciona y ajusta una foto antes de subirla.');
+      this.toastr.error('Por favor selecciona y ajusta una foto antes de subirla.');
       return;
     }
 
@@ -94,17 +85,23 @@ export class PerfilComponent implements OnInit {
 
     const uuidPersona = this.portfolio.persona.uuid;
     if (!uuidPersona) {
-      alert('No se pudo encontrar el UUID de la persona.');
+      this.toastr.error('No se pudo encontrar el UUID de la persona.');
       return;
     }
 
+    this.isLoading = true;
     this.portfolioService.subirFoto(formData, uuidPersona).subscribe({
       next: (response) => {
         this.portfolio.persona.urlFoto = response.urlFotoActualizada;
         this.modalRef?.close();
+        
         this.toastr.success('Foto actualizada con éxito');
+        this.portfolioService.obtenerPortfolio(uuidPersona);
+
+        this.isLoading = false;
       },
       error: (err) => {
+        this.isLoading = false;
         console.error('Error al subir la foto:', err);
         this.toastr.error('Ocurrió un error al actualizar la foto.');
       },

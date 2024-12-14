@@ -6,6 +6,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 import { ToastrService } from 'ngx-toastr';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-perfil',
@@ -21,14 +22,14 @@ export class PerfilComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: SafeUrl | undefined; // Cambiamos el tipo a SafeUrl para URLs sanitizadas
   croppedBlob: Blob | undefined; // Blob para enviar al backend
-  isLoading: boolean = false;
+
   constructor(
     private modalService: NgbModal,
     private authService: AuthService,
     private portfolioService: PortfolioService,
     private toastr: ToastrService,
-    private sanitizer: DomSanitizer // Inyectamos DomSanitizer
-
+    private sanitizer: DomSanitizer,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +52,10 @@ export class PerfilComponent implements OnInit {
 
   modalRef: NgbModalRef | undefined;
   openModalFoto(modalFoto: any): void {
-    this.modalRef = this.modalService.open(modalFoto, { size: 'lg', centered: true });
+    this.modalRef = this.modalService.open(modalFoto, {
+      size: 'lg',
+      centered: true,
+    });
   }
 
   cerrarModal() {
@@ -67,7 +71,9 @@ export class PerfilComponent implements OnInit {
   imageCropped(event: ImageCroppedEvent): void {
     if (event.blob) {
       this.croppedBlob = event.blob; // Guarda el Blob
-      this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(event.blob));
+      this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(
+        URL.createObjectURL(event.blob)
+      );
     } else {
       this.croppedBlob = undefined;
       this.croppedImage = undefined;
@@ -76,7 +82,9 @@ export class PerfilComponent implements OnInit {
 
   subirFoto(): void {
     if (!this.croppedBlob) {
-      this.toastr.error('Por favor selecciona y ajusta una foto antes de subirla.');
+      this.toastr.error(
+        'Por favor selecciona y ajusta una foto antes de subirla.'
+      );
       return;
     }
 
@@ -89,27 +97,22 @@ export class PerfilComponent implements OnInit {
       return;
     }
 
-    this.isLoading = true;
+    this.loadingService.showLoading();
     this.portfolioService.subirFoto(formData, uuidPersona).subscribe({
       next: (response) => {
         this.portfolio.persona.urlFoto = response.urlFotoActualizada;
-        this.modalRef?.close();
-        
-        this.toastr.success('Foto actualizada con éxito');
         this.portfolioService.obtenerPortfolio(uuidPersona);
-
-        this.isLoading = false;
+        this.modalRef?.close();
+        this.loadingService.hideLoading();
+        this.toastr.success('Foto actualizada con éxito');
       },
       error: (err) => {
-        this.isLoading = false;
+        this.loadingService.hideLoading();
         console.error('Error al subir la foto:', err);
         this.toastr.error('Ocurrió un error al actualizar la foto.');
       },
     });
   }
-
-  
-  
 
   //cuando la imagen es cargada correctamente
   imageLoaded(): void {
@@ -123,7 +126,4 @@ export class PerfilComponent implements OnInit {
   loadImageFailed(): void {
     console.error('Error al cargar la imagen');
   }
-
-
-  
 }

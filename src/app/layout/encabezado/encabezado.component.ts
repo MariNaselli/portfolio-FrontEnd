@@ -30,13 +30,10 @@ export class EncabezadoComponent implements OnInit {
     private modalService: NgbModal,
     private authService: AuthService,
     private router: Router,
-    private utilidadesService: UtilidadesService,
-    private toastr: ToastrService
-  ) {}
+    private utilidadesService: UtilidadesService  ) {}
 
   ngOnInit(): void {
-
-     this.authService.getCurrentUser().subscribe((userData) => {
+    this.authService.getCurrentUser().subscribe((userData) => {
       if (userData) {
         this.isLoggedIn = true;
         this.userData = userData;
@@ -48,15 +45,14 @@ export class EncabezadoComponent implements OnInit {
     // Suscribirse al observable del servicio para actualizar el portfolio
     this.portfolioService.portfolio$.subscribe((portfolio) => {
       this.portfolio = portfolio;
-      if (this.portfolio.persona) {
+      if (this.portfolio.persona.uuid === this.userData.uuid) {
         this.userData = {
           ...this.userData, // Mantener los datos anteriores de userData
           nombre: this.portfolio.persona.nombre,
-          apellido: this.portfolio.persona.apellido
+          apellido: this.portfolio.persona.apellido,
         };
       }
-    
-    }); 
+    });
   }
 
   openModalLogin(content: any): void {

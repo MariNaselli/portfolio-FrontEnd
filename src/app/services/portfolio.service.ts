@@ -42,6 +42,10 @@ export class PortfolioService {
         },
       });
   }
+
+  limpiarPorfolio(){
+    this.portfolioSubject.next(new Portfolio());
+  }
   
 
   actualizarPersona(persona: Persona): Observable<Persona> {

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
-
 @Component({
   selector: 'app-portfolio-list',
   templateUrl: './portfolio-list.component.html',
-  styleUrls: ['./portfolio-list.component.scss']
+  styleUrls: ['./portfolio-list.component.scss'],
 })
 export class PortfolioListComponent {
   portfolios: any[] = [];
@@ -15,11 +14,12 @@ export class PortfolioListComponent {
   constructor(private portfolioService: PortfolioService) {}
 
   ngOnInit(): void {
+    this.portfolioService.limpiarPorfolio();
+
     this.portfolioService.listarPortfolios().subscribe({
       next: (data) => {
         console.log('Datos cargados:', data); // Verifica los datos
         this.portfolios = data;
-        
         this.filteredPortfolios = this.portfolios; // Inicializa el filtro con todos los portfolios
       },
       error: (err) => {
@@ -30,11 +30,14 @@ export class PortfolioListComponent {
 
   applyFilter(): void {
     const query = this.searchQuery.toLowerCase().trim();
-    this.filteredPortfolios = this.portfolios.filter(portfolio =>
-      (portfolio.nombre?.toLowerCase().includes(query) || '') ||
-      (portfolio.apellido?.toLowerCase().includes(query) || '') ||
-      (portfolio.titulo?.toLowerCase().includes(query) || '')
+    this.filteredPortfolios = this.portfolios.filter(
+      (portfolio) =>
+        portfolio.nombre?.toLowerCase().includes(query) ||
+        '' ||
+        portfolio.apellido?.toLowerCase().includes(query) ||
+        '' ||
+        portfolio.titulo?.toLowerCase().includes(query) ||
+        ''
     );
   }
 }
-
